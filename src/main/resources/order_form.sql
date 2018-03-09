@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50713
 Source Host           : localhost:3306
-Source Database       : shiro_t
+Source Database       : order_form
 
 Target Server Type    : MYSQL
 Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2018-03-02 16:25:36
+Date: 2018-03-09 15:27:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -76,7 +76,7 @@ CREATE TABLE `dictionarydata` (
   `dict_id` int(11) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dictionarydata
@@ -113,177 +113,7 @@ INSERT INTO `dictionarydata` VALUES ('33', '安装工程', 'azgc', '安装工程
 INSERT INTO `dictionarydata` VALUES ('34', '消隐', 'XY', '消隐', '2', '2');
 INSERT INTO `dictionarydata` VALUES ('36', '补号', 'BH', '补号', '14', '0');
 INSERT INTO `dictionarydata` VALUES ('37', '原号', 'YH', '原号', '14', '0');
-
--- ----------------------------
--- Table structure for project_construction
--- ----------------------------
-DROP TABLE IF EXISTS `project_construction`;
-CREATE TABLE `project_construction` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `proId` int(11) DEFAULT NULL COMMENT '项目id',
-  `prwId` int(11) DEFAULT NULL COMMENT '项目基本信息id',
-  `pc_workers` varchar(50) DEFAULT NULL COMMENT '施工人员',
-  `pc_phone` varchar(30) DEFAULT NULL COMMENT '联系电话',
-  `pc_week_plan` varchar(255) DEFAULT NULL COMMENT '下周计划',
-  `pc_month_plan` varchar(255) DEFAULT NULL COMMENT '下月计划',
-  `create_user` int(11) DEFAULT NULL COMMENT '创建人',
-  `create_time` varchar(30) DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of project_construction
--- ----------------------------
-
--- ----------------------------
--- Table structure for project_produce
--- ----------------------------
-DROP TABLE IF EXISTS `project_produce`;
-CREATE TABLE `project_produce` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pro_gauge` int(255) DEFAULT NULL COMMENT '测量定线 1 是，0否',
-  `pro_job_type` int(11) DEFAULT NULL COMMENT '工号类别 字典id',
-  `pro_engine_type` int(11) DEFAULT NULL COMMENT '工程类别 字典id',
-  `pro_nature` int(11) DEFAULT NULL COMMENT '工程性质 字典id',
-  `pro_name` varchar(100) DEFAULT NULL COMMENT '工程名称',
-  `pro_source` int(11) DEFAULT NULL COMMENT '工程来源 字典id',
-  `pro_number_type` int(11) DEFAULT NULL COMMENT '编号性质，字典id',
-  `pro_number` varchar(100) DEFAULT NULL COMMENT '工号',
-  `pro_snap_number` varchar(100) DEFAULT NULL COMMENT '临时工号',
-  `pro_serial_number` varchar(100) DEFAULT NULL COMMENT '序号',
-  `pro_lssued_time` varchar(30) DEFAULT NULL COMMENT '任务下达时间',
-  `pro_area` int(11) DEFAULT NULL COMMENT '工程所在区 字典id',
-  `pro_roads_time` varchar(30) DEFAULT NULL COMMENT '路政报批时间',
-  `pro_traffic_time` varchar(30) DEFAULT NULL COMMENT '交通报批时间',
-  `pro_period` int(11) DEFAULT NULL COMMENT '期次 字典id',
-  `pro_const` varchar(100) DEFAULT NULL COMMENT '施工单位 字典id',
-  `pro_dept` int(255) DEFAULT NULL COMMENT '转入单位  部门id',
-  `pro_design_length` double DEFAULT NULL COMMENT '设计长度',
-  `pro_pipe_length` double DEFAULT NULL COMMENT '管径',
-  `pro_snap_length` double DEFAULT NULL COMMENT '临时线长度',
-  `create_user` int(11) DEFAULT NULL COMMENT '创建人',
-  `create_time` varchar(30) DEFAULT NULL COMMENT '创建时间',
-  `pro_user` varchar(100) DEFAULT NULL COMMENT '联系人',
-  `pro_user_phone` varchar(20) DEFAULT NULL COMMENT '电话',
-  `pro_remark` varchar(255) DEFAULT NULL COMMENT '备注',
-  `pro_pipe` double DEFAULT NULL COMMENT '管阀口径',
-  `pro_pipe_lengths` double DEFAULT NULL COMMENT '管阀长度',
-  `pro_water` double DEFAULT NULL COMMENT '水表口径',
-  `pro_water_number` int(11) DEFAULT NULL COMMENT '水表数量',
-  `pro_design` int(1) DEFAULT NULL COMMENT '是否需要设计交底 1是，0否',
-  `pro_billing` int(1) DEFAULT NULL COMMENT '是否需要计费协议 1是，0否',
-  `pro_water_begintime` varchar(30) DEFAULT NULL COMMENT '临时水开始日期',
-  `pro_water_endtime` varchar(30) DEFAULT NULL COMMENT '临时水结束日期',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of project_produce
--- ----------------------------
-INSERT INTO `project_produce` VALUES ('1', '1', '1', '29', '7', '东直门通州市政府', '19', null, '2016dm0001', '2016-0001', '2016dm0001', '2018-02-23 16:12:27', '9', '2018-02-23 16:12:39', '2018-02-23 16:12:44', '23', '10', '7', '1000', '100.2', '150', '1', '2018-02-23 04:14:31', null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `project_produce` VALUES ('2', '0', '1', '29', '6', '东直门', '19', null, '2016dm0002', '2016-0002', '2016dm0002', '2018-02-24 16:33:48', '9', '2018-02-28 16:33:52', '2018-02-24 16:33:55', '23', '11', '8', '12', '122', '150', '1', '2018-02-23 04:34:14', null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `project_produce` VALUES ('3', '1', '1', '33', '6', 'gongcheng', '18', null, '2018dm0001', '2018-0001', '2018dm0001', '2018-02-24 10:18:18', '9', '2018-02-24 10:18:26', '2018-02-24 10:18:30', '23', '10', '7', '100', '2000', '200', '1', '2018-02-24 10:18:58', null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `project_produce` VALUES ('4', '1', '1', '22', '8', '123', '18', '36', '1312', '3123', '123', '2018-03-01 14:02:38', '9', null, null, '23', '31,32', '7', '3123', '123', '123', '1', '2018-03-01 02:05:16', '3123', '1231', '123123', '123', '123', '123', '123', '0', '0', '', '');
-
--- ----------------------------
--- Table structure for project_road_work
--- ----------------------------
-DROP TABLE IF EXISTS `project_road_work`;
-CREATE TABLE `project_road_work` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `prw_dma_caliber` int(255) DEFAULT NULL COMMENT '完成DMA口径 数值',
-  `prw_dma_count` int(255) DEFAULT NULL COMMENT '完成DMA数量 数值',
-  `prw_back_caliber` int(11) DEFAULT NULL COMMENT '完成倒流防止器口径',
-  `prw_back_count` int(11) DEFAULT NULL COMMENT '完成倒流防止器数量',
-  `prw_week_plan` double DEFAULT NULL COMMENT '下周计划',
-  `prw_month_plan` double DEFAULT NULL COMMENT '下月计划',
-  `prw_pst` varchar(50) DEFAULT NULL COMMENT '计划开工时间',
-  `prw_pet` varchar(50) DEFAULT NULL COMMENT '计划完工时间',
-  `prw_total_duration` int(11) DEFAULT NULL COMMENT '计划总工期 ',
-  `prw_ast` varchar(50) DEFAULT NULL COMMENT '实际开工时间',
-  `prw_aet` varchar(50) DEFAULT NULL COMMENT '实际竣工时间',
-  `prw_reception_time` varchar(50) DEFAULT NULL COMMENT '竣工验收日期',
-  `prw_switching_date` varchar(50) DEFAULT NULL COMMENT '转闸单日期',
-  `prw_figure_date` varchar(50) DEFAULT NULL COMMENT '转图日期',
-  `prw_progress_report` varchar(255) DEFAULT NULL COMMENT '工程进展问题',
-  `prw_reason` varchar(255) DEFAULT NULL COMMENT '未开工原因',
-  `prw_explain` varchar(255) DEFAULT NULL COMMENT '未完工说明 ',
-  `prw_budget` double DEFAULT NULL COMMENT '预算价',
-  `prw_settlement` double DEFAULT NULL COMMENT '结算价',
-  `prw_manpower` int(11) DEFAULT NULL COMMENT '累计投入人力',
-  `prw_road_work` double DEFAULT NULL COMMENT '累计投入机械台班',
-  `prw_address` varchar(255) DEFAULT NULL COMMENT '所属街道办事处',
-  `prw_road_name` varchar(255) DEFAULT NULL COMMENT '涉及道路名称',
-  `prw_origin` varchar(255) DEFAULT NULL COMMENT '起点',
-  `prw_stop` varchar(255) DEFAULT NULL COMMENT '止点',
-  `prw_ownership` int(11) DEFAULT NULL COMMENT '道路权属',
-  `prw_repair` int(11) DEFAULT NULL COMMENT '是否随大修路',
-  `prw_excavation` int(11) DEFAULT NULL COMMENT '是否非开挖',
-  `prw_preliminary_time` varchar(50) DEFAULT NULL COMMENT '预判施工工时',
-  `prw_user_id` varchar(50) DEFAULT NULL COMMENT '施工员',
-  `prw_phone` varchar(50) DEFAULT NULL COMMENT '电话',
-  `prw_condition` int(11) DEFAULT NULL COMMENT '路管情况',
-  `prw_creator` int(11) DEFAULT NULL COMMENT '创建人',
-  `prw_create_at` varchar(50) DEFAULT NULL COMMENT '创建时间',
-  `pro_id` int(11) DEFAULT NULL,
-  `prw_roads_time` varchar(30) DEFAULT NULL COMMENT '路政报批时间',
-  `prw_traffic_time` varchar(30) DEFAULT NULL COMMENT '交通报批时间',
-  `prw_team` varchar(255) DEFAULT NULL COMMENT '劳务分包队伍',
-  `prw_budget_user` varchar(30) DEFAULT NULL COMMENT '预算编制人',
-  `prw_budget_time` varchar(30) DEFAULT NULL COMMENT '预算审核合格日期',
-  `prw_contract_time` varchar(30) DEFAULT NULL COMMENT '合同签订日期',
-  `prw_archive_time` varchar(30) DEFAULT NULL COMMENT '标办存档日期',
-  `prw_contract_number` varchar(50) DEFAULT NULL COMMENT '合同号',
-  `prw_contract_price` double DEFAULT NULL COMMENT '合同金额',
-  `prw_group_time` varchar(30) DEFAULT NULL COMMENT '施组审核合格日期',
-  `prw_design_time` varchar(30) DEFAULT NULL COMMENT '设计交底时间',
-  `prw_billing_time` varchar(30) DEFAULT NULL COMMENT '计费协议签订时间',
-  `prw_quality` varchar(50) DEFAULT NULL COMMENT '质检员',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of project_road_work
--- ----------------------------
-INSERT INTO `project_road_work` VALUES ('7', '100', '20', '30', '10', '200', '300', '2018-02-08 22:17:37', '2018-02-08 22:17:39', '300', '2018-02-08 22:17:45', '2018-02-08 22:17:42', '2018-02-08 22:17:49', '2018-02-08 22:17:47', '2018-02-08 22:17:43', '工程进展', '未开工原因', '未完成说明', '100', '200', '100', '200', '街道办事处', '涉及道路名称', '起点', '止点', '13', '1', '1', '1', '李宛霖', '15254566709', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `project_road_work` VALUES ('8', null, null, null, null, null, null, '', '', null, '', '', '', '', '', '', '', '', null, null, null, null, '', '', '', '', '13', '1', '1', '', '', '', '25', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `project_road_work` VALUES ('9', '100', '1', '1', '10', '10', '20', '2018-02-23 16:31:14', '2018-02-24 16:31:17', '10', '2018-02-23 16:31:24', '2018-02-24 16:31:27', '2018-02-27 16:31:30', '2018-02-23 16:31:34', '2018-02-27 16:31:39', '工程进展问题', '未开工原因', '未完工说明', '100', '200', '100', '10', '街道办事处', '道路名称', '起点', '止点', '13', '1', '1', '10', '施工员1', '15810267343', '25', '1', '2018-02-23 04:32:27', '1', null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `project_road_work` VALUES ('10', '222', '12', '212', '221', '12', '1222', '2018-02-23 16:38:48', '2018-02-23 16:38:51', '12', '2018-02-28 16:38:56', '2018-02-24 16:38:59', '2018-02-28 16:39:02', '2018-02-28 16:39:04', '2018-02-27 16:39:08', '212', '2222', '122', '12', '122', '12', '122', '街道办事处22', '道路名称22', '起点2', '止点1', '13', '1', '1', '1', '22212', '2222222', '25', '1', '2018-02-23 04:39:21', '2', null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `project_road_work` VALUES ('11', '23343', '333', '333', '333', '444', '4334', '2018-02-23 10:24:28', '2018-02-22 10:24:37', '4444', '2018-02-23 10:24:32', '2018-02-21 10:24:44', '2018-02-22 10:24:41', '', '2018-02-21 10:24:47', '4444443343', '44444', '44444', '4444', '444', '222', '3323', '街道办事处3', '道路名称3', '起点3', 'sdasd', '13', '1', '1', '1', '333', '332323', '25', '1', '2018-02-24 10:25:00', '3', null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `project_road_work` VALUES ('12', '123', null, null, null, null, null, '', '', null, '', '', '', '', '', '', '', '', null, null, null, null, '13', '123', '123', '123', '13', '1', '1', '123', null, null, '25', '1', '2018-03-02 10:10:01', '1', '2018-03-02 10:09:48', '2018-03-02 10:09:53', null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `project_road_work` VALUES ('13', '1', '11', '11', '1', null, null, '2018-03-02 11:35:43', '2018-03-02 11:35:55', '1', '2018-03-02 11:35:50', '2018-03-02 11:35:57', '2018-03-02 11:35:54', '2018-03-02 11:35:52', '2018-03-02 11:35:59', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '13', '1', '1', '1', null, null, '25', '1', '2018-03-02 11:36:20', '4', '2018-03-02 11:35:11', '2018-03-02 11:35:08', '1', '1', '2018-03-02 11:35:17', '2018-03-02 11:36:16', '2018-03-02 11:36:10', '1', '1', '2018-03-02 11:36:13', '2018-03-02 11:36:12', '2018-03-02 11:36:18', '1');
-INSERT INTO `project_road_work` VALUES ('14', null, null, null, null, null, null, '', '', null, '', '', '', '', '', '', '', '', null, null, null, null, '2', '', '', '', '13', '1', '1', '', null, null, '25', '1', '2018-03-02 02:01:55', '4', '', '', '', '', '', '', '', '', null, '', null, null, '');
-
--- ----------------------------
--- Table structure for project_road_work_daily
--- ----------------------------
-DROP TABLE IF EXISTS `project_road_work_daily`;
-CREATE TABLE `project_road_work_daily` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `prwd_one` double DEFAULT NULL COMMENT 'DN15',
-  `prwd_two` double DEFAULT NULL COMMENT 'DN20',
-  `prwd_three` double DEFAULT NULL COMMENT 'DN25',
-  `prwd_four` double DEFAULT NULL COMMENT 'DN40',
-  `prwd_five` double DEFAULT NULL COMMENT 'DN50',
-  `prwd_six` double DEFAULT NULL COMMENT 'DN75',
-  `prwd_seven` double DEFAULT NULL COMMENT 'DN100',
-  `prwd_eight` double DEFAULT NULL COMMENT 'DN150',
-  `prwd_nine` double DEFAULT NULL COMMENT 'DN200',
-  `prwd_subtotal` double DEFAULT NULL COMMENT '小计',
-  `pro_id` int(11) DEFAULT NULL,
-  `create_user` int(11) DEFAULT NULL,
-  `create_time` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of project_road_work_daily
--- ----------------------------
-INSERT INTO `project_road_work_daily` VALUES ('1', '312', '123', '123', '123', '123', '213', '123', '234', null, null, '5', '1', '2018-02-09 06:59:43');
-INSERT INTO `project_road_work_daily` VALUES ('2', '1', '2', '32', '3', '3', '23', '132', '12', null, null, '2', '1', '2018-02-23 04:40:11');
-INSERT INTO `project_road_work_daily` VALUES ('3', '22', '23', '23', '23', null, null, null, null, null, null, '1', '1', '2018-02-23 04:40:24');
-INSERT INTO `project_road_work_daily` VALUES ('4', '33', '3', '34', '23', '23', '23', '23', '23423', '2323', null, '1', '1', '2018-02-23 04:40:42');
-INSERT INTO `project_road_work_daily` VALUES ('5', '213', '33', '23', '32', null, null, null, null, null, null, '3', '1', '2018-02-24 10:25:47');
+INSERT INTO `dictionarydata` VALUES ('38', '34344334', '433443', '', '3', '0');
 
 -- ----------------------------
 -- Table structure for resources
@@ -548,47 +378,3 @@ INSERT INTO `user_role` VALUES ('26', '8');
 INSERT INTO `user_role` VALUES ('27', '9');
 INSERT INTO `user_role` VALUES ('28', '9');
 INSERT INTO `user_role` VALUES ('29', '1');
-
--- ----------------------------
--- Function structure for fun_a_dept
--- ----------------------------
-DROP FUNCTION IF EXISTS `fun_a_dept`;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `fun_a_dept`(dept_id int) RETURNS varchar(4000) CHARSET utf8
-BEGIN
-DECLARE sTemp VARCHAR(4000);
-DECLARE sTempChd VARCHAR(4000);
-
-SET sTemp = '$';
-SET sTempChd = cast(dept_id as char);
-
-WHILE sTempChd is not NULL DO
-SET sTemp = CONCAT(sTemp,',',sTempChd);
-SELECT group_concat(id) INTO sTempChd FROM dept where FIND_IN_SET(parent_Id,sTempChd)>0;
-END WHILE;
-return sTemp;
-END
-;;
-DELIMITER ;
-
--- ----------------------------
--- Function structure for fun_a_dictdata
--- ----------------------------
-DROP FUNCTION IF EXISTS `fun_a_dictdata`;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `fun_a_dictdata`(ids int) RETURNS varchar(4000) CHARSET utf8
-BEGIN
-DECLARE sTemp VARCHAR(4000);
-DECLARE sTempChd VARCHAR(4000);
-
-SET sTemp = '$';
-SET sTempChd = cast(ids as char);
-
-WHILE sTempChd is not NULL DO
-SET sTemp = CONCAT(sTemp,',',sTempChd);
-SELECT group_concat(id) INTO sTempChd FROM dictionarydata where FIND_IN_SET(parent_id,sTempChd)>0;
-END WHILE;
-return sTemp;
-END
-;;
-DELIMITER ;
