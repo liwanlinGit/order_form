@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mapper.ProjectRoadWorkMapper">
+  <resultMap id="BaseResultMap" type="com.study.model.ProjectRoadWork">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="prw_dma_caliber" jdbcType="INTEGER" property="prwDmaCaliber" />
+    <result column="prw_dma_count" jdbcType="INTEGER" property="prwDmaCount" />
+    <result column="prw_back_caliber" jdbcType="INTEGER" property="prwBackCaliber" />
+    <result column="prw_back_count" jdbcType="INTEGER" property="prwBackCount" />
+    <result column="prw_week_plan" jdbcType="DOUBLE" property="prwWeekPlan" />
+    <result column="prw_month_plan" jdbcType="DOUBLE" property="prwMonthPlan" />
+    <result column="prw_pst" jdbcType="VARCHAR" property="prwPst" />
+    <result column="prw_pet" jdbcType="VARCHAR" property="prwPet" />
+    <result column="prw_total_duration" jdbcType="INTEGER" property="prwTotalDuration" />
+    <result column="prw_ast" jdbcType="VARCHAR" property="prwAst" />
+    <result column="prw_aet" jdbcType="VARCHAR" property="prwAet" />
+    <result column="prw_reception_time" jdbcType="VARCHAR" property="prwReceptionTime" />
+    <result column="prw_switching_date" jdbcType="VARCHAR" property="prwSwitchingDate" />
+    <result column="prw_figure_date" jdbcType="VARCHAR" property="prwFigureDate" />
+    <result column="prw_progress_report" jdbcType="VARCHAR" property="prwProgressReport" />
+    <result column="prw_reason" jdbcType="VARCHAR" property="prwReason" />
+    <result column="prw_explain" jdbcType="VARCHAR" property="prwExplain" />
+    <result column="prw_budget" jdbcType="DOUBLE" property="prwBudget" />
+    <result column="prw_settlement" jdbcType="DOUBLE" property="prwSettlement" />
+    <result column="prw_manpower" jdbcType="INTEGER" property="prwManpower" />
+    <result column="prw_road_work" jdbcType="DOUBLE" property="prwRoadWork" />
+    <result column="prw_address" jdbcType="VARCHAR" property="prwAddress" />
+    <result column="prw_road_name" jdbcType="VARCHAR" property="prwRoadName" />
+    <result column="prw_origin" jdbcType="VARCHAR" property="prwOrigin" />
+    <result column="prw_stop" jdbcType="VARCHAR" property="prwStop" />
+    <result column="prw_ownership" jdbcType="INTEGER" property="prwOwnership" />
+    <result column="prw_repair" jdbcType="INTEGER" property="prwRepair" />
+    <result column="prw_excavation" jdbcType="INTEGER" property="prwExcavation" />
+    <result column="prw_preliminary_time" jdbcType="VARCHAR" property="prwPreliminaryTime" />
+    <result column="prw_user_id" jdbcType="VARCHAR" property="prwUserId" />
+    <result column="prw_phone" jdbcType="VARCHAR" property="prwPhone" />
+    <result column="prw_condition" jdbcType="INTEGER" property="prwCondition" />
+    <result column="prw_creator" jdbcType="INTEGER" property="prwCreator" />
+    <result column="prw_create_at" jdbcType="VARCHAR" property="prwCreateAt" />
+    <result column="pro_id" jdbcType="INTEGER" property="proId" />
+    
+    <result column="prw_roads_time" jdbcType="VARCHAR" property="prwRoadsTime" />
+    <result column="prw_traffic_time" jdbcType="VARCHAR" property="prwTrafficTime" />
+    <result column="prw_team" jdbcType="VARCHAR" property="prwTeam" />
+    <result column="prw_budget_user" jdbcType="VARCHAR" property="prwBudgetUser" />
+    <result column="prw_budget_time" jdbcType="VARCHAR" property="prwBudgetTime" />
+    <result column="prw_contract_time" jdbcType="VARCHAR" property="prwContractTime" />
+    <result column="prw_archive_time" jdbcType="VARCHAR" property="prwArchiveTime" />
+    <result column="prw_contract_number" jdbcType="VARCHAR" property="prwContractNumber" />
+    <result column="prw_contract_price" jdbcType="DOUBLE" property="prwContractPrice" />
+    <result column="prw_group_time" jdbcType="VARCHAR" property="prwGroupTime" />
+    <result column="prw_design_time" jdbcType="VARCHAR" property="prwDesignTime" />
+    <result column="prw_billing_time" jdbcType="VARCHAR" property="prwBillingTime" />
+    <result column="prw_quality" jdbcType="VARCHAR" property="prwQuality" />
+  </resultMap>
+  
+  <select id="selectProjectWorkAll" parameterType="com.study.model.ProjectRoadWork" resultType="com.study.model.ProjectRoadWork">
+    select id,pro_id as "proId",prw_dma_caliber as "prwDmaCaliber",prw_dma_count as "prwDmaCount",prw_back_caliber as "prwBackCaliber",prw_back_count as "prwBackCount",
+		prw_week_plan as "prwWeekPlan",prw_month_plan as "prwMonthPlan",prw_pst as "prwPst",prw_pet as "prwPet",prw_total_duration as "prwTotalDuration",
+		prw_ast as "prwAst",prw_aet as "prwAet",prw_reception_time as "prwReceptionTime",prw_switching_date as "prwSwitchingDate",
+		prw_figure_date as "prwFigureDate",prw_progress_report as "prwProgressReport",prw_reason as "prwReason",prw_explain as "prwExplain",
+		prw_budget as "prwBudget",prw_settlement as "prwSettlement",prw_manpower as "prwManpower",prw_road_work as "prwRoadWork",
+		prw_address as "prwAddress",prw_road_name as "prwRoadName",prw_origin as "prwOrigin",prw_stop as "prwStop",(select dictdata_name from dictionarydata where id=prw_ownership) as "prwOwnershipName",
+		prw_repair as "prwRepair",prw_excavation as "prwExcavation",prw_preliminary_time as "prwPreliminaryTime",prw_user_id as "prwUserId",
+		prw_phone as "prwPhone",(select dictdata_name from dictionarydata where id=prw_condition) as "prwConditionName",prw_creator as "prwCreator",prw_create_at as "prwCreateAt",prw_roads_time as "prwRoadsTime",
+		prw_traffic_time as "prwTrafficTime",prw_team as "prwTeam",prw_budget_user as "prwBudgetUser",prw_budget_time as "prwBudgetTime",prw_contract_time as "prwContractTime",prw_archive_time as "prwArchiveTime",
+		prw_contract_number as "prwContractNumber",prw_contract_price as "prwContractPrice",prw_group_time as "prwGroupTime",prw_design_time as "prwDesignTime",prw_billing_time as "prwBillingTime",prw_quality as "prwQuality" from project_road_work where 1=1
+		<if test="proId!=null and proId!=''">
+		 and pro_id=#{proId}
+		</if>
+  </select>
+</mapper>
