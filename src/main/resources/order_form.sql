@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2018-03-09 15:27:29
+Date: 2018-03-09 17:08:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -114,6 +114,101 @@ INSERT INTO `dictionarydata` VALUES ('34', '消隐', 'XY', '消隐', '2', '2');
 INSERT INTO `dictionarydata` VALUES ('36', '补号', 'BH', '补号', '14', '0');
 INSERT INTO `dictionarydata` VALUES ('37', '原号', 'YH', '原号', '14', '0');
 INSERT INTO `dictionarydata` VALUES ('38', '34344334', '433443', '', '3', '0');
+
+-- ----------------------------
+-- Table structure for order
+-- ----------------------------
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_company` varchar(100) DEFAULT NULL COMMENT '公司名称',
+  `order_company_phone` varchar(30) DEFAULT NULL COMMENT '公司电话',
+  `order_company_fax` varchar(100) DEFAULT NULL COMMENT '公司传真',
+  `order_company_website` varchar(100) DEFAULT NULL COMMENT '公司网址',
+  `order_date` varchar(30) DEFAULT NULL COMMENT '订货日期',
+  `order_price_group` varchar(50) DEFAULT NULL COMMENT '价格组',
+  `order_number` varchar(50) DEFAULT NULL COMMENT '客户单号',
+  `order_urgent` int(1) DEFAULT NULL COMMENT '是否加急 1是、0否',
+  `order_seller` varchar(50) DEFAULT NULL COMMENT '销售员',
+  `order_delivery_date` varchar(30) DEFAULT NULL COMMENT '交货日期',
+  `order_customer_name` varchar(50) DEFAULT NULL COMMENT '客户姓名',
+  `order_contract_number` varchar(50) DEFAULT NULL COMMENT '合同编号',
+  `order_ins_date` varchar(30) DEFAULT NULL COMMENT '安装日期',
+  `order_customer_phone` varchar(20) DEFAULT NULL COMMENT '客户手机',
+  `order_customer_telephone` varchar(20) DEFAULT NULL COMMENT '客户电话',
+  `order_tube_date` varchar(30) DEFAULT NULL COMMENT '该管日期',
+  `order_address` varchar(255) DEFAULT NULL COMMENT '联系地址',
+  `order_remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `order_additional_amount` double DEFAULT NULL COMMENT '附加金额',
+  `order_additional_remark` varchar(255) DEFAULT NULL COMMENT '附加金额说明',
+  `order_sales_amount` double DEFAULT NULL COMMENT '销售金额',
+  `order_total` double DEFAULT NULL COMMENT '订货总数',
+  `order_total_number` double DEFAULT NULL COMMENT '片数合计',
+  `order_payment` double DEFAULT NULL COMMENT '付款',
+  `order_margin` double DEFAULT NULL COMMENT '保证金',
+  `order_total_payment` double DEFAULT NULL COMMENT '应付款总额',
+  `order_available_balance` double DEFAULT NULL COMMENT '可用余额',
+  `order_credits` double DEFAULT NULL COMMENT '信用额度',
+  `order_time` varchar(30) DEFAULT NULL COMMENT '订货时间',
+  `order_delivery_time` varchar(30) DEFAULT NULL COMMENT '交货时间',
+  `order_status` varchar(20) DEFAULT NULL COMMENT '订单状态',
+  `order_review` varchar(255) DEFAULT NULL COMMENT '订单审核人',
+  `order_review_time` varchar(30) DEFAULT NULL COMMENT '订单审核时间',
+  `order_financial_audit` varchar(255) DEFAULT NULL COMMENT '财务审核人',
+  `order_financial_audit_time` varchar(30) DEFAULT NULL COMMENT '财务审核时间',
+  `order_single` varchar(255) DEFAULT NULL COMMENT '制单',
+  `order_single_time` varchar(30) DEFAULT NULL COMMENT '制单时间',
+  `order_dealer` varchar(255) DEFAULT NULL COMMENT '经销商',
+  `order_type` int(1) DEFAULT NULL COMMENT '类型 1返货，0退货',
+  `order_customer_type` varchar(255) DEFAULT NULL COMMENT '客户分类',
+  `order_customer_address` varchar(255) DEFAULT NULL COMMENT '所属区域',
+  `order_contact` varchar(255) DEFAULT NULL COMMENT '联系人',
+  `order_contact_phone` varchar(20) DEFAULT NULL COMMENT '联系电话',
+  `order_contact_fax` varchar(255) DEFAULT NULL COMMENT '联系人传真',
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of order
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for order_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `order_detail`;
+CREATE TABLE `order_detail` (
+  `detail_id` int(11) NOT NULL AUTO_INCREMENT,
+  `detail_series` varchar(255) DEFAULT NULL COMMENT '系列',
+  `detail_model` varchar(255) DEFAULT NULL COMMENT '型号',
+  `detail_number_group` int(11) DEFAULT NULL COMMENT '组数',
+  `detail_number` int(11) DEFAULT NULL COMMENT '片数',
+  `detail_total_number` int(11) DEFAULT NULL COMMENT '片数小计',
+  `detail_room` varchar(255) DEFAULT NULL COMMENT '房间',
+  `detail_hight` double DEFAULT NULL COMMENT '高',
+  `detail_width` double DEFAULT NULL COMMENT '宽',
+  `detail_unit` varchar(20) DEFAULT NULL COMMENT '单位',
+  `detail_color` varchar(255) DEFAULT NULL COMMENT '颜色',
+  `detail_water_type` varchar(255) DEFAULT NULL COMMENT '进水方式',
+  `detail_center_distance` varchar(100) DEFAULT NULL COMMENT '中心距',
+  `detail_interface_caliber` varchar(255) DEFAULT NULL COMMENT '接口口径',
+  `detail_market_price` double DEFAULT NULL COMMENT '市场单价',
+  `detail_market_price_amount` double DEFAULT NULL COMMENT '市场价金额',
+  `detail_market_retail_price` double DEFAULT NULL COMMENT '市场零售价',
+  `detail_market_retail_price_amount` double DEFAULT NULL COMMENT '市场零售金额',
+  `detail_custom_fee` double DEFAULT NULL COMMENT '定制费单价',
+  `detail_total_custom_fee` double DEFAULT NULL COMMENT '定制费小计',
+  `detail_should_produce` double DEFAULT NULL COMMENT '应生产量',
+  `detail_delivery_time` varchar(30) DEFAULT NULL COMMENT '发货时间',
+  `detail_remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `detail_order_status` varchar(255) DEFAULT NULL COMMENT '订单状态',
+  `detail_generated_status` varchar(255) DEFAULT NULL COMMENT '生产状态',
+  `order_id` int(11) DEFAULT NULL COMMENT '订单id',
+  PRIMARY KEY (`detail_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of order_detail
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for resources

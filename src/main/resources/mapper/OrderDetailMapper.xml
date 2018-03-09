@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mapper.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.study.model.OrderDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="detail_id" jdbcType="INTEGER" property="detailId" />
+    <result column="detail_series" jdbcType="VARCHAR" property="detailSeries" />
+    <result column="detail_model" jdbcType="VARCHAR" property="detailModel" />
+    <result column="detail_number_group" jdbcType="INTEGER" property="detailNumberGroup" />
+    <result column="detail_number" jdbcType="INTEGER" property="detailNumber" />
+    <result column="detail_total_number" jdbcType="INTEGER" property="detailTotalNumber" />
+    <result column="detail_room" jdbcType="VARCHAR" property="detailRoom" />
+    <result column="detail_hight" jdbcType="DOUBLE" property="detailHight" />
+    <result column="detail_width" jdbcType="DOUBLE" property="detailWidth" />
+    <result column="detail_unit" jdbcType="VARCHAR" property="detailUnit" />
+    <result column="detail_color" jdbcType="VARCHAR" property="detailColor" />
+    <result column="detail_water_type" jdbcType="VARCHAR" property="detailWaterType" />
+    <result column="detail_center_distance" jdbcType="VARCHAR" property="detailCenterDistance" />
+    <result column="detail_interface_caliber" jdbcType="VARCHAR" property="detailInterfaceCaliber" />
+    <result column="detail_market_price" jdbcType="DOUBLE" property="detailMarketPrice" />
+    <result column="detail_market_price_amount" jdbcType="DOUBLE" property="detailMarketPriceAmount" />
+    <result column="detail_market_retail_price" jdbcType="DOUBLE" property="detailMarketRetailPrice" />
+    <result column="detail_market_retail_price_amount" jdbcType="DOUBLE" property="detailMarketRetailPriceAmount" />
+    <result column="detail_custom_fee" jdbcType="DOUBLE" property="detailCustomFee" />
+    <result column="detail_total_custom_fee" jdbcType="DOUBLE" property="detailTotalCustomFee" />
+    <result column="detail_should_produce" jdbcType="DOUBLE" property="detailShouldProduce" />
+    <result column="detail_delivery_time" jdbcType="VARCHAR" property="detailDeliveryTime" />
+    <result column="detail_remark" jdbcType="VARCHAR" property="detailRemark" />
+    <result column="detail_order_status" jdbcType="VARCHAR" property="detailOrderStatus" />
+    <result column="detail_generated_status" jdbcType="VARCHAR" property="detailGeneratedStatus" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.study.model.Order">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_company" jdbcType="VARCHAR" property="orderCompany" />
+    <result column="order_company_phone" jdbcType="VARCHAR" property="orderCompanyPhone" />
+    <result column="order_company_fax" jdbcType="VARCHAR" property="orderCompanyFax" />
+    <result column="order_company_website" jdbcType="VARCHAR" property="orderCompanyWebsite" />
+    <result column="order_date" jdbcType="VARCHAR" property="orderDate" />
+    <result column="order_price_group" jdbcType="VARCHAR" property="orderPriceGroup" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="order_urgent" jdbcType="INTEGER" property="orderUrgent" />
+    <result column="order_seller" jdbcType="VARCHAR" property="orderSeller" />
+    <result column="order_delivery_date" jdbcType="VARCHAR" property="orderDeliveryDate" />
+    <result column="order_customer_name" jdbcType="VARCHAR" property="orderCustomerName" />
+    <result column="order_contract_number" jdbcType="VARCHAR" property="orderContractNumber" />
+    <result column="order_ins_date" jdbcType="VARCHAR" property="orderInsDate" />
+    <result column="order_customer_phone" jdbcType="VARCHAR" property="orderCustomerPhone" />
+    <result column="order_customer_telephone" jdbcType="VARCHAR" property="orderCustomerTelephone" />
+    <result column="order_tube_date" jdbcType="VARCHAR" property="orderTubeDate" />
+    <result column="order_address" jdbcType="VARCHAR" property="orderAddress" />
+    <result column="order_remark" jdbcType="VARCHAR" property="orderRemark" />
+    <result column="order_additional_amount" jdbcType="DOUBLE" property="orderAdditionalAmount" />
+    <result column="order_additional_remark" jdbcType="VARCHAR" property="orderAdditionalRemark" />
+    <result column="order_sales_amount" jdbcType="DOUBLE" property="orderSalesAmount" />
+    <result column="order_total" jdbcType="DOUBLE" property="orderTotal" />
+    <result column="order_total_number" jdbcType="DOUBLE" property="orderTotalNumber" />
+    <result column="order_payment" jdbcType="DOUBLE" property="orderPayment" />
+    <result column="order_margin" jdbcType="DOUBLE" property="orderMargin" />
+    <result column="order_total_payment" jdbcType="DOUBLE" property="orderTotalPayment" />
+    <result column="order_available_balance" jdbcType="DOUBLE" property="orderAvailableBalance" />
+    <result column="order_credits" jdbcType="DOUBLE" property="orderCredits" />
+    <result column="order_time" jdbcType="VARCHAR" property="orderTime" />
+    <result column="order_delivery_time" jdbcType="VARCHAR" property="orderDeliveryTime" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="order_review" jdbcType="VARCHAR" property="orderReview" />
+    <result column="order_review_time" jdbcType="VARCHAR" property="orderReviewTime" />
+    <result column="order_financial_audit" jdbcType="VARCHAR" property="orderFinancialAudit" />
+    <result column="order_financial_audit_time" jdbcType="VARCHAR" property="orderFinancialAuditTime" />
+    <result column="order_single" jdbcType="VARCHAR" property="orderSingle" />
+    <result column="order_single_time" jdbcType="VARCHAR" property="orderSingleTime" />
+    <result column="order_dealer" jdbcType="VARCHAR" property="orderDealer" />
+    <result column="order_type" jdbcType="INTEGER" property="orderType" />
+    <result column="order_customer_type" jdbcType="VARCHAR" property="orderCustomerType" />
+    <result column="order_customer_address" jdbcType="VARCHAR" property="orderCustomerAddress" />
+    <result column="order_contact" jdbcType="VARCHAR" property="orderContact" />
+    <result column="order_contact_phone" jdbcType="VARCHAR" property="orderContactPhone" />
+    <result column="order_contact_fax" jdbcType="VARCHAR" property="orderContactFax" />
+  </resultMap>
+</mapper>
