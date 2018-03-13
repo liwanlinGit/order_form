@@ -51,4 +51,28 @@
     <result column="order_contact_phone" jdbcType="VARCHAR" property="orderContactPhone" />
     <result column="order_contact_fax" jdbcType="VARCHAR" property="orderContactFax" />
   </resultMap>
+  
+  
+  <select id="getOrdersByAll" parameterType="com.study.model.Order" resultType="com.study.model.Order">
+  
+  select order_id as "orderId",order_company as "orderCompany",order_company_phone as "orderCompanyPhone",order_company_fax as "orderCompanyFax",
+         order_company_website as "orderCompanyWebsite",order_date as "orderDate",order_price_group as "orderPriceGroup",
+         order_number as "orderNumber",order_urgent as "orderUrgent",order_seller as "orderSeller",order_delivery_date as "orderDeliveryDate",
+         order_customer_name as "orderCustomerName",order_contract_number as "orderContractNumber",order_ins_date as "orderInsDate",
+         order_customer_phone as "orderCustomerPhone",order_customer_telephone as "orderCustomerTelephone",order_tube_date as "orderTubeDate",
+         order_address as "orderAddress",order_remark as "orderRemark",	order_additional_amount as "orderAdditionalAmount",
+         order_additional_remark as "orderAdditionalRemark",order_sales_amount as "orderSalesAmount",order_total as "orderTotal",
+         order_total_number as "orderTotalNumber",order_payment as "orderPayment",order_margin as "orderMargin",order_total_payment as "orderTotalPayment",
+         order_available_balance as "orderAvailableBalance",order_credits as "orderCredits",order_time as "orderTime",order_delivery_time as "orderDeliveryTime",
+         order_status as "orderStatus",order_review as "orderReview",order_review_time as "orderReviewTime",order_financial_audit as "orderFinancialAudit",
+         order_financial_audit_time as "orderFinancialAuditTime",order_single as "orderSingle",order_single_time as "orderSingleTime",
+         order_dealer as "orderDealer",(select dictdata_name from dictionarydata where id=order_dealer) as "orderDealerName",order_type as "orderType",order_customer_type as "orderCustomerType",order_customer_address as "orderCustomerAddress",
+         order_contact as "orderContact",order_contact_phone as "orderContactPhone",order_contact_fax as "orderContactFax" from orders where 1=1
+         <if test="orderCompany!=null and orderCompany!=''">
+         and order_company like CONCAT(CONCAT('%', #{orderCompany}), '%') 
+         </if>
+  </select>
+  <select id="getOrderMaxId" resultType="java.lang.Integer">
+    select max(order_id) from orders
+  </select>
 </mapper>

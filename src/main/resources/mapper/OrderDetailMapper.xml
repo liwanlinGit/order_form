@@ -32,4 +32,24 @@
     <result column="detail_generated_status" jdbcType="VARCHAR" property="detailGeneratedStatus" />
     <result column="order_id" jdbcType="INTEGER" property="orderId" />
   </resultMap>
+  
+  
+ <select id="getDetailsByOrderId" resultType="com.study.model.OrderDetail" parameterType="com.study.model.OrderDetail">
+ 
+   select  detail_id as "detailId",detail_series as "detailSeries",(select dictdata_name from dictionarydata where id=detail_series) as "detailSeriesName", detail_model as "detailModel",(select dictdata_name from dictionarydata where id=detail_model) as "detailModelName",
+           detail_number_group as "detailNumberGroup",detail_number as "detailNumber",
+           detail_total_number as "detailTotalNumber",detail_room as "detailRoom",detail_hight as "detailHight",
+           detail_width as "detailWidth",detail_unit as "detailUnit",detail_color as "detailColor",
+           detail_water_type as "detailWaterType",detail_center_distance as "detailCenterDistance",
+           detail_interface_caliber as "detailInterfaceCaliber",detail_market_price as "detailMarketPrice",
+           detail_market_price_amount as "detailMarketPriceAmount",detail_market_retail_price as "detailMarketRetailPrice",
+           detail_market_retail_price_amount as "detailMarketRetailPriceAmount",detail_custom_fee as "detailCustomFee",
+           detail_total_custom_fee as "detailTotalCustomFee",detail_should_produce as "detailShouldProduce",
+           detail_delivery_time as "detailDeliveryTime",detail_remark as "detailRemark",detail_order_status as "detailOrderStatus",
+           detail_generated_status as "detailGeneratedStatus",order_id as "orderId" from orders_detail where 1=1
+           <if test="orderId!=null and orderId!=''">
+           and order_id=#{orderId}
+           </if>
+ 
+ </select>
 </mapper>

@@ -1,7 +1,7 @@
 package com.study.model;
 
 import javax.persistence.*;
-
+@Table(name = "orders")
 public class Order {
     @Id
     @Column(name = "order_id")
@@ -234,6 +234,9 @@ public class Order {
      */
     @Column(name = "order_dealer")
     private String orderDealer;
+    
+    @Transient
+    private String orderDealerName;
 
     /**
      * 类型 1返货，0退货
@@ -1076,4 +1079,14 @@ public class Order {
     public void setOrderContactFax(String orderContactFax) {
         this.orderContactFax = orderContactFax;
     }
+
+    public String getOrderDealerName() {
+      return orderDealerName;
+    }
+
+    public void setOrderDealerName(String orderDealerName) {
+      this.orderDealerName = orderDealerName;
+    }
+    
+    
 }

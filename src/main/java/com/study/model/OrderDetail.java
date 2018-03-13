@@ -2,7 +2,7 @@ package com.study.model;
 
 import javax.persistence.*;
 
-@Table(name = "order_detail")
+@Table(name = "orders_detail")
 public class OrderDetail {
     @Id
     @Column(name = "detail_id")
@@ -13,12 +13,16 @@ public class OrderDetail {
      */
     @Column(name = "detail_series")
     private String detailSeries;
+    @Transient
+    private String detailSeriesName;
 
     /**
      * 型号
      */
     @Column(name = "detail_model")
     private String detailModel;
+    @Transient
+    private String detailModelName;
 
     /**
      * 组数
@@ -621,4 +625,22 @@ public class OrderDetail {
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
+
+    public String getDetailSeriesName() {
+      return detailSeriesName;
+    }
+
+    public void setDetailSeriesName(String detailSeriesName) {
+      this.detailSeriesName = detailSeriesName;
+    }
+
+    public String getDetailModelName() {
+      return detailModelName;
+    }
+
+    public void setDetailModelName(String detailModelName) {
+      this.detailModelName = detailModelName;
+    }
+    
+    
 }

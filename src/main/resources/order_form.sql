@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2018-03-09 17:08:12
+Date: 2018-03-13 18:49:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -48,21 +48,14 @@ CREATE TABLE `dictionary` (
   `dict_code` varchar(100) DEFAULT NULL,
   `dict_mark` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dictionary
 -- ----------------------------
-INSERT INTO `dictionary` VALUES ('1', '工号类别', 'GHLB', '工号类别');
-INSERT INTO `dictionary` VALUES ('2', '工程来源', 'GCLY', '工程来源');
-INSERT INTO `dictionary` VALUES ('3', '工程类别', 'GCLB', '工程类别');
-INSERT INTO `dictionary` VALUES ('6', '工程性质', 'GCXZ', '工程性质');
-INSERT INTO `dictionary` VALUES ('7', '工程地区', 'GCDQ', '工程所在地');
-INSERT INTO `dictionary` VALUES ('8', '道路权属', 'DLQS', '道路权属');
-INSERT INTO `dictionary` VALUES ('9', '期次', 'QC', '期次');
-INSERT INTO `dictionary` VALUES ('11', '路管情况', 'LGQK', '路管情况');
-INSERT INTO `dictionary` VALUES ('12', '施工单位', 'SGDW', '施工单位');
-INSERT INTO `dictionary` VALUES ('14', '编号性质', 'BHXZ', '编号性质');
+INSERT INTO `dictionary` VALUES ('16', '系列', 'XL', '系列');
+INSERT INTO `dictionary` VALUES ('17', '型号', 'XH', '型号');
+INSERT INTO `dictionary` VALUES ('18', '经销商', 'JXS', '经销商');
 
 -- ----------------------------
 -- Table structure for dictionarydata
@@ -76,51 +69,23 @@ CREATE TABLE `dictionarydata` (
   `dict_id` int(11) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dictionarydata
 -- ----------------------------
-INSERT INTO `dictionarydata` VALUES ('1', '安装工程', 'AZGC', '安装工程', '1', '0');
-INSERT INTO `dictionarydata` VALUES ('2', '消隐工程', 'XYGC', '消隐工程', '1', '0');
-INSERT INTO `dictionarydata` VALUES ('3', '管改工程', 'GGGC', '管改工程', '1', '0');
-INSERT INTO `dictionarydata` VALUES ('6', '地铁', 'DT', '地铁', '6', '0');
-INSERT INTO `dictionarydata` VALUES ('7', '自备井', 'ZBJ', '自备井', '6', '0');
-INSERT INTO `dictionarydata` VALUES ('8', '临时水', 'LSS', '临时水', '6', '0');
-INSERT INTO `dictionarydata` VALUES ('9', '东城区', 'DCQ', '东城区', '7', '0');
-INSERT INTO `dictionarydata` VALUES ('10', '西城区', 'XCQ', '西城区', '7', '0');
-INSERT INTO `dictionarydata` VALUES ('11', '海淀区', 'HDQ', '海淀区', '7', '0');
-INSERT INTO `dictionarydata` VALUES ('12', '朝阳区', 'CYQ', '朝阳区', '7', '0');
-INSERT INTO `dictionarydata` VALUES ('13', '单独小区路', 'DDXQL', '单独小区路', '8', '0');
-INSERT INTO `dictionarydata` VALUES ('14', '单独区属路', 'DDQSL', '单独区属路', '8', '0');
-INSERT INTO `dictionarydata` VALUES ('15', '单独市属路', 'DDSSL', '单独市属路', '8', '0');
-INSERT INTO `dictionarydata` VALUES ('16', '部分区属路', 'BFQSL', '部分区属路', '8', '0');
-INSERT INTO `dictionarydata` VALUES ('17', '部分市属路', 'BFSSL', '部分市属路', '8', '0');
-INSERT INTO `dictionarydata` VALUES ('18', '基建', 'JJ', '基建', '2', '1');
-INSERT INTO `dictionarydata` VALUES ('19', '管网', 'GW', '管网', '2', '1');
-INSERT INTO `dictionarydata` VALUES ('21', '集团', 'JT', '集团', '2', '1');
-INSERT INTO `dictionarydata` VALUES ('22', '大干线', 'DGX', '大干线', '3', '22');
-INSERT INTO `dictionarydata` VALUES ('23', '东城', 'DC', '东城', '9', '0');
-INSERT INTO `dictionarydata` VALUES ('24', '西城', 'XC', '西城', '9', '0');
-INSERT INTO `dictionarydata` VALUES ('25', '原路由原管径2', 'YLUYGJ', '原路由原管径', '11', '0');
-INSERT INTO `dictionarydata` VALUES ('26', '原路由新管径', 'YLYXGJ', '原路由新管径', '11', '0');
-INSERT INTO `dictionarydata` VALUES ('27', '自寻', 'ZX', '自寻', '2', '1');
-INSERT INTO `dictionarydata` VALUES ('28', '小口径', 'xkj', '小口径', '3', '21');
-INSERT INTO `dictionarydata` VALUES ('29', '大口径', 'dkj', '大口径', '3', '19');
-INSERT INTO `dictionarydata` VALUES ('31', '施工单位1', 'sgdw01', '施工单位1', '12', '0');
-INSERT INTO `dictionarydata` VALUES ('32', '施工单位2', 'sgdw02', '施工单位2', '12', '0');
-INSERT INTO `dictionarydata` VALUES ('33', '安装工程', 'azgc', '安装工程', '3', '18');
-INSERT INTO `dictionarydata` VALUES ('34', '消隐', 'XY', '消隐', '2', '2');
-INSERT INTO `dictionarydata` VALUES ('36', '补号', 'BH', '补号', '14', '0');
-INSERT INTO `dictionarydata` VALUES ('37', '原号', 'YH', '原号', '14', '0');
-INSERT INTO `dictionarydata` VALUES ('38', '34344334', '433443', '', '3', '0');
+INSERT INTO `dictionarydata` VALUES ('39', '系列1', 'XL1', '系列1', '16', '0');
+INSERT INTO `dictionarydata` VALUES ('40', '系列2', 'XL2', '系列2', '16', '0');
+INSERT INTO `dictionarydata` VALUES ('41', '33', '33', '33', '17', '0');
+INSERT INTO `dictionarydata` VALUES ('42', '经销商1', 'JXS1', '经销商1', '18', '0');
+INSERT INTO `dictionarydata` VALUES ('43', '经销商2', 'JXS2', '经销商2', '18', '0');
 
 -- ----------------------------
--- Table structure for order
+-- Table structure for orders
 -- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
-  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
   `order_company` varchar(100) DEFAULT NULL COMMENT '公司名称',
   `order_company_phone` varchar(30) DEFAULT NULL COMMENT '公司电话',
   `order_company_fax` varchar(100) DEFAULT NULL COMMENT '公司传真',
@@ -169,14 +134,20 @@ CREATE TABLE `order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of order
+-- Records of orders
 -- ----------------------------
+INSERT INTO `orders` VALUES ('1', '北京圣火采暖设备有限责任公司订单', '', '', '', '', '', '', '0', '', '', '', '', '', '', '', '', '', '', null, '', null, null, null, null, null, null, null, null, '', '', '', '', '', '', '', '', '', '42', '0', '', '', '', '', '');
+INSERT INTO `orders` VALUES ('2', '北京圣火采暖设备有限责任公司订单', '', '', '', '', '', '', '0', '', '', '', '', '', '', '', '', '背后切勿', '', null, '', null, null, null, null, null, null, null, null, '', '', '', '', '', '', '', '', '', '42', '0', '', '', '', '', '');
+INSERT INTO `orders` VALUES ('3', '北京圣火采暖设备有限责任公司订单', '', '', '', '', '', '', '0', '', '', '', '', '', '', '', '', '', '', null, '', null, null, null, null, null, null, null, null, '', '', '', '', '', '', '', '', '', '42', '0', '', '', '', '', '');
+INSERT INTO `orders` VALUES ('4', '北京圣火采暖设备有限责任公司订单', '1', '1', '1', '2018-03-13 17:35:22', '1', '1', '0', '1', '2018-03-13 17:07:20', '1', '1', '2018-03-13 17:07:22', '1', '1', '2018-03-13 17:07:23', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2018-03-13 17:07:37', '2018-03-13 17:07:40', '1', '1', '2018-03-13 17:07:49', '1', '2018-03-13 17:07:47', '1', '2018-03-13 17:07:44', '42', '0', '1', '1', '1', '1', '2');
+INSERT INTO `orders` VALUES ('5', '北京圣火采暖设备有限责任公司订单', '1', '3123', '', '', '', '', '0', '', '', '', '', '', '', '', '', '', '', null, '123', null, null, null, null, null, null, null, null, '', '', '', '', '', '', '', '', '', '42', '0', '', '', '', '', '3123');
+INSERT INTO `orders` VALUES ('6', '北京圣火采暖设备有限责任公司订单1', '', '', '', '', '', '', '0', '', '', '', '', '', '', '', '', '', '', null, '', null, null, null, null, null, null, null, null, '', '', '', '', '', '', '', '', '', '42', '0', '', '', '', '', '');
 
 -- ----------------------------
--- Table structure for order_detail
+-- Table structure for orders_detail
 -- ----------------------------
-DROP TABLE IF EXISTS `order_detail`;
-CREATE TABLE `order_detail` (
+DROP TABLE IF EXISTS `orders_detail`;
+CREATE TABLE `orders_detail` (
   `detail_id` int(11) NOT NULL AUTO_INCREMENT,
   `detail_series` varchar(255) DEFAULT NULL COMMENT '系列',
   `detail_model` varchar(255) DEFAULT NULL COMMENT '型号',
@@ -204,11 +175,21 @@ CREATE TABLE `order_detail` (
   `detail_generated_status` varchar(255) DEFAULT NULL COMMENT '生产状态',
   `order_id` int(11) DEFAULT NULL COMMENT '订单id',
   PRIMARY KEY (`detail_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of order_detail
+-- Records of orders_detail
 -- ----------------------------
+INSERT INTO `orders_detail` VALUES ('4', '39', '', null, null, null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '1');
+INSERT INTO `orders_detail` VALUES ('5', '39', '41', null, null, null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '2');
+INSERT INTO `orders_detail` VALUES ('6', '39', '41', null, null, null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '3');
+INSERT INTO `orders_detail` VALUES ('7', '39', '41', '1', '1', '4', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '4');
+INSERT INTO `orders_detail` VALUES ('8', '40', '41', '3', '3', '4', '3', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '4');
+INSERT INTO `orders_detail` VALUES ('9', '40', '41', '4', '4', '4', '4', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '4');
+INSERT INTO `orders_detail` VALUES ('12', '40', '41', '5', '5', null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '4');
+INSERT INTO `orders_detail` VALUES ('13', '39', '41', '3', '23', '213', '123', '123', '1', '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '5');
+INSERT INTO `orders_detail` VALUES ('14', '39', '41', null, null, null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '1');
+INSERT INTO `orders_detail` VALUES ('15', '40', '41', null, null, null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '6');
 
 -- ----------------------------
 -- Table structure for resources
@@ -262,24 +243,11 @@ INSERT INTO `resources` VALUES ('70', '修改类别', '/dict/edit', '2', '66', '
 INSERT INTO `resources` VALUES ('72', '添加数据', '/dictdata/add', '2', '67', '1', 'icon-add-new', 'add()');
 INSERT INTO `resources` VALUES ('73', '删除数据', '/dictdata/delete', '2', '67', '2', 'icon-remove-new', 'remove()');
 INSERT INTO `resources` VALUES ('74', '修改数据', '/dictdata/edit', '2', '67', '3', 'icon-edit-new', 'edit()');
-INSERT INTO `resources` VALUES ('75', '生产科管理', '', '1', '0', '80', null, null);
-INSERT INTO `resources` VALUES ('76', '项目信息', '/page/produces', '1', '75', '10', null, null);
-INSERT INTO `resources` VALUES ('77', '项目管理', '', '1', '0', '90', null, null);
-INSERT INTO `resources` VALUES ('78', '项目施工过程管理', '/page/roadworks', '1', '77', '10', null, null);
-INSERT INTO `resources` VALUES ('79', '添加数据', '/roadworks/add', '2', '78', '10', 'icon-add-new', 'add()');
-INSERT INTO `resources` VALUES ('80', '添加数据', '/produces/add', '2', '76', '10', 'icon-add-new', 'add()');
-INSERT INTO `resources` VALUES ('81', '修改数据', '/roadworks/edit', '2', '78', '11', 'icon-edit-new', 'edit()');
-INSERT INTO `resources` VALUES ('82', '删除数据', '/produces/delete', '2', '76', '11', 'icon-remove-new', 'remove()');
-INSERT INTO `resources` VALUES ('83', '修改数据', '/produces/edit', '2', '76', '12', 'icon-edit-new', 'edit()');
-INSERT INTO `resources` VALUES ('84', '删除数据', '/roadworks/delete', '2', '78', '12', 'icon-remove-new', 'remove()');
-INSERT INTO `resources` VALUES ('85', '每日工作量', '/page/workdailys', '1', '77', '90', null, null);
-INSERT INTO `resources` VALUES ('86', '添加数据', '/workdailys/add', '2', '85', '1', 'icon-add-new', 'add()');
-INSERT INTO `resources` VALUES ('87', '删除数据', '/workdailys/delete', '2', '85', '2', 'icon-remove-new', 'remove()');
-INSERT INTO `resources` VALUES ('88', '修改数据', '/workdailys/edit', '2', '85', '3', 'icon-edit-new', 'edit()');
-INSERT INTO `resources` VALUES ('89', '施工单位管理', '/page/constructions', '1', '77', '20', null, null);
-INSERT INTO `resources` VALUES ('90', '添加数据', '/constructions/add', '2', '89', '1', 'icon-add-new', 'add()');
-INSERT INTO `resources` VALUES ('91', '删除数据', '/constructions/delete', '2', '89', '2', 'icon-remove-new', 'remove()');
-INSERT INTO `resources` VALUES ('92', '修改数据', '/constructions/edit', '2', '89', '3', 'icon-edit-new', 'edit()');
+INSERT INTO `resources` VALUES ('75', '订单管理', '', '1', '0', '80', null, null);
+INSERT INTO `resources` VALUES ('76', '订单基本信息', '/page/orders', '1', '75', '1', null, null);
+INSERT INTO `resources` VALUES ('77', '添加订单', '/orders/add', '2', '76', '1', 'icon-add-new', 'add()');
+INSERT INTO `resources` VALUES ('78', '删除订单', '/orders/delete', '2', '76', '2', 'icon-remove-new', 'remove()');
+INSERT INTO `resources` VALUES ('79', '修改订单', '/orders/edit', '2', '76', '3', 'icon-edit-new', 'edit()');
 
 -- ----------------------------
 -- Table structure for role
@@ -298,9 +266,6 @@ INSERT INTO `role` VALUES ('1', '管理员');
 INSERT INTO `role` VALUES ('2', '普通用户');
 INSERT INTO `role` VALUES ('3', '超级管理员');
 INSERT INTO `role` VALUES ('4', '管理部门');
-INSERT INTO `role` VALUES ('7', '部门经理11');
-INSERT INTO `role` VALUES ('8', '生产科录入人员');
-INSERT INTO `role` VALUES ('9', '项目部录入人员');
 
 -- ----------------------------
 -- Table structure for role_resources
@@ -353,19 +318,6 @@ INSERT INTO `role_resources` VALUES ('1', '76');
 INSERT INTO `role_resources` VALUES ('1', '77');
 INSERT INTO `role_resources` VALUES ('1', '78');
 INSERT INTO `role_resources` VALUES ('1', '79');
-INSERT INTO `role_resources` VALUES ('1', '80');
-INSERT INTO `role_resources` VALUES ('1', '81');
-INSERT INTO `role_resources` VALUES ('1', '82');
-INSERT INTO `role_resources` VALUES ('1', '83');
-INSERT INTO `role_resources` VALUES ('1', '84');
-INSERT INTO `role_resources` VALUES ('1', '85');
-INSERT INTO `role_resources` VALUES ('1', '86');
-INSERT INTO `role_resources` VALUES ('1', '87');
-INSERT INTO `role_resources` VALUES ('1', '88');
-INSERT INTO `role_resources` VALUES ('1', '89');
-INSERT INTO `role_resources` VALUES ('1', '90');
-INSERT INTO `role_resources` VALUES ('1', '91');
-INSERT INTO `role_resources` VALUES ('1', '92');
 INSERT INTO `role_resources` VALUES ('2', '77');
 INSERT INTO `role_resources` VALUES ('2', '78');
 INSERT INTO `role_resources` VALUES ('2', '79');
@@ -387,38 +339,6 @@ INSERT INTO `role_resources` VALUES ('4', '1');
 INSERT INTO `role_resources` VALUES ('4', '4');
 INSERT INTO `role_resources` VALUES ('4', '9');
 INSERT INTO `role_resources` VALUES ('4', '10');
-INSERT INTO `role_resources` VALUES ('7', '1');
-INSERT INTO `role_resources` VALUES ('7', '2');
-INSERT INTO `role_resources` VALUES ('7', '3');
-INSERT INTO `role_resources` VALUES ('7', '4');
-INSERT INTO `role_resources` VALUES ('7', '5');
-INSERT INTO `role_resources` VALUES ('7', '6');
-INSERT INTO `role_resources` VALUES ('7', '7');
-INSERT INTO `role_resources` VALUES ('7', '8');
-INSERT INTO `role_resources` VALUES ('7', '9');
-INSERT INTO `role_resources` VALUES ('7', '10');
-INSERT INTO `role_resources` VALUES ('7', '11');
-INSERT INTO `role_resources` VALUES ('7', '13');
-INSERT INTO `role_resources` VALUES ('7', '14');
-INSERT INTO `role_resources` VALUES ('7', '15');
-INSERT INTO `role_resources` VALUES ('7', '16');
-INSERT INTO `role_resources` VALUES ('7', '17');
-INSERT INTO `role_resources` VALUES ('7', '18');
-INSERT INTO `role_resources` VALUES ('7', '55');
-INSERT INTO `role_resources` VALUES ('8', '75');
-INSERT INTO `role_resources` VALUES ('8', '76');
-INSERT INTO `role_resources` VALUES ('8', '80');
-INSERT INTO `role_resources` VALUES ('8', '82');
-INSERT INTO `role_resources` VALUES ('8', '83');
-INSERT INTO `role_resources` VALUES ('9', '77');
-INSERT INTO `role_resources` VALUES ('9', '78');
-INSERT INTO `role_resources` VALUES ('9', '79');
-INSERT INTO `role_resources` VALUES ('9', '81');
-INSERT INTO `role_resources` VALUES ('9', '84');
-INSERT INTO `role_resources` VALUES ('9', '85');
-INSERT INTO `role_resources` VALUES ('9', '86');
-INSERT INTO `role_resources` VALUES ('9', '87');
-INSERT INTO `role_resources` VALUES ('9', '88');
 
 -- ----------------------------
 -- Table structure for user
@@ -473,3 +393,47 @@ INSERT INTO `user_role` VALUES ('26', '8');
 INSERT INTO `user_role` VALUES ('27', '9');
 INSERT INTO `user_role` VALUES ('28', '9');
 INSERT INTO `user_role` VALUES ('29', '1');
+
+-- ----------------------------
+-- Function structure for fun_a_dept
+-- ----------------------------
+DROP FUNCTION IF EXISTS `fun_a_dept`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `fun_a_dept`(dept_id int) RETURNS varchar(4000) CHARSET utf8
+BEGIN
+DECLARE sTemp VARCHAR(4000);
+DECLARE sTempChd VARCHAR(4000);
+
+SET sTemp = '$';
+SET sTempChd = cast(dept_id as char);
+
+WHILE sTempChd is not NULL DO
+SET sTemp = CONCAT(sTemp,',',sTempChd);
+SELECT group_concat(id) INTO sTempChd FROM dept where FIND_IN_SET(parent_Id,sTempChd)>0;
+END WHILE;
+return sTemp;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Function structure for fun_a_dictdata
+-- ----------------------------
+DROP FUNCTION IF EXISTS `fun_a_dictdata`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `fun_a_dictdata`(ids int) RETURNS varchar(4000) CHARSET utf8
+BEGIN
+DECLARE sTemp VARCHAR(4000);
+DECLARE sTempChd VARCHAR(4000);
+
+SET sTemp = '$';
+SET sTempChd = cast(ids as char);
+
+WHILE sTempChd is not NULL DO
+SET sTemp = CONCAT(sTemp,',',sTempChd);
+SELECT group_concat(id) INTO sTempChd FROM dictionarydata where FIND_IN_SET(parent_id,sTempChd)>0;
+END WHILE;
+return sTemp;
+END
+;;
+DELIMITER ;
