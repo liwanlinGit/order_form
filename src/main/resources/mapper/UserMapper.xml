@@ -10,11 +10,15 @@
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="mark" jdbcType="VARCHAR" property="mark" />
+    <result column="store" jdbcType="INTEGER" property="store" />
+    <result column="contact_number" jdbcType="VARCHAR" property="contactNumber" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
     <result column="dept_id" jdbcType="INTEGER" property="deptId" />
+    <result column="contact_address" jdbcType="INTEGER" property="contactAddress" />
   </resultMap>
   
   <select id="selectUserByDeptId" parameterType="java.util.HashMap" resultType="com.study.model.User">
-     select * from (select u.name,u.username,u.enable,u.address,u.id,u.phone,u.mark,d.name as "deptName" 
+     select * from (select u.name,u.username,u.store,(select dictdata_name from dictionarydata where id=u.store) as "storeName",(select dictdata_name from dictionarydata where id=u.contact_address) as "contactAddressName",u.contact_number as "contactNumber",u.contact,u.enable,u.address,u.id,u.phone,u.mark,d.name as "deptName" 
      from (SELECT * FROM dept WHERE FIND_IN_SET(id,fun_a_dept(#{deptId}))) d
       inner join user u on u.dept_id=d.id)t where 1=1
       <if test="username!=null and username!=''">
@@ -22,6 +26,9 @@
       </if> 
       <if test="name!=null and name!=''">
          and name like CONCAT(CONCAT('%', #{name}), '%') 
+      </if>
+      <if test="userId!=null and userId!=''">
+         and id=#{userId}
       </if>
   </select>
   

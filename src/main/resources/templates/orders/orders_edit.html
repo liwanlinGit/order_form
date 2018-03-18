@@ -10,7 +10,90 @@
 	   <div class="myftitle">基本信息</div>
 	   <form id="myfm" method="post" novalidate>
 	       <input type="hidden" name="orderId" th:value="${order.orderId}"/>
-	   	   <table cellpadding="5">
+	       <table cellpadding="5">
+					<tr>
+						<td>公司名称:</td>
+						<td><input class="easyui-validatebox" type="text"
+							style="width: 250px;" name="orderCompany"
+							th:value="${order.orderCompany}"></input></td>
+						<td>订单单号:</td>
+						<td><input class="easyui-validatebox" type="text" name="orderNumber"
+							style="width: 250px;" th:value="${order.orderNumber}"></input></td>
+					</tr>
+					<tr>
+						<td>公司电话:</td>
+						<td><input class="easyui-validatebox" type="text"
+							name="orderCompanyPhone" style="width: 250px;" th:value="${order.orderCompanyPhone}"></input></td>
+						<td>订货日期:</td>
+						<td><input class="easyui-datetimebox" type="text"
+							name="orderDate" style="width: 250px;" th:value="${order.orderDate}"></input></td>
+					</tr>
+					<tr>
+						<td>客户姓名:</td>
+						<td><input class="easyui-validatebox" type="text"
+							name="orderCustomerName" style="width: 250px;" th:value="${order.orderCustomerName}"></input></td>
+						<td>交货日期:</td>
+						<td><input class="easyui-datetimebox" type="text"
+							name="orderDeliveryDate" style="width: 250px;" th:value="${order.orderDeliveryDate}"></input></td>
+					</tr>
+					<tr>
+						<td>客户电话:</td>
+						<td><input class="easyui-validatebox" type="text"
+							name="orderCustomerTelephone" style="width: 250px;" th:value="${order.orderCustomerTelephone}"></input></td>
+						<!-- <td>订单审核人:</td>
+						<td><input class="easyui-validatebox" type="text"
+							name="orderReview" style="width: 250px;"></input></td> -->
+					</tr>
+					<tr>
+						<td>联系地址:</td>
+						<td colspan="3"><input class="easyui-validatebox" type="text"
+							name="orderAddress" style="width: 580px;" th:value="${order.orderAddress}"></input></td>
+						<!-- <td>订单审核时间:</td>
+						<td><input class="easyui-datetimebox" type="text"
+							name="orderReviewTime" style="width: 250px;"></input></td> -->
+					</tr>
+					<tr>
+						<td>销售金额:</td>
+						<td><input class="easyui-validatebox" type="text"
+							name="orderSalesAmount" style="width: 250px;" th:value="${order.orderSalesAmount}"></input></td>
+						<td>合同编号:</td>
+						<td><input class="easyui-validatebox" type="text"
+							name="orderContractNumber" style="width: 250px;" th:value="${order.orderContractNumber}"></input></td>
+					</tr>
+					<tr>
+						<td>制单人:</td>
+						<td>
+						<input type="hidden" name="orderSingle" th:value="${user.id}">
+						<input class="easyui-validatebox" type="text"
+							 style="width: 250px;" th:value="${user.name}" readonly="readonly"></input></td>
+						<td>制单时间:</td>
+						<td><input class="easyui-datetimebox" type="text"
+							name="orderSingleTime" id="orderSingleTime" th:value="${order.orderSingleTime}"  style="width: 250px;" readonly="readonly"></input></td>
+					</tr>
+					<tr>
+						<td>备注:</td>
+						<td colspan="3"><input class="easyui-validatebox" type="text"
+							style="width: 580px;" name="orderRemark" th:text="${order.orderRemark}"></input></td>
+					</tr>
+					<tr>
+						<td>经销商:</td>
+						<td><input type="hidden" th:value="${user.id}"
+							name="orderDealer"> <input class="easyui-validatebox"
+							type="text" th:value="${user.storeName}" style="width: 250px;" readonly="readonly"></input></td>
+						<td>所属区域:</td>
+						<td><input class="easyui-validatebox" type="text"
+							th:value="${user.contactAddressName}" style="width: 250px;" readonly="readonly"></input></td>
+					</tr>
+					<tr>
+						<td>联系人:</td>
+						<td><input class="easyui-validatebox" type="text"
+							th:value="${user.contact}" style="width: 250px;" readonly="readonly"></input></td>
+						<td>联系电话:</td>
+						<td><input class="easyui-validatebox" type="text"
+							th:value="${user.contactNumber}" style="width: 250px;" readonly="readonly"></input></td>
+					</tr>
+				</table>
+	   	   <!-- <table cellpadding="5">
 	   	    <tr>
 	   	    <td>公司名称:</td>
                  <td colspan="5"><input class="easyui-validatebox" type="text" style="width: 500px;" name="orderCompany" th:value="${order.orderCompany}"></input></td>
@@ -66,8 +149,8 @@
 	                <td>备注:</td>
 	                    <td colspan="3"><input class="easyui-validatebox" type="text" style="width: 400px;" name="orderRemark" th:value="${order.orderRemark}"></input></td>
                 </tr>
-            </table>
-            <div style="display: none;" id="tablehidde"></div>
+            </table> -->
+            <!-- <div style="display: none;" id="tablehidde"></div> -->
             <input type="hidden" value="" id="details" name="details"/>
 	   </form>
 	   <fieldset style="height: 200px; border-width: 1px;">
@@ -75,10 +158,11 @@
            data-options="iconCls: 'icon-edit',rownumbers:true,url:'',singleSelect:false,method:'get',toolbar:'#toolbar1',sortName:'sequence',sortOrder:'asc',onClickRow: onClickRow">
         <thead>
             <tr>
-            	<th data-options="field:'ck',checkbox:true"></th>
-            	<th data-options="field:'orderId',hidden:true,width:100,align:'center',sortable:'true'">orderId</th>
-            	<th data-options="field:'detailId',hidden:true,width:100,align:'center',sortable:'true'">detailId</th>
-            	<th data-options="field:'detailSeries',width:200,align:'center',sortable:'true',formatter:function(value,row){
+							<th data-options="field:'ck',checkbox:true"></th>
+							<th
+								data-options="field:'orderId',hidden:true,width:100,align:'center',sortable:'true'">orderId</th>
+							<th
+								data-options="field:'detailSeries',width:200,align:'center',formatter:function(value,row){
 							return row.detailSeriesName;
 						},editor:{
 							type:'combobox',
@@ -89,7 +173,8 @@
 								url:'/dictdata/getDataTree?dictCode=XL'
 							}
 						}">系列</th>
-            	<th data-options="field:'detailModel',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+							<th
+								data-options="field:'detailModel',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
 							return row.detailModelName;
 						},editor:{
 							type:'combobox',
@@ -100,29 +185,102 @@
 								url:'/dictdata/getDataTree?dictCode=XH'
 							}
 						}">型号</th>
-            	<th data-options="field:'detailNumberGroup',width:100,align:'center',sortable:'true',editor:'validatebox'">组数</th>
-            	<th data-options="field:'detailNumber',width:100,align:'center',sortable:'true',editor:'validatebox'">片数</th>
-            	<th data-options="field:'detailTotalNumber',width:100,align:'center',sortable:'true',editor:'validatebox'">片数小计</th>
-            	<th data-options="field:'detailRoom',width:100,align:'center',sortable:'true',editor:'validatebox'">房间</th>
-            	<th data-options="field:'detailHight',width:100,align:'center',sortable:'true',editor:'validatebox'">高</th>
-	            <th data-options="field:'detailWidth',width:100,align:'center',sortable:'true',editor:'validatebox'">宽</th>
-	            <th data-options="field:'detailUnit',width:100,align:'center',sortable:'true',editor:'validatebox'">单位</th>
-	            <th data-options="field:'detailColor',width:100,align:'center',sortable:'true',editor:'validatebox'">颜色</th>
-	            <th data-options="field:'detailWaterType',width:100,align:'center',sortable:'true',editor:'validatebox'">进水方式</th>
-	            <th data-options="field:'detailCenterDistance',width:100,align:'center',sortable:'true',editor:'validatebox'">中心距</th>
-	            <th data-options="field:'detailInterfaceCaliber',width:100,align:'center',sortable:'true',editor:'validatebox'">接口口径</th>
-	            <th data-options="field:'detailMarketPrice',width:100,align:'center',sortable:'true',editor:'validatebox'">市场单价</th>
-	            <th data-options="field:'detailMarketPriceAmount',width:100,align:'center',sortable:'true',editor:'validatebox'">市场价金额</th>
-	            <th data-options="field:'detailMarketRetailPrice',width:100,align:'center',sortable:'true',editor:'validatebox'">市场零售价</th>
-	            <th data-options="field:'detailMarketRetailPriceAmount',width:100,align:'center',sortable:'true',editor:'validatebox'">市场零售价金额</th>
-	            <th data-options="field:'detailCustomFee',width:100,align:'center',sortable:'true',editor:'validatebox'">定制费单价</th>
-	            <th data-options="field:'detailTotalCustomFee',width:100,align:'center',sortable:'true',editor:'validatebox'">定制费小计</th>
-	            <th data-options="field:'detailShouldProduce',width:100,align:'center',sortable:'true',editor:'validatebox'">应生产量</th>
-	            <th data-options="field:'detailDeliveryTime',width:100,align:'center',sortable:'true',editor:'validatebox'">发货时间</th>
-	            <th data-options="field:'detailRemark',width:200,align:'center',sortable:'true',editor:'validatebox'">备注</th>
-	            <th data-options="field:'detailOrderStatus',width:100,align:'center',sortable:'true',editor:'validatebox'">订单状态</th>
-	            <th data-options="field:'detailGeneratedStatus',width:100,align:'center',sortable:'true',editor:'validatebox'">生产状态</th>
-            </tr>
+						<th
+								data-options="field:'detailNumber',width:100,align:'center',sortable:'true',editor:'validatebox'">片数</th>
+							<th
+								data-options="field:'detailNumberGroup',width:100,align:'center',sortable:'true',editor:'validatebox'">组数</th>
+							
+							<!-- <th
+								data-options="field:'detailTotalNumber',width:100,align:'center',sortable:'true',editor:'validatebox'">片数小计</th> -->
+							<!-- <th
+								data-options="field:'detailRoom',width:100,align:'center',sortable:'true',editor:'validatebox'">房间</th>
+							<th
+								data-options="field:'detailHight',width:100,align:'center',sortable:'true',editor:'validatebox'">高</th>
+							<th
+								data-options="field:'detailWidth',width:100,align:'center',sortable:'true',editor:'validatebox'">宽</th> -->
+							<th
+								data-options="field:'detailUnit',width:100,align:'center',sortable:'true',editor:'validatebox'">单位</th>
+							<th
+								data-options="field:'detailColor',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+							return row.detailColorName;
+						},editor:{
+							type:'combobox',
+							options:{
+								valueField:'id',
+								textField:'dictdataName',
+								method:'get',
+								url:'/dictdata/getDataTree?dictCode=YS'
+							}
+						}">颜色</th>
+							<th
+								data-options="field:'detailWaterType',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+							return row.detailWaterTypeName;
+						},editor:{
+							type:'combobox',
+							options:{
+								valueField:'id',
+								textField:'dictdataName',
+								method:'get',
+								url:'/dictdata/getDataTree?dictCode=JSFS'
+							}
+						}">进水方式</th>
+							<th
+								data-options="field:'detailCenterDistance',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+							return row.detailCenterDistanceName;
+						},editor:{
+							type:'combobox',
+							options:{
+								valueField:'id',
+								textField:'dictdataName',
+								method:'get',
+								url:'/dictdata/getDataTree?dictCode=ZXJ'
+							}
+						}">中心距</th>
+							<th
+								data-options="field:'detailInterfaceCaliber',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+							return row.detailInterfaceCaliberName;
+						},editor:{
+							type:'combobox',
+							options:{
+								valueField:'id',
+								textField:'dictdataName',
+								method:'get',
+								url:'/dictdata/getDataTree?dictCode=KJ'
+							}
+						}">接口口径</th>
+							<!-- <th
+								data-options="field:'detailMarketPrice',width:100,align:'center',sortable:'true',editor:'validatebox'">市场单价</th>
+							<th
+								data-options="field:'detailMarketPriceAmount',width:100,align:'center',sortable:'true',editor:'validatebox'">市场价金额</th>
+							<th
+								data-options="field:'detailMarketRetailPrice',width:100,align:'center',sortable:'true',editor:'validatebox'">市场零售价</th>
+							<th
+								data-options="field:'detailMarketRetailPriceAmount',width:100,align:'center',sortable:'true',editor:'validatebox'">市场零售价金额</th> -->
+							<th
+								data-options="field:'detailCustomFee',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+							return row.detailCustomFeeName;
+						},editor:{
+							type:'combobox',
+							options:{
+								valueField:'id',
+								textField:'dictdataName',
+								method:'get',
+								url:'/dictdata/getDataTree?dictCode=DZF'
+							}
+						}">定制费单价</th>
+							<th
+								data-options="field:'detailTotalCustomFee',width:100,align:'center',sortable:'true',editor:'validatebox'">定制费总额</th>
+							<!-- <th
+								data-options="field:'detailShouldProduce',width:100,align:'center',sortable:'true',editor:'validatebox'">应生产量</th>
+							<th
+								data-options="field:'detailDeliveryTime',width:100,align:'center',sortable:'true',editor:'validatebox'">发货时间</th> -->
+							<th
+								data-options="field:'detailRemark',width:200,align:'center',sortable:'true',editor:'validatebox'">备注</th>
+							<!-- <th
+								data-options="field:'detailOrderStatus',width:100,align:'center',sortable:'true',editor:'validatebox'">订单状态</th>
+							<th
+								data-options="field:'detailGeneratedStatus',width:100,align:'center',sortable:'true',editor:'validatebox'">生产状态</th> -->
+						</tr>
         </thead>
    	</table>
    	<div id="toolbar1" class="easyui-layout" style="height:35px;margin:3px;">
@@ -132,7 +290,7 @@
          </div>
     </div>
             </fieldset>
-            <table cellpadding="5" id="table2">
+            <!-- <table cellpadding="5" id="table2">
 	   	         <tr>
                     <td>附加金额:</td>
                     <td><input class="easyui-validatebox" type="text" name="orderAdditionalAmount" th:value="${order.orderAdditionalAmount}"></input></td>
@@ -211,7 +369,7 @@
 	                <td>传真:</td>
 	                    <td><input class="easyui-validatebox" type="text" name="orderContactFax" th:value="${order.orderContactFax}"></input></td>
                 </tr>
-            </table>
+            </table> -->
     </div>
     </div>
     <div data-options="region:'south'" style="height: 40px;" border="false">
@@ -234,13 +392,10 @@
 	})
 	function submitForm(){
 		$('#tb1').datagrid('acceptChanges');
-		/* var selRow = $('#tb1').datagrid('getSelections');
-		alert(JSON.stringify(selRow)) */
 		var data=$('#tb1').datagrid("getData"); 
 		$("#details").val(JSON.stringify(data.rows));
-		$('#table2').clone(true).appendTo('#tablehidde')
 		
-        $('#myfm').form('submit',{
+       $('#myfm').form('submit',{
             url: '/orders/edit.html',
             onSubmit: function(){
                 return $(this).form('validate');
@@ -261,15 +416,65 @@
 	    if(!editIndex){
 	    	editIndex=0;
 	    }
-		/* if (editIndex!=0&&$('#tb1').datagrid('validateRow', editIndex)){
-			var ed = $('#tb1').datagrid('getEditor', {index:editIndex,field:'detailSeries'});
-			alert(JSON.stringify(ed))
-			var detailSeriesName = $(ed.target).combobox('getText');
-			alert(detailSeriesName)
-		} */
-			$('#tb1').datagrid('appendRow',{orderId:orderId});
+			$('#tb1').datagrid('appendRow',{orderId:orderId,detailUnit:'组'});
 			$('#tb1').datagrid('selectRow', editIndex)
 					.datagrid('beginEdit', editIndex);
+			changes(editIndex);
+			
+	}
+	function changes(index){
+		var detailSeriess = $('#tb1').datagrid('getEditor', {index:index,field:'detailSeries'});
+	    var detailModels = $('#tb1').datagrid('getEditor', {index:index,field:'detailModel'});
+	    var detailColors = $('#tb1').datagrid('getEditor', {index:index,field:'detailColor'});
+	    var detailWaterTypes = $('#tb1').datagrid('getEditor', {index:index,field:'detailWaterType'});
+	    var detailCenterDistances = $('#tb1').datagrid('getEditor', {index:index,field:'detailCenterDistance'});
+	    var detailInterfaceCalibers = $('#tb1').datagrid('getEditor', {index:index,field:'detailInterfaceCaliber'});
+	    var detailCustomFees = $('#tb1').datagrid('getEditor', {index:index,field:'detailCustomFee'});
+		$(detailSeriess.target).combobox({ 
+			onSelect: function () {
+				var productname = $(detailSeriess.target).combobox('getText');
+				$('#tb1').datagrid('getRows')[index]['detailSeriesName'] = productname;
+			}
+		});
+		$(detailModels.target).combobox({ 
+			onSelect: function () {
+				var productname = $(detailModels.target).combobox('getText');
+				$('#tb1').datagrid('getRows')[index]['detailModelName'] = productname;
+			}
+		});
+		$(detailColors.target).combobox({ 
+			onSelect: function () {
+				var productname = $(detailColors.target).combobox('getText');
+				$('#tb1').datagrid('getRows')[index]['detailColorName'] = productname;
+			}
+		});
+		$(detailWaterTypes.target).combobox({ 
+			onSelect: function () {
+				var productname = $(detailWaterTypes.target).combobox('getText');
+				$('#tb1').datagrid('getRows')[index]['detailWaterTypeName'] = productname;
+			}
+		});
+		$(detailCenterDistances.target).combobox({ 
+			onSelect: function () {
+				var productname = $(detailCenterDistances.target).combobox('getText');
+				$('#tb1').datagrid('getRows')[index]['detailCenterDistanceName'] = productname;
+			}
+		});
+		$(detailInterfaceCalibers.target).combobox({ 
+			onSelect: function () {
+				var productname = $(detailInterfaceCalibers.target).combobox('getText');
+				$('#tb1').datagrid('getRows')[index]['detailInterfaceCaliberName'] = productname;
+			}
+		});
+		$(detailCustomFees.target).combobox({ 
+			onSelect: function () {
+				var productname = $(detailCustomFees.target).combobox('getText');
+				$('#tb1').datagrid('getRows')[index]['detailCustomFeeName'] = productname;
+			}
+		});
+		     
+		
+		
 	}
 	function remove(){
 		var selRow = $('#tb1').datagrid('getSelections');

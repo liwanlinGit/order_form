@@ -118,7 +118,7 @@ public class OrderDetail {
      * 定制费单价
      */
     @Column(name = "detail_custom_fee")
-    private Double detailCustomFee;
+    private String detailCustomFee;
 
     /**
      * 定制费小计
@@ -155,6 +155,18 @@ public class OrderDetail {
      */
     @Column(name = "detail_generated_status")
     private String detailGeneratedStatus;
+    
+    @Transient
+    private String detailColorName;
+    @Transient
+    private String detailWaterTypeName;
+    @Transient
+    private String detailCenterDistanceName;
+    @Transient
+    private String detailInterfaceCaliberName;
+    @Transient
+    private String detailCustomFeeName;
+    
 
     /**
      * 订单id
@@ -487,7 +499,7 @@ public class OrderDetail {
      *
      * @return detail_custom_fee - 定制费单价
      */
-    public Double getDetailCustomFee() {
+    public String getDetailCustomFee() {
         return detailCustomFee;
     }
 
@@ -496,7 +508,7 @@ public class OrderDetail {
      *
      * @param detailCustomFee 定制费单价
      */
-    public void setDetailCustomFee(Double detailCustomFee) {
+    public void setDetailCustomFee(String detailCustomFee) {
         this.detailCustomFee = detailCustomFee;
     }
 
@@ -640,6 +652,46 @@ public class OrderDetail {
 
     public void setDetailModelName(String detailModelName) {
       this.detailModelName = detailModelName;
+    }
+
+    public String getDetailColorName() {
+      return detailColorName;
+    }
+
+    public void setDetailColorName(String detailColorName) {
+      this.detailColorName = detailColorName;
+    }
+
+    public String getDetailWaterTypeName() {
+      return detailWaterTypeName;
+    }
+
+    public void setDetailWaterTypeName(String detailWaterTypeName) {
+      this.detailWaterTypeName = detailWaterTypeName;
+    }
+
+    public String getDetailCenterDistanceName() {
+      return detailCenterDistanceName;
+    }
+
+    public void setDetailCenterDistanceName(String detailCenterDistanceName) {
+      this.detailCenterDistanceName = detailCenterDistanceName;
+    }
+
+    public String getDetailInterfaceCaliberName() {
+      return detailInterfaceCaliberName;
+    }
+
+    public void setDetailInterfaceCaliberName(String detailInterfaceCaliberName) {
+      this.detailInterfaceCaliberName = detailInterfaceCaliberName;
+    }
+
+    public String getDetailCustomFeeName() {
+      return detailCustomFeeName;
+    }
+
+    public void setDetailCustomFeeName(String detailCustomFeeName) {
+      this.detailCustomFeeName = detailCustomFeeName;
     }
     
     

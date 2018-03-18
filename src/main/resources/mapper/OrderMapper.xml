@@ -55,22 +55,37 @@
   
   <select id="getOrdersByAll" parameterType="com.study.model.Order" resultType="com.study.model.Order">
   
-  select order_id as "orderId",order_company as "orderCompany",order_company_phone as "orderCompanyPhone",order_company_fax as "orderCompanyFax",
-         order_company_website as "orderCompanyWebsite",order_date as "orderDate",order_price_group as "orderPriceGroup",
-         order_number as "orderNumber",order_urgent as "orderUrgent",order_seller as "orderSeller",order_delivery_date as "orderDeliveryDate",
-         order_customer_name as "orderCustomerName",order_contract_number as "orderContractNumber",order_ins_date as "orderInsDate",
-         order_customer_phone as "orderCustomerPhone",order_customer_telephone as "orderCustomerTelephone",order_tube_date as "orderTubeDate",
-         order_address as "orderAddress",order_remark as "orderRemark",	order_additional_amount as "orderAdditionalAmount",
-         order_additional_remark as "orderAdditionalRemark",order_sales_amount as "orderSalesAmount",order_total as "orderTotal",
-         order_total_number as "orderTotalNumber",order_payment as "orderPayment",order_margin as "orderMargin",order_total_payment as "orderTotalPayment",
-         order_available_balance as "orderAvailableBalance",order_credits as "orderCredits",order_time as "orderTime",order_delivery_time as "orderDeliveryTime",
-         order_status as "orderStatus",order_review as "orderReview",order_review_time as "orderReviewTime",order_financial_audit as "orderFinancialAudit",
-         order_financial_audit_time as "orderFinancialAuditTime",order_single as "orderSingle",order_single_time as "orderSingleTime",
-         order_dealer as "orderDealer",(select dictdata_name from dictionarydata where id=order_dealer) as "orderDealerName",order_type as "orderType",order_customer_type as "orderCustomerType",order_customer_address as "orderCustomerAddress",
-         order_contact as "orderContact",order_contact_phone as "orderContactPhone",order_contact_fax as "orderContactFax" from orders where 1=1
+  select tab1.order_id as "orderId",tab1.order_company as "orderCompany",tab1.order_company_phone as "orderCompanyPhone",tab1.order_company_fax as "orderCompanyFax",
+         tab1.order_company_website as "orderCompanyWebsite",tab1.order_date as "orderDate",tab1.order_price_group as "orderPriceGroup",
+         tab1.order_number as "orderNumber",tab1.order_urgent as "orderUrgent",tab1.order_seller as "orderSeller",tab1.order_delivery_date as "orderDeliveryDate",
+         tab1.order_customer_name as "orderCustomerName",tab1.order_contract_number as "orderContractNumber",tab1.order_ins_date as "orderInsDate",
+         tab1.order_customer_phone as "orderCustomerPhone",tab1.order_customer_telephone as "orderCustomerTelephone",tab1.order_tube_date as "orderTubeDate",
+         tab1.order_address as "orderAddress",tab1.order_remark as "orderRemark",	tab1.order_additional_amount as "orderAdditionalAmount",
+         tab1.order_additional_remark as "orderAdditionalRemark",tab1.order_sales_amount as "orderSalesAmount",tab1.order_total as "orderTotal",
+         tab1.order_total_number as "orderTotalNumber",tab1.order_payment as "orderPayment",tab1.order_margin as "orderMargin",tab1.order_total_payment as "orderTotalPayment",
+         tab1.order_available_balance as "orderAvailableBalance",tab1.order_credits as "orderCredits",tab1.order_time as "orderTime",tab1.order_delivery_time as "orderDeliveryTime",
+         tab1.order_status as "orderStatus",tab1.order_review as "orderReview",(select name from user where id=tab1.order_review) as "orderReviewName",tab1.order_review_time as "orderReviewTime",tab1.order_financial_audit as "orderFinancialAudit",
+         tab1.order_financial_audit_time as "orderFinancialAuditTime",tab1.order_single as "orderSingle",(select name from user where id=tab1.order_single) as "orderSingleName",tab1.order_single_time as "orderSingleTime",
+         tab1.order_dealer as "orderDealer",(select dictdata_name from dictionarydata where id=tab1.order_dealer) as "orderDealerName",tab1.order_type as "orderType",tab1.order_customer_type as "orderCustomerType",tab1.order_customer_address as "orderCustomerAddress",
+         tab1.order_contact as "orderContact",tab1.order_contact_phone as "orderContactPhone",tab1.order_contact_fax as "orderContactFax",(select dictdata_name from dictionarydata where id=us.store) as "storeName",(select dictdata_name from dictionarydata where id=us.contact_address) as "contactAddressName",
+         us.contact_number as "contactNumber",us.contact 
+         from orders tab1 inner join user us on tab1.order_dealer=us.id and 1=1 and tab1.order_single=#{orderSingle}
          <if test="orderCompany!=null and orderCompany!=''">
-         and order_company like CONCAT(CONCAT('%', #{orderCompany}), '%') 
+         and tab1.order_company like CONCAT(CONCAT('%', #{orderCompany}), '%') 
          </if>
+         <if test="orderId!=null and orderId!=''">
+         and tab1.order_id=#{orderId} 
+         </if>
+         <if test="orderNumber!=null and orderNumber!=''">
+         and tab1.order_number like CONCAT(CONCAT('%', #{orderNumber}), '%') 
+         </if>
+         <if test="orderContractNumber!=null and orderContractNumber!=''">
+         and tab1.order_contract_number like CONCAT(CONCAT('%', #{orderContractNumber}), '%') 
+         </if>
+         <if test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
+           and  tab1.order_single_time between  #{beginTime} and #{endTime} 
+         </if>
+         order by tab1.order_single_time desc
   </select>
   <select id="getOrderMaxId" resultType="java.lang.Integer">
     select max(order_id) from orders

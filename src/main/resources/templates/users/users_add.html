@@ -21,12 +21,43 @@
                 </tr>
                 <tr>
                     <td>姓名:</td>
+                    <td><input class="easyui-validatebox" type="text" name="name" data-options=""></input></td>
+                </tr>
+                <tr>
+                    <td>联系人:</td>
+                    <td><input class="easyui-validatebox" type="text" name="contact" data-options=""></input></td>
+                </tr>
+                <tr>
+                    <td>联系电话:</td>
+                    <td><input class="easyui-validatebox" type="text" name="contactNumber" data-options=""></input></td>
+                </tr>
+                <tr>
+                    <td>所属店:</td>
+                    <td>
+
+                     <select class="easyui-combobox" name="store" style="width: 148px;" >
+	           				  	    <option value="">--请选择--</option>
+	           				  	    <option th:each="dict1 : ${dicts}" th:value="${dict1.id}" th:text="${dict1.dictdataName}" th:if="${#strings.contains(dict1.dictCode,'MD')}"></option>
+	           					</select>
+                </td>
+                </tr>
+                <tr>
+                    <td>所属区域:</td>
+                    <td>
+        <select class="easyui-combobox" name="contactAddress" style="width: 148px;" >
+        <option value="">--请选择--</option>
+	           				  	    <option th:each="dict1 : ${dicts}" th:value="${dict1.id}" th:text="${dict1.dictdataName}" th:if="${#strings.contains(dict1.dictCode,'QY')}"></option>
+	           					</select>
+</td>
+                </tr>
+                <!-- <tr>
+                    <td>姓名:</td>
                     <td><input class="easyui-validatebox" type="text" name="name" data-options="required:true,validType:'length[2,32]'"></input></td>
                 </tr>
                 <tr>
                     <td>手机号:</td>
                     <td><input class="easyui-validatebox" type="text" name="phone" data-options="required:true,validType:'length[7,20]'"></input></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td>地址:</td>
                     <td><input class="easyui-validatebox" type="text" name="address" ></input></td>

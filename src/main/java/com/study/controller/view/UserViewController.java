@@ -21,10 +21,12 @@ import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.Example.Criteria;
 
 import com.study.model.Dept;
+import com.study.model.Dictionarydata;
 import com.study.model.Role;
 import com.study.model.RoleResources;
 import com.study.model.User;
 import com.study.model.UserRole;
+import com.study.service.DictdataService;
 import com.study.service.RoleResourcesService;
 import com.study.service.RoleService;
 import com.study.service.UserService;
@@ -42,6 +44,9 @@ public class UserViewController {
   @Resource
   private RoleService roleService;
   
+  @Autowired
+  private DictdataService dictdataService;
+  
   
   
   @ApiOperation(value="用户修改、添加页面",notes="用户修改、添加页面")
@@ -57,6 +62,8 @@ public class UserViewController {
     request.setAttribute("depts", selectAllDept);
     request.setAttribute("deptId", deptId);
     request.setAttribute("menu", bean);
+    List<Dictionarydata> dicts = dictdataService.selectDictdataByParentId(null, null);
+    request.setAttribute("dicts", dicts);
     if(id!=null){
       User user = userService.selectByKey(id);
       Role role = roleService.queryRoleListWithSelected(id);

@@ -274,6 +274,53 @@ public class Order {
     @Column(name = "order_contact_fax")
     private String orderContactFax;
 
+    
+    @Transient
+    private String orderSingleName;
+    
+    @Transient
+    private String contactAddressName;
+    @Transient
+    private String contactNumber;
+    @Transient
+    private String contact;
+    @Transient
+    private String storeName;
+    
+    @Transient
+    private String orderReviewName;
+    
+    @Transient
+    private String beginTime;
+    @Transient
+    private String endTime;
+    
+    
+    
+    public String getBeginTime() {
+      return beginTime;
+    }
+
+    public void setBeginTime(String beginTime) {
+      this.beginTime = beginTime;
+    }
+
+    public String getEndTime() {
+      return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+      this.endTime = endTime;
+    }
+
+    public String getOrderReviewName() {
+      return orderReviewName;
+    }
+
+    public void setOrderReviewName(String orderReviewName) {
+      this.orderReviewName = orderReviewName;
+    }
+
     /**
      * @return order_id
      */
@@ -1086,6 +1133,46 @@ public class Order {
 
     public void setOrderDealerName(String orderDealerName) {
       this.orderDealerName = orderDealerName;
+    }
+
+    public String getOrderSingleName() {
+      return orderSingleName;
+    }
+
+    public void setOrderSingleName(String orderSingleName) {
+      this.orderSingleName = orderSingleName;
+    }
+
+    public String getContactAddressName() {
+      return contactAddressName;
+    }
+
+    public void setContactAddressName(String contactAddressName) {
+      this.contactAddressName = contactAddressName;
+    }
+
+    public String getContactNumber() {
+      return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+      this.contactNumber = contactNumber;
+    }
+
+    public String getContact() {
+      return contact;
+    }
+
+    public void setContact(String contact) {
+      this.contact = contact;
+    }
+
+    public String getStoreName() {
+      return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+      this.storeName = storeName;
     }
     
     

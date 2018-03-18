@@ -23,7 +23,7 @@
     <result column="detail_market_price_amount" jdbcType="DOUBLE" property="detailMarketPriceAmount" />
     <result column="detail_market_retail_price" jdbcType="DOUBLE" property="detailMarketRetailPrice" />
     <result column="detail_market_retail_price_amount" jdbcType="DOUBLE" property="detailMarketRetailPriceAmount" />
-    <result column="detail_custom_fee" jdbcType="DOUBLE" property="detailCustomFee" />
+    <result column="detail_custom_fee" jdbcType="VARCHAR" property="detailCustomFee" />
     <result column="detail_total_custom_fee" jdbcType="DOUBLE" property="detailTotalCustomFee" />
     <result column="detail_should_produce" jdbcType="DOUBLE" property="detailShouldProduce" />
     <result column="detail_delivery_time" jdbcType="VARCHAR" property="detailDeliveryTime" />
@@ -39,11 +39,11 @@
    select  detail_id as "detailId",detail_series as "detailSeries",(select dictdata_name from dictionarydata where id=detail_series) as "detailSeriesName", detail_model as "detailModel",(select dictdata_name from dictionarydata where id=detail_model) as "detailModelName",
            detail_number_group as "detailNumberGroup",detail_number as "detailNumber",
            detail_total_number as "detailTotalNumber",detail_room as "detailRoom",detail_hight as "detailHight",
-           detail_width as "detailWidth",detail_unit as "detailUnit",detail_color as "detailColor",
-           detail_water_type as "detailWaterType",detail_center_distance as "detailCenterDistance",
-           detail_interface_caliber as "detailInterfaceCaliber",detail_market_price as "detailMarketPrice",
+           detail_width as "detailWidth",detail_unit as "detailUnit",detail_color as "detailColor",(select dictdata_name from dictionarydata where id=detail_color) as "detailColorName",
+           detail_water_type as "detailWaterType",(select dictdata_name from dictionarydata where id=detail_water_type) as "detailWaterTypeName",detail_center_distance as "detailCenterDistance",(select dictdata_name from dictionarydata where id=detail_center_distance) as "detailCenterDistanceName",
+           detail_interface_caliber as "detailInterfaceCaliber",(select dictdata_name from dictionarydata where id=detail_interface_caliber) as "detailInterfaceCaliberName",detail_market_price as "detailMarketPrice",
            detail_market_price_amount as "detailMarketPriceAmount",detail_market_retail_price as "detailMarketRetailPrice",
-           detail_market_retail_price_amount as "detailMarketRetailPriceAmount",detail_custom_fee as "detailCustomFee",
+           detail_market_retail_price_amount as "detailMarketRetailPriceAmount",detail_custom_fee as "detailCustomFee",(select dictdata_name from dictionarydata where id=detail_custom_fee) as "detailCustomFeeName",
            detail_total_custom_fee as "detailTotalCustomFee",detail_should_produce as "detailShouldProduce",
            detail_delivery_time as "detailDeliveryTime",detail_remark as "detailRemark",detail_order_status as "detailOrderStatus",
            detail_generated_status as "detailGeneratedStatus",order_id as "orderId" from orders_detail where 1=1

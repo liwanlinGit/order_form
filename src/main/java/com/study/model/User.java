@@ -24,6 +24,31 @@ public class User implements Serializable{
     private String address;
     private String mark;
     private String phone;
+    /**
+     * 所属店
+     */
+    private Integer store;
+    @Transient
+    private String storeName;
+    /**
+     * 联系电话
+     */
+    @Column(name = "contact_number")
+    private String contactNumber;
+    
+    /**
+     * 联系人
+     */
+    private String contact;
+    
+    /**
+     * s所属区域
+     */
+    @Column(name = "contact_address")
+    private Integer contactAddress;
+    
+    @Transient
+    private String contactAddressName;
     @Column(name = "dept_id")
     private Integer deptId;
     
@@ -136,6 +161,55 @@ public class User implements Serializable{
      */
     public void setEnable(Integer enable) {
         this.enable = enable;
+    }
+
+    public Integer getStore() {
+      return store;
+    }
+
+    public void setStore(Integer store) {
+      this.store = store;
+    }
+
+    public String getStoreName() {
+      return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+      this.storeName = storeName;
+    }
+
+    public String getContactNumber() {
+      return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+      this.contactNumber = contactNumber;
+    }
+
+    public String getContact() {
+      return contact;
+    }
+
+    public void setContact(String contact) {
+      this.contact = contact;
+    }
+
+
+    public Integer getContactAddress() {
+      return contactAddress;
+    }
+
+    public void setContactAddress(Integer contactAddress) {
+      this.contactAddress = contactAddress;
+    }
+
+    public String getContactAddressName() {
+      return contactAddressName;
+    }
+
+    public void setContactAddressName(String contactAddressName) {
+      this.contactAddressName = contactAddressName;
     }
 
     @Override

@@ -11,31 +11,52 @@
             <tr>
             	<th data-options="field:'ck',checkbox:true"></th>
             	<th data-options="field:'orderId',hidden:true,width:100,align:'center',sortable:'true'">orderId</th>
-            	<th data-options="field:'orderCompany',width:200,align:'center',sortable:'true'">公司名称</th>
+            	<th data-options="field:'orderContractNumber',width:200,align:'center',sortable:'true'">合同编号</th>
+            	<th data-options="field:'orderNumber',width:200,align:'center',sortable:'true'">订单单号</th>
+            	
+            	<th data-options="field:'orderCustomerName',width:200,align:'center',sortable:'true'">客户姓名</th>
+            	<th data-options="field:'orderCustomerTelephone',width:200,align:'center',sortable:'true'">客户电话</th>
+            	<th data-options="field:'orderAddress',width:200,align:'center',sortable:'true'">联系地址</th>
+            	<th data-options="field:'orderSalesAmount',width:200,align:'center',sortable:'true'">销售金额</th>
+            	<th data-options="field:'orderRemark',width:200,align:'center',sortable:'true'">备注</th>
+            	<th data-options="field:'orderSingleName',width:200,align:'center',sortable:'true'">制单</th>
+	            <th data-options="field:'orderSingleTime',width:200,align:'center',sortable:'true'">制单时间</th>
+	            <th data-options="field:'orderDate',width:200,align:'center',sortable:'true'">订货日期</th>
+	            <th data-options="field:'orderDeliveryDate',width:200,align:'center',sortable:'true'">交货日期</th>
+	            <th data-options="field:'orderReviewName',width:200,align:'center',sortable:'true'">订单审核人</th>
+	            <th data-options="field:'orderReviewTime',width:200,align:'center',sortable:'true'">订单审核时间</th>
+	            <th data-options="field:'storeName',width:200,align:'center',sortable:'true'">经销商</th>
+	            <th data-options="field:'contactAddressName',width:200,align:'center',sortable:'true'">所属地区</th>
+	            <th data-options="field:'contact',width:200,align:'center',sortable:'true'">联系人</th>
+	            <th data-options="field:'contactNumber',width:200,align:'center',sortable:'true'">联系电话</th>
+	            <th data-options="field:'orderCompany',width:200,align:'center',sortable:'true'">公司名称</th>
             	<th data-options="field:'orderCompanyPhone',width:200,align:'center',sortable:'true'">公司电话</th>
-            	<th data-options="field:'orderCompanyFax',width:200,align:'center',sortable:'true'">公司传真</th>
-            	<th data-options="field:'orderCompanyWebsite',width:200,align:'center',sortable:'true'">公司网址</th>
-            	<th data-options="field:'orderDate',width:200,align:'center',sortable:'true'">订货日期</th>
-            	<th data-options="field:'orderPriceGroup',width:200,align:'center',sortable:'true'">价格组</th>
-            	<th data-options="field:'orderNumber',width:200,align:'center',sortable:'true'">客户单号</th>
-            	<th data-options="field:'orderUrgent',width:200,align:'center',sortable:'true',formatter:function(value,row){
+            	<th data-options="field:'orderStatus',width:200,align:'center',sortable:'true',formatter:function(value,row){
+	                                    if(value == 1)return '已审核';
+	                                    return '未审核';}">订单状态</th>
+            	<!-- <th data-options="field:'orderCompanyFax',width:200,align:'center',sortable:'true'">公司传真</th>
+            	<th data-options="field:'orderCompanyWebsite',width:200,align:'center',sortable:'true'">公司网址</th> -->
+            	
+            	<!-- <th data-options="field:'orderPriceGroup',width:200,align:'center',sortable:'true'">价格组</th> -->
+            	
+            	<!-- <th data-options="field:'orderUrgent',width:200,align:'center',sortable:'true',formatter:function(value,row){
 	                                    if(value == 1) return '是';
 	                                    if(value == 0) return '否';
 	                                    return '未定义';
-	                		  }">是否加急</th>
-	            <th data-options="field:'orderSeller',width:200,align:'center',sortable:'true'">销售员</th>
-	            <th data-options="field:'orderDeliveryDate',width:200,align:'center',sortable:'true'">交货日期</th>
-	            <th data-options="field:'orderCustomerName',width:200,align:'center',sortable:'true'">客户姓名</th>
-	            <th data-options="field:'orderContractNumber',width:200,align:'center',sortable:'true'">合同编号</th>
-	            <th data-options="field:'orderInsDate',width:200,align:'center',sortable:'true'">安装日期</th>
-	            <th data-options="field:'orderCustomerPhone',width:200,align:'center',sortable:'true'">客户手机</th>
-	            <th data-options="field:'orderCustomerTelephone',width:200,align:'center',sortable:'true'">客户电话</th>
-	            <th data-options="field:'orderTubeDate',width:200,align:'center',sortable:'true'">该管日期</th>
-	            <th data-options="field:'orderAddress',width:200,align:'center',sortable:'true'">联系地址</th>
-	            <th data-options="field:'orderRemark',width:200,align:'center',sortable:'true'">备注</th>
-	            <th data-options="field:'orderAdditionalAmount',width:200,align:'center',sortable:'true'">附加金额</th>
+	                		  }">是否加急</th> -->
+	            <!-- <th data-options="field:'orderSeller',width:200,align:'center',sortable:'true'">销售员</th> -->
+	            
+	            
+	            
+	           <!--  <th data-options="field:'orderInsDate',width:200,align:'center',sortable:'true'">安装日期</th>
+	            <th data-options="field:'orderCustomerPhone',width:200,align:'center',sortable:'true'">客户手机</th> -->
+	            
+	            <!-- <th data-options="field:'orderTubeDate',width:200,align:'center',sortable:'true'">该管日期</th> -->
+	            
+	            
+	            <!-- <th data-options="field:'orderAdditionalAmount',width:200,align:'center',sortable:'true'">附加金额</th>
 	            <th data-options="field:'orderAdditionalRemark',width:200,align:'center',sortable:'true'">附加金额说明</th>
-	            <th data-options="field:'orderSalesAmount',width:200,align:'center',sortable:'true'">销售金额</th>
+	            
 	            <th data-options="field:'orderTotal',width:200,align:'center',sortable:'true'">订货总数</th>
 	            <th data-options="field:'orderTotalNumber',width:200,align:'center',sortable:'true'">片数合计</th>
 	            <th data-options="field:'orderPayment',width:200,align:'center',sortable:'true'">付款</th>
@@ -45,24 +66,22 @@
 	            <th data-options="field:'orderCredits',width:200,align:'center',sortable:'true'">信用额度</th>
 	            <th data-options="field:'orderTime',width:200,align:'center',sortable:'true'">订货时间</th>
 	            <th data-options="field:'orderDeliveryTime',width:200,align:'center',sortable:'true'">交货时间</th>
-	            <th data-options="field:'orderStatus',width:200,align:'center',sortable:'true'">订单状态</th>
-	            <th data-options="field:'orderReview',width:200,align:'center',sortable:'true'">订单审核人</th>
-	            <th data-options="field:'orderReviewTime',width:200,align:'center',sortable:'true'">订单审核时间</th>
-	            <th data-options="field:'orderFinancialAudit',width:200,align:'center',sortable:'true'">财务审核人</th>
-	            <th data-options="field:'orderFinancialAuditTime',width:200,align:'center',sortable:'true'">财务审核时间</th>
-	            <th data-options="field:'orderSingle',width:200,align:'center',sortable:'true'">制单</th>
-	            <th data-options="field:'orderSingleTime',width:200,align:'center',sortable:'true'">制单时间</th>
-	            <th data-options="field:'orderDealerName',width:200,align:'center',sortable:'true'">经销商</th>
-	            <th data-options="field:'orderType',width:200,align:'center',sortable:'true',formatter:function(value,row){
+	            <th data-options="field:'orderStatus',width:200,align:'center',sortable:'true'">订单状态</th> -->
+	            
+	           <!--  <th data-options="field:'orderFinancialAudit',width:200,align:'center',sortable:'true'">财务审核人</th>
+	            <th data-options="field:'orderFinancialAuditTime',width:200,align:'center',sortable:'true'">财务审核时间</th> -->
+	            
+	            <!-- <th data-options="field:'orderDealerName',width:200,align:'center',sortable:'true'">经销商</th> -->
+	            <!-- <th data-options="field:'orderType',width:200,align:'center',sortable:'true',formatter:function(value,row){
 	                                    if(value == 1) return '返货';
 	                                    if(value == 0) return '退货';
 	                                    return '未定义';
-	                		  }"">类型</th>
-	            <th data-options="field:'orderCustomerType',width:200,align:'center',sortable:'true'">客户分类</th>
+	                		  }"">类型</th> -->
+	            <!-- <th data-options="field:'orderCustomerType',width:200,align:'center',sortable:'true'">客户分类</th>
 	            <th data-options="field:'orderCustomerAddress',width:200,align:'center',sortable:'true'">所属区域</th>
 	            <th data-options="field:'orderContact',width:200,align:'center',sortable:'true'">联系人</th>
 	            <th data-options="field:'orderContactPhone',width:200,align:'center',sortable:'true'">联系电话</th>
-	            <th data-options="field:'orderContactFax',width:200,align:'center',sortable:'true'">联系人传真</th>
+	            <th data-options="field:'orderContactFax',width:200,align:'center',sortable:'true'">联系人传真</th> -->
             </tr>
         </thead>
    	</table>
@@ -74,8 +93,12 @@
             <form id="fm" method="post" novalidate>
             <table cellpadding="5">
               <tr>
-                   <td>名称:</td>
-                   <td><input class="easyui-validatebox textbox" type="text" name="name" id="name"></input></td>
+                   <td>合同编号:</td>
+                   <td><input class="easyui-validatebox" type="text"  id="orderContractNumber"></input></td>
+                   <td>订单单号:</td>
+                   <td><input class="easyui-validatebox" type="text"  id="orderNumber"></input></td>
+                   <td>订单时间:</td>
+                   <td><input class="easyui-datetimebox" type="text"  id="beginTime"></input>至<input class="easyui-datetimebox" type="text"  id="endTime"></input></td>
                    <td><a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search">查找</a></td>
                </tr>
            </table>
@@ -84,7 +107,7 @@
         
     </div>
     <table id="tb2" class="easyui-datagrid" title="" style="height:255px;"  border="0"
-           data-options="rownumbers:true,pagination:true,url:'',singleSelect:false,method:'get',toolbar:'#toolbar2'">
+           data-options="rownumbers:true,pagination:false,url:'',singleSelect:false,method:'get',toolbar:'#toolbar2'">
         <thead>
             <tr>
             	<th data-options="field:'ck',checkbox:true"></th>
@@ -94,26 +117,26 @@
             	<th data-options="field:'detailModelName',width:150,align:'center',sortable:'true'">型号</th>
             	<th data-options="field:'detailNumberGroup',width:100,align:'center',sortable:'true'">组数</th>
             	<th data-options="field:'detailNumber',width:100,align:'center',sortable:'true'">片数</th>
-            	<th data-options="field:'detailTotalNumber',width:100,align:'center',sortable:'true'">片数小计</th>
+            	<!-- <th data-options="field:'detailTotalNumber',width:100,align:'center',sortable:'true'">片数小计</th>
             	<th data-options="field:'detailRoom',width:100,align:'center',sortable:'true'">房间</th>
             	<th data-options="field:'detailHight',width:150,align:'center',sortable:'true'">高</th>
-            	<th data-options="field:'detailWidth',width:150,align:'center',sortable:'true'">宽</th>
+            	<th data-options="field:'detailWidth',width:150,align:'center',sortable:'true'">宽</th> -->
             	<th data-options="field:'detailUnit',width:100,align:'center',sortable:'true'">单位</th>
-            	<th data-options="field:'detailColor',width:100,align:'center',sortable:'true'">颜色</th>
-            	<th data-options="field:'detailWaterType',width:100,align:'center',sortable:'true'">进水方式</th>
-            	<th data-options="field:'detailCenterDistance',width:100,align:'center',sortable:'true'">中心距</th>
-            	<th data-options="field:'detailInterfaceCaliber',width:100,align:'center',sortable:'true'">接口口径</th>
-            	<th data-options="field:'detailMarketPrice',width:100,align:'center',sortable:'true'">市场单价</th>
+            	<th data-options="field:'detailColorName',width:100,align:'center',sortable:'true'">颜色</th>
+            	<th data-options="field:'detailWaterTypeName',width:100,align:'center',sortable:'true'">进水方式</th>
+            	<th data-options="field:'detailCenterDistanceName',width:100,align:'center',sortable:'true'">中心距</th>
+            	<th data-options="field:'detailInterfaceCaliberName',width:100,align:'center',sortable:'true'">接口口径</th>
+            	<!-- <th data-options="field:'detailMarketPrice',width:100,align:'center',sortable:'true'">市场单价</th>
             	<th data-options="field:'detailMarketPriceAmount',width:100,align:'center',sortable:'true'">市场金额</th>
             	<th data-options="field:'detailMarketRetailPrice',width:100,align:'center',sortable:'true'">市场零售价</th>
-            	<th data-options="field:'detailMarketRetailPriceAmount',width:150,align:'center',sortable:'true'">市场零售金额</th>
-            	<th data-options="field:'detailCustomFee',width:150,align:'center',sortable:'true'">定制费单价</th>
+            	<th data-options="field:'detailMarketRetailPriceAmount',width:150,align:'center',sortable:'true'">市场零售金额</th> -->
+            	<th data-options="field:'detailCustomFeeName',width:150,align:'center',sortable:'true'">定制费单价</th>
             	<th data-options="field:'detailTotalCustomFee',width:150,align:'center',sortable:'true'">定制费小计</th>
-            	<th data-options="field:'detailShouldProduce',width:150,align:'center',sortable:'true'">应生产量</th>
-            	<th data-options="field:'detailDeliveryTime',width:150,align:'center',sortable:'true'">发货时间</th>
+            	<!-- <th data-options="field:'detailShouldProduce',width:150,align:'center',sortable:'true'">应生产量</th>
+            	<th data-options="field:'detailDeliveryTime',width:150,align:'center',sortable:'true'">发货时间</th> -->
             	<th data-options="field:'detailRemark',width:200,align:'center',sortable:'true'">备注</th>
-            	<th data-options="field:'detailOrderStatus',width:100,align:'center',sortable:'true'">订单状态</th>
-            	<th data-options="field:'detailGeneratedStatus',width:200,align:'center',sortable:'true'">生产状态 </th>
+            	<!-- <th data-options="field:'detailOrderStatus',width:100,align:'center',sortable:'true'">订单状态</th>
+            	<th data-options="field:'detailGeneratedStatus',width:200,align:'center',sortable:'true'">生产状态 </th> -->
             </tr>
         </thead>
    	</table>
@@ -130,7 +153,7 @@
     function search1(){
     	var selecteds = $('#tb1').datagrid('getSelections');
 		$('#tb2').datagrid({
-            url:"/orderDetails/getData.do",
+            url:"/orderDetails/getDataTree",
             queryParams:{
             	orderId:selecteds[0].orderId
             }
@@ -149,13 +172,79 @@
         	Common.showMsg('修改数据','不支持多个操作！');
         	return; 
         }
+        if(selecteds[0].orderStatus=='1'){
+        	Common.showMsg('修改数据','数据已审核不能修改！');
+        	return;
+        }
 		top.framework.openTab('修改数据', '/orders/add.do?menuName=修改数据&orderId='+selecteds[0].orderId+'&parentMenuName='+menuName);
 	}
+    function on(){
+    	var selecteds = $('#tb1').datagrid('getSelections');
+        if (selecteds == null || selecteds.length == 0) { 
+        	Common.showMsg('审核数据','请选择操作项！');
+        	return;
+        }
+        if (selecteds.length>1) {
+        	Common.showMsg('审核数据','不支持多个操作！');
+        	return; 
+        }
+        if(selecteds[0].orderStatus!='1'){
+        	Common.showMsg('审核数据','数据还没有审核！');
+        	return;
+        }
+        $.ajax( {
+			url : '/orders/on.do?id='+selecteds[0].orderId,
+			dataType:'text',
+			type: 'get',
+			success : function(result) {
+				if ("success"==result){
+					Common.showMsg('提示',"去审核成功");
+				    search();
+				}else{
+					Common.showMsg('提示',"去审核失败");
+				}
+				
+			}
+		});
+    }
+    function off(){
+    	var selecteds = $('#tb1').datagrid('getSelections');
+        if (selecteds == null || selecteds.length == 0) { 
+        	Common.showMsg('审核数据','请选择操作项！');
+        	return;
+        }
+        if (selecteds.length>1) {
+        	Common.showMsg('审核数据','不支持多个操作！');
+        	return; 
+        }
+        if(selecteds[0].orderStatus=='1'){
+        	Common.showMsg('审核数据','已经审核请不要重复操作！');
+        	return;
+        }
+        $.ajax( {
+			url : '/orders/off.do?id='+selecteds[0].orderId,
+			dataType:'text',
+			type: 'get',
+			success : function(result) {
+				if ("success"==result){
+					Common.showMsg('提示',"审核成功");
+				    search();
+				}else{
+					Common.showMsg('提示',"审核失败");
+				}
+				
+			}
+		});
+    }
     
     function remove(){
 		var selecteds = $('#tb1').datagrid('getSelections');
         if (selecteds == null || selecteds.length == 0) { 
         	Common.showMsg('提示','请选择操作项！');
+        	return;
+        }
+        if(selecteds[0].orderStatus=='1'){
+        	Common.showMsg('提示','数据已审核不能删除！');
         	return;
         }
         $.messager.confirm('提示','确定删除吗?', 
@@ -185,14 +274,33 @@
         
 	}
     function search(){
-    	var names = $("#name").val();
+    	var orderContractNumber = $("#orderContractNumber").val();
+    	var orderNumber = $("#orderNumber").val();
+    	var beginTime = $('#beginTime').datetimebox('getValue');
+    	var endTime = $('#endTime').datetimebox('getValue');
 		$('#tb1').datagrid({
             url:"/orders/getData.do",
             queryParams:{
-            	orderCompany:names
+            	orderContractNumber:orderContractNumber,
+            	orderNumber:orderNumber,
+            	beginTime:beginTime,
+            	endTime:endTime
             }
         });
 	}
+    
+    function printWord(){
+    	var selecteds = $('#tb1').datagrid('getSelections');
+        if (selecteds == null || selecteds.length == 0) { 
+        	Common.showMsg('打印数据','请选择操作项！');
+        	return;
+        }
+        if (selecteds.length>1) {
+        	Common.showMsg('打印数据','不支持多个操作！');
+        	return; 
+        }
+        location.href="/orders/print1?id="+selecteds[0].orderId;
+    }
     
     </script>
 </body>
