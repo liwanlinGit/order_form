@@ -87,7 +87,12 @@
    	</table>
     <div id="toolbar1" class="easyui-layout" style="height:65px;margin:3px;">
         <div data-options="region:'center',border:false">
-          <a th:each="but : ${buttons}" th:shiro:hasPermission="${but.resurl}" th: class="easyui-linkbutton" th:icon="${but.iconCls}" plain="true" th:href="|javascript:${but.butFun};|" th:text="${but.name}" ></a>
+          <a shiro:hasPermission="/orders/add" class="easyui-linkbutton" icon="icon-add-new" plain="true" href="javascript:add();">添加订单</a>
+          <a shiro:hasPermission="/orders/delete" class="easyui-linkbutton" icon="icon-remove-new" plain="true" href="javascript:remove();">删除订单</a>
+          <a shiro:hasPermission="/orders/edit" class="easyui-linkbutton" icon="icon-edit-new" plain="true" href="javascript:edit();">修改订单</a>
+          <a shiro:hasPermission="/orders/off" class="easyui-linkbutton" icon="icon-redo" plain="true" href="javascript:off();">审核</a>
+          <a shiro:hasPermission="/orders/no" class="easyui-linkbutton" icon="icon-undo" plain="true" href="javascript:on();">去审核</a>
+          <a shiro:hasPermission="/orders/print" class="easyui-linkbutton" icon="icon-print" plain="true" href="javascript:printWord();">打印</a>
         </div>
         <div data-options="region:'north',border:true" style="height:40px;">
             <form id="fm" method="post" novalidate>

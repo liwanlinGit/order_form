@@ -69,7 +69,10 @@
          tab1.order_dealer as "orderDealer",(select dictdata_name from dictionarydata where id=tab1.order_dealer) as "orderDealerName",tab1.order_type as "orderType",tab1.order_customer_type as "orderCustomerType",tab1.order_customer_address as "orderCustomerAddress",
          tab1.order_contact as "orderContact",tab1.order_contact_phone as "orderContactPhone",tab1.order_contact_fax as "orderContactFax",(select dictdata_name from dictionarydata where id=us.store) as "storeName",(select dictdata_name from dictionarydata where id=us.contact_address) as "contactAddressName",
          us.contact_number as "contactNumber",us.contact 
-         from orders tab1 inner join user us on tab1.order_dealer=us.id and 1=1 and tab1.order_single=#{orderSingle}
+         from orders tab1 inner join user us on tab1.order_dealer=us.id and 1=1
+         <if test="orderSingle!=null and orderSingle!=''">
+          and tab1.order_single=#{orderSingle}
+         </if>
          <if test="orderCompany!=null and orderCompany!=''">
          and tab1.order_company like CONCAT(CONCAT('%', #{orderCompany}), '%') 
          </if>

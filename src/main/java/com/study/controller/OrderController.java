@@ -61,7 +61,9 @@ public class OrderController {
   @RequestMapping(value="/orders/getData",method=RequestMethod.GET)
   public DataGridResultInfo getData(@ModelAttribute PageBean bean,@ModelAttribute Order order,HttpServletRequest request){
     User user = (User)request.getSession().getAttribute("userSession");
-    order.setOrderSingle(user.getId()+"");
+    if(!"0001".equals(user.getUsername())){
+      order.setOrderSingle(user.getId()+"");
+    }
     List<Order> ordersByAll = orderService.getOrdersByAll(order, bean);
     PageInfo<Order> info=new PageInfo<Order>(ordersByAll);
     return ResultUtil.createDataGridResult(info.getTotal(),info.getList());
@@ -158,7 +160,9 @@ public class OrderController {
   public void print(@RequestParam(value="id") String id,HttpServletRequest request,HttpServletResponse response) throws Exception{
     Order bean=new Order();
     User user = (User)request.getSession().getAttribute("userSession");
-    bean.setOrderSingle(user.getId()+"");
+    if(!"0001".equals(user.getUsername())){
+      bean.setOrderSingle(user.getId()+"");
+    }
     bean.setOrderId(Integer.parseInt(id));
     List<Order> ordersByAll = orderService.getOrdersByAll(bean, null);
     Order order=ordersByAll.get(0);
