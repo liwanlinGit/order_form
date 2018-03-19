@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2018-03-13 18:49:27
+Date: 2018-03-17 17:50:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,18 +25,13 @@ CREATE TABLE `dept` (
   `code` varchar(100) DEFAULT NULL,
   `parent_Id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dept
 -- ----------------------------
-INSERT INTO `dept` VALUES ('5', '宇通公司', 'ytgs', '0');
-INSERT INTO `dept` VALUES ('6', '生产科', 'sck', '5');
-INSERT INTO `dept` VALUES ('7', '东郊项目部', 'djxmb', '5');
-INSERT INTO `dept` VALUES ('8', '朝阳项目部', 'cyxmb', '5');
-INSERT INTO `dept` VALUES ('9', '施工单位', 'sgdw', '0');
-INSERT INTO `dept` VALUES ('10', '施工单位01', 'sgdw01', '9');
-INSERT INTO `dept` VALUES ('11', '施工单位02', 'sgdw02', '9');
+INSERT INTO `dept` VALUES ('5', '北京圣火采暖设备有限责任公司', 'ytgs', '0');
+INSERT INTO `dept` VALUES ('12', '经销商', 'JXS', '0');
 
 -- ----------------------------
 -- Table structure for dictionary
@@ -48,7 +43,7 @@ CREATE TABLE `dictionary` (
   `dict_code` varchar(100) DEFAULT NULL,
   `dict_mark` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dictionary
@@ -56,6 +51,13 @@ CREATE TABLE `dictionary` (
 INSERT INTO `dictionary` VALUES ('16', '系列', 'XL', '系列');
 INSERT INTO `dictionary` VALUES ('17', '型号', 'XH', '型号');
 INSERT INTO `dictionary` VALUES ('18', '经销商', 'JXS', '经销商');
+INSERT INTO `dictionary` VALUES ('19', '门店', 'MD', '门店');
+INSERT INTO `dictionary` VALUES ('20', '所属区域', 'QY', '所属区域');
+INSERT INTO `dictionary` VALUES ('21', '颜色', 'YS', '颜色');
+INSERT INTO `dictionary` VALUES ('22', '进水方式', 'JSFS', '进水方式');
+INSERT INTO `dictionary` VALUES ('23', '中心距', 'ZXJ', '中心距');
+INSERT INTO `dictionary` VALUES ('24', '口径', 'KJ', '口径');
+INSERT INTO `dictionary` VALUES ('25', '定制费', 'DZF', '定制费');
 
 -- ----------------------------
 -- Table structure for dictionarydata
@@ -69,7 +71,7 @@ CREATE TABLE `dictionarydata` (
   `dict_id` int(11) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dictionarydata
@@ -79,6 +81,21 @@ INSERT INTO `dictionarydata` VALUES ('40', '系列2', 'XL2', '系列2', '16', '0
 INSERT INTO `dictionarydata` VALUES ('41', '33', '33', '33', '17', '0');
 INSERT INTO `dictionarydata` VALUES ('42', '经销商1', 'JXS1', '经销商1', '18', '0');
 INSERT INTO `dictionarydata` VALUES ('43', '经销商2', 'JXS2', '经销商2', '18', '0');
+INSERT INTO `dictionarydata` VALUES ('44', '四惠', 'SH', '四惠', '19', '0');
+INSERT INTO `dictionarydata` VALUES ('45', '八里桥', 'BLQ', '八里桥', '19', '0');
+INSERT INTO `dictionarydata` VALUES ('46', '北京通州', 'BJTZ', '北京通州', '20', '0');
+INSERT INTO `dictionarydata` VALUES ('47', '北京', 'BJ', '北京', '20', '0');
+INSERT INTO `dictionarydata` VALUES ('48', '红色', 'RED', '红色', '21', '0');
+INSERT INTO `dictionarydata` VALUES ('49', '黄色', 'YELLOW', '黄色', '21', '0');
+INSERT INTO `dictionarydata` VALUES ('50', '上进下出', 'SJXC', '上进下出', '22', '0');
+INSERT INTO `dictionarydata` VALUES ('51', '下进下出', 'XJXC', '下进下出', '22', '0');
+INSERT INTO `dictionarydata` VALUES ('52', '10', '10', '10', '23', '0');
+INSERT INTO `dictionarydata` VALUES ('53', '0', '0', '0', '23', '0');
+INSERT INTO `dictionarydata` VALUES ('54', '12', '12', '12', '23', '0');
+INSERT INTO `dictionarydata` VALUES ('55', '4分口', 'SFK', '4分口', '24', '0');
+INSERT INTO `dictionarydata` VALUES ('56', '5分口', 'WFK', '5分口', '24', '0');
+INSERT INTO `dictionarydata` VALUES ('57', '30', '30', '30', '25', '0');
+INSERT INTO `dictionarydata` VALUES ('58', '10', '10', '10', '25', '0');
 
 -- ----------------------------
 -- Table structure for orders
@@ -136,12 +153,9 @@ CREATE TABLE `orders` (
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', '北京圣火采暖设备有限责任公司订单', '', '', '', '', '', '', '0', '', '', '', '', '', '', '', '', '', '', null, '', null, null, null, null, null, null, null, null, '', '', '', '', '', '', '', '', '', '42', '0', '', '', '', '', '');
-INSERT INTO `orders` VALUES ('2', '北京圣火采暖设备有限责任公司订单', '', '', '', '', '', '', '0', '', '', '', '', '', '', '', '', '背后切勿', '', null, '', null, null, null, null, null, null, null, null, '', '', '', '', '', '', '', '', '', '42', '0', '', '', '', '', '');
-INSERT INTO `orders` VALUES ('3', '北京圣火采暖设备有限责任公司订单', '', '', '', '', '', '', '0', '', '', '', '', '', '', '', '', '', '', null, '', null, null, null, null, null, null, null, null, '', '', '', '', '', '', '', '', '', '42', '0', '', '', '', '', '');
-INSERT INTO `orders` VALUES ('4', '北京圣火采暖设备有限责任公司订单', '1', '1', '1', '2018-03-13 17:35:22', '1', '1', '0', '1', '2018-03-13 17:07:20', '1', '1', '2018-03-13 17:07:22', '1', '1', '2018-03-13 17:07:23', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '2018-03-13 17:07:37', '2018-03-13 17:07:40', '1', '1', '2018-03-13 17:07:49', '1', '2018-03-13 17:07:47', '1', '2018-03-13 17:07:44', '42', '0', '1', '1', '1', '1', '2');
-INSERT INTO `orders` VALUES ('5', '北京圣火采暖设备有限责任公司订单', '1', '3123', '', '', '', '', '0', '', '', '', '', '', '', '', '', '', '', null, '123', null, null, null, null, null, null, null, null, '', '', '', '', '', '', '', '', '', '42', '0', '', '', '', '', '3123');
-INSERT INTO `orders` VALUES ('6', '北京圣火采暖设备有限责任公司订单1', '', '', '', '', '', '', '0', '', '', '', '', '', '', '', '', '', '', null, '', null, null, null, null, null, null, null, null, '', '', '', '', '', '', '', '', '', '42', '0', '', '', '', '', '');
+INSERT INTO `orders` VALUES ('1', '北京圣火采暖设备有限责任公司订单', '010-61004100', null, null, '2018-03-16 11:00:22', null, null, null, null, '2018-03-16 11:00:31', '3123', '213', null, null, '123', null, '123', '123213', null, null, '123', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1', '2018-03-16 11:00:18', '1', null, null, null, null, null, null);
+INSERT INTO `orders` VALUES ('2', '北京圣火采暖设备有限责任公司订单', '010-61004100', null, null, '2018-03-16 11:09:22', null, '3213', null, null, '2018-03-16 11:09:24', '3123', '123', null, null, '213', null, '123', '123', null, null, '312', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1', '2018-03-16 11:09:19', '1', null, null, null, null, null, null);
+INSERT INTO `orders` VALUES ('3', '北京圣火采暖设备有限责任公司订单111', '010-61004100', null, null, '2018-03-17 14:48:54', null, '1111', null, null, '', '·12·12', '234234', null, null, '131', null, '', '2423432', null, null, '34', null, null, null, null, null, null, null, null, null, '1', '1', '2018-03-17 16:40:12', null, null, '1', '2018-03-16 11:33:21', '1', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for orders_detail
@@ -166,7 +180,7 @@ CREATE TABLE `orders_detail` (
   `detail_market_price_amount` double DEFAULT NULL COMMENT '市场价金额',
   `detail_market_retail_price` double DEFAULT NULL COMMENT '市场零售价',
   `detail_market_retail_price_amount` double DEFAULT NULL COMMENT '市场零售金额',
-  `detail_custom_fee` double DEFAULT NULL COMMENT '定制费单价',
+  `detail_custom_fee` varchar(200) DEFAULT NULL COMMENT '定制费单价',
   `detail_total_custom_fee` double DEFAULT NULL COMMENT '定制费小计',
   `detail_should_produce` double DEFAULT NULL COMMENT '应生产量',
   `detail_delivery_time` varchar(30) DEFAULT NULL COMMENT '发货时间',
@@ -175,21 +189,19 @@ CREATE TABLE `orders_detail` (
   `detail_generated_status` varchar(255) DEFAULT NULL COMMENT '生产状态',
   `order_id` int(11) DEFAULT NULL COMMENT '订单id',
   PRIMARY KEY (`detail_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders_detail
 -- ----------------------------
-INSERT INTO `orders_detail` VALUES ('4', '39', '', null, null, null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '1');
-INSERT INTO `orders_detail` VALUES ('5', '39', '41', null, null, null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '2');
-INSERT INTO `orders_detail` VALUES ('6', '39', '41', null, null, null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '3');
-INSERT INTO `orders_detail` VALUES ('7', '39', '41', '1', '1', '4', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '4');
-INSERT INTO `orders_detail` VALUES ('8', '40', '41', '3', '3', '4', '3', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '4');
-INSERT INTO `orders_detail` VALUES ('9', '40', '41', '4', '4', '4', '4', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '4');
-INSERT INTO `orders_detail` VALUES ('12', '40', '41', '5', '5', null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '4');
-INSERT INTO `orders_detail` VALUES ('13', '39', '41', '3', '23', '213', '123', '123', '1', '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '5');
-INSERT INTO `orders_detail` VALUES ('14', '39', '41', null, null, null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '1');
-INSERT INTO `orders_detail` VALUES ('15', '40', '41', null, null, null, '', null, null, '', '', '', '', '', null, null, null, null, null, null, null, '', '', '', '', '6');
+INSERT INTO `orders_detail` VALUES ('17', '40', '41', '32', '32', null, null, null, null, '组', '49', '51', '54', '56', null, null, null, null, '58', '32', null, null, '23', null, null, '1');
+INSERT INTO `orders_detail` VALUES ('18', '40', '41', '3', '32', null, null, null, null, '组', '49', '51', '54', '56', null, null, null, null, '58', '32', null, null, '321', null, null, '2');
+INSERT INTO `orders_detail` VALUES ('19', '40', '41', '123', '13', null, null, null, null, '组', '48', '51', '54', '56', null, null, null, null, '58', '123', null, null, '3123', null, null, '3');
+INSERT INTO `orders_detail` VALUES ('20', '40', '41', '213', '32', null, null, null, null, '组', '48', '50', '54', '56', null, null, null, null, '58', '123', null, null, '213', null, null, '3');
+INSERT INTO `orders_detail` VALUES ('21', '40', '41', '345', '534', null, null, null, null, '组', '48', '51', '54', '56', null, null, null, null, '57', '43', null, null, '34', null, null, '3');
+INSERT INTO `orders_detail` VALUES ('22', '40', '41', '345', '345', null, null, null, null, '组', '48', '50', '52', '55', null, null, null, null, '57', '4', null, null, '234', null, null, '3');
+INSERT INTO `orders_detail` VALUES ('23', '40', '41', '313', '321', null, null, null, null, '组', '48', '51', '54', '56', null, null, null, null, '58', '34', null, null, '24', null, null, '3');
+INSERT INTO `orders_detail` VALUES ('24', '40', '41', '2423', '234', null, null, null, null, '组', '49', '51', '53', '55', null, null, null, null, '57', '34', null, null, '234', null, null, '3');
 
 -- ----------------------------
 -- Table structure for resources
@@ -248,6 +260,9 @@ INSERT INTO `resources` VALUES ('76', '订单基本信息', '/page/orders', '1',
 INSERT INTO `resources` VALUES ('77', '添加订单', '/orders/add', '2', '76', '1', 'icon-add-new', 'add()');
 INSERT INTO `resources` VALUES ('78', '删除订单', '/orders/delete', '2', '76', '2', 'icon-remove-new', 'remove()');
 INSERT INTO `resources` VALUES ('79', '修改订单', '/orders/edit', '2', '76', '3', 'icon-edit-new', 'edit()');
+INSERT INTO `resources` VALUES ('80', '审核', '/orders/off', '2', '76', '4', 'icon-redo', 'off()');
+INSERT INTO `resources` VALUES ('81', '去审核', '/orders/no', '2', '76', '5', 'icon-undo', 'on()');
+INSERT INTO `resources` VALUES ('82', '打印', '/orders/print', '2', '76', '5', 'icon-print', 'printWord()');
 
 -- ----------------------------
 -- Table structure for role
@@ -318,6 +333,9 @@ INSERT INTO `role_resources` VALUES ('1', '76');
 INSERT INTO `role_resources` VALUES ('1', '77');
 INSERT INTO `role_resources` VALUES ('1', '78');
 INSERT INTO `role_resources` VALUES ('1', '79');
+INSERT INTO `role_resources` VALUES ('1', '80');
+INSERT INTO `role_resources` VALUES ('1', '81');
+INSERT INTO `role_resources` VALUES ('1', '82');
 INSERT INTO `role_resources` VALUES ('2', '77');
 INSERT INTO `role_resources` VALUES ('2', '78');
 INSERT INTO `role_resources` VALUES ('2', '79');
@@ -354,21 +372,19 @@ CREATE TABLE `user` (
   `mark` varchar(255) DEFAULT NULL,
   `dept_id` int(11) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
+  `contact_number` varchar(20) DEFAULT NULL COMMENT '联系电话',
+  `contact` varchar(50) DEFAULT NULL COMMENT '联系人',
+  `store` int(11) DEFAULT NULL COMMENT '所属店',
+  `contact_address` int(11) DEFAULT NULL COMMENT '所属区域',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '3ef7164d1f6167cb9f2658c07d3c2f0a', '1', '管理员', '北京', '管理员', '1', '15510505500');
-INSERT INTO `user` VALUES ('3', 'user2', '121', '1', 'lwb1', '', '', '3', '15810267343');
-INSERT INTO `user` VALUES ('4', 'user3', 'user3', '1', 'lwb2', '', '', '4', '15810267343');
-INSERT INTO `user` VALUES ('5', 'user4', 'user4', '1', null, null, null, '1', null);
-INSERT INTO `user` VALUES ('8', 'user7', 'user7', '1', null, null, null, '1', null);
-INSERT INTO `user` VALUES ('26', 'lwb1', '56d7d4c0ec5c9defdac4b2c13ee6d3d4', '1', 'lwb1', '', '', '6', '15810267343');
-INSERT INTO `user` VALUES ('27', 'lwb2', '207457aac2d42075f777e5e9f41e4651', '1', 'lwb2', '', '', '7', '15810267343');
-INSERT INTO `user` VALUES ('28', 'lwb3', '950c6a12c370851bc5725d2b816dfe50', '1', 'lwb3', '', '', '8', '15810267343');
-INSERT INTO `user` VALUES ('29', 'admini', 'a3c1fd626ed9bb594a2d987d8b8a33b8', '1', 'admini', '', '', '5', '15810267343');
+INSERT INTO `user` VALUES ('1', 'admin', '3ef7164d1f6167cb9f2658c07d3c2f0a', '1', '管理员', '北京', '管理员', '5', '15510505500', '15254566709', '张三', '44', '46');
+INSERT INTO `user` VALUES ('31', 'admin1', '13ed682b7463d8f3b38f185369618fac', '1', '111', '北京通州1', '123123', '5', null, '15254566709', '李四', '44', '46');
+INSERT INTO `user` VALUES ('32', '11', '71f1daf89a2ed9b9340760f1bbd223a2', '1', '1', '1', '123', '5', null, '1', '1', '44', null);
 
 -- ----------------------------
 -- Table structure for user_role
@@ -393,6 +409,11 @@ INSERT INTO `user_role` VALUES ('26', '8');
 INSERT INTO `user_role` VALUES ('27', '9');
 INSERT INTO `user_role` VALUES ('28', '9');
 INSERT INTO `user_role` VALUES ('29', '1');
+INSERT INTO `user_role` VALUES ('30', '1');
+INSERT INTO `user_role` VALUES ('31', '1');
+INSERT INTO `user_role` VALUES ('31', '2');
+INSERT INTO `user_role` VALUES ('31', '3');
+INSERT INTO `user_role` VALUES ('31', '4');
 
 -- ----------------------------
 -- Function structure for fun_a_dept
