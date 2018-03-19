@@ -93,4 +93,7 @@
   <select id="getOrderMaxId" resultType="java.lang.Integer">
     select max(order_id) from orders
   </select>
+  <select id="getOrderNumber" resultType="java.lang.String" parameterType="java.util.Map">
+    select max(order_number) from orders where order_number like CONCAT(CONCAT('%', #{orderNumber}), '%') 
+  </select>
 </mapper>

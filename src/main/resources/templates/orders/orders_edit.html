@@ -18,7 +18,7 @@
 							th:value="${order.orderCompany}"></input></td>
 						<td>订单单号:</td>
 						<td><input class="easyui-validatebox" type="text" name="orderNumber"
-							style="width: 250px;" th:value="${order.orderNumber}"></input></td>
+							style="width: 250px;" th:value="${order.orderNumber}" readonly="readonly"></input></td>
 					</tr>
 					<tr>
 						<td>公司电话:</td>
@@ -162,7 +162,7 @@
 							<th
 								data-options="field:'orderId',hidden:true,width:100,align:'center',sortable:'true'">orderId</th>
 							<th
-								data-options="field:'detailSeries',width:200,align:'center',formatter:function(value,row){
+								data-options="field:'detailSeries',width:150,align:'center',formatter:function(value,row){
 							return row.detailSeriesName;
 						},editor:{
 							type:'combobox',
@@ -174,7 +174,7 @@
 							}
 						}">系列</th>
 							<th
-								data-options="field:'detailModel',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+								data-options="field:'detailModel',width:150,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
 							return row.detailModelName;
 						},editor:{
 							type:'combobox',
@@ -201,7 +201,7 @@
 							<th
 								data-options="field:'detailUnit',width:100,align:'center',sortable:'true',editor:'validatebox'">单位</th>
 							<th
-								data-options="field:'detailColor',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+								data-options="field:'detailColor',width:150,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
 							return row.detailColorName;
 						},editor:{
 							type:'combobox',
@@ -213,7 +213,7 @@
 							}
 						}">颜色</th>
 							<th
-								data-options="field:'detailWaterType',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+								data-options="field:'detailWaterType',width:150,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
 							return row.detailWaterTypeName;
 						},editor:{
 							type:'combobox',
@@ -225,7 +225,7 @@
 							}
 						}">进水方式</th>
 							<th
-								data-options="field:'detailCenterDistance',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+								data-options="field:'detailCenterDistance',width:150,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
 							return row.detailCenterDistanceName;
 						},editor:{
 							type:'combobox',
@@ -237,7 +237,7 @@
 							}
 						}">中心距</th>
 							<th
-								data-options="field:'detailInterfaceCaliber',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+								data-options="field:'detailInterfaceCaliber',width:150,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
 							return row.detailInterfaceCaliberName;
 						},editor:{
 							type:'combobox',
@@ -257,7 +257,7 @@
 							<th
 								data-options="field:'detailMarketRetailPriceAmount',width:100,align:'center',sortable:'true',editor:'validatebox'">市场零售价金额</th> -->
 							<th
-								data-options="field:'detailCustomFee',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+								data-options="field:'detailCustomFee',width:150,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
 							return row.detailCustomFeeName;
 						},editor:{
 							type:'combobox',
@@ -265,7 +265,8 @@
 								valueField:'id',
 								textField:'dictdataName',
 								method:'get',
-								url:'/dictdata/getDataTree?dictCode=DZF'
+								url:'/dictdata/getDataTree?dictCode=DZF',
+								onSelect: select
 							}
 						}">定制费单价</th>
 							<th
@@ -430,6 +431,15 @@
 	    var detailCenterDistances = $('#tb1').datagrid('getEditor', {index:index,field:'detailCenterDistance'});
 	    var detailInterfaceCalibers = $('#tb1').datagrid('getEditor', {index:index,field:'detailInterfaceCaliber'});
 	    var detailCustomFees = $('#tb1').datagrid('getEditor', {index:index,field:'detailCustomFee'});
+	    
+	    var detailTotalCustomFee=$('#tb1').datagrid('getEditor', {index:index,field:'detailTotalCustomFee'});
+	    var detailNumberGroup = $('#tb1').datagrid('getEditor', {index:index,field:'detailNumberGroup'});
+	    detailNumberGroup.target.bind('change',function () {
+			var grop=detailNumberGroup.target.val();
+			var yd=$(detailCustomFees.target).combobox('getText');
+			detailTotalCustomFee.target.val(grop*yd);
+		})
+	    
 		$(detailSeriess.target).combobox({ 
 			onSelect: function () {
 				var productname = $(detailSeriess.target).combobox('getText');
@@ -470,6 +480,11 @@
 			onSelect: function () {
 				var productname = $(detailCustomFees.target).combobox('getText');
 				$('#tb1').datagrid('getRows')[index]['detailCustomFeeName'] = productname;
+				var grop=detailNumberGroup.target.val();
+				var yd=$(detailCustomFees.target).combobox('getText');
+				detailTotalCustomFee.target.val(grop*yd);
+				
+				
 			}
 		});
 		     
@@ -502,11 +517,46 @@
         	 remove();
         }
 	}
+	function select(row){
+		
+		var rows = $('#tb1').datagrid('getRows');
+		var detailNumberGroup = $('#tb1').datagrid('getEditor', {index:editIndex,field:'detailNumberGroup'});
+		var detailTotalCustomFee = $('#tb1').datagrid('getEditor', {index:editIndex,field:'detailTotalCustomFee'});
+		var detailCustomFee = $('#tb1').datagrid('getEditor', {index:editIndex,field:'detailCustomFee'});
+		var grop=detailNumberGroup.target.val();
+		var yd=$(detailCustomFee.target).combobox('getText');
+		detailTotalCustomFee.target.val(grop*yd);
+	}
 	function onClickRow(index){
 		if (editIndex != index){
 				$('#tb1').datagrid('selectRow', index)
 						.datagrid('beginEdit', index);
 				editIndex = index;
+				
+				var detailCustomFee = $('#tb1').datagrid('getEditor', {index:index,field:'detailCustomFee'});
+				var detailNumberGroup = $('#tb1').datagrid('getEditor', {index:index,field:'detailNumberGroup'});
+				var detailTotalCustomFee = $('#tb1').datagrid('getEditor', {index:index,field:'detailTotalCustomFee'});
+				/* $(detailCustomFee.target).combobox({
+					onSelect: function (i,row) {
+						
+						$(detailCustomFee.target).combobox('setValue', yd); 
+						var grop=detailNumberGroup.target.val();
+						var yd=$(detailCustomFee.target).combobox('getText');
+						detailTotalCustomFee.target.val(grop*yd);
+					}
+				}) */
+				/* $(detailCustomFee.target).combobox({
+					onSelect: function (i,row) {
+						
+					}
+				}) */
+				
+				
+				detailNumberGroup.target.bind('change',function () {
+					var grop=detailNumberGroup.target.val();
+					var yd=$(detailCustomFee.target).combobox('getText');
+					detailTotalCustomFee.target.val(grop*yd);
+				})
 		}
 	}
 	</script>

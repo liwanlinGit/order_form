@@ -18,8 +18,8 @@
 							style="width: 250px;" name="orderCompany"
 							value="盼盼散热器北京分公司"></input></td>
 						<td>订单单号:</td>
-						<td><input class="easyui-validatebox" type="text" name="orderNumber"
-							style="width: 250px;"></input></td>
+						<td><input class="easyui-validatebox" type="text" th:value="${order_Number}" name="orderNumber"
+							style="width: 250px;" readonly="readonly"></input></td>
 					</tr>
 					<tr>
 						<td>公司电话:</td>
@@ -167,7 +167,7 @@
 							<th
 								data-options="field:'orderId',hidden:true,width:100,align:'center',sortable:'true'">orderId</th>
 							<th
-								data-options="field:'detailSeries',width:200,align:'center',sortable:'true',formatter:function(value,row){
+								data-options="field:'detailSeries',width:100,align:'center',sortable:'true',formatter:function(value,row){
 							return row.dictdataName;
 						},editor:{
 							type:'combobox',
@@ -179,7 +179,7 @@
 							}
 						}">系列</th>
 							<th
-								data-options="field:'detailModel',width:200,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
+								data-options="field:'detailModel',width:100,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
 							return row.dictdataName;
 						},editor:{
 							type:'combobox',
@@ -254,7 +254,7 @@
 							<th
 								data-options="field:'detailMarketRetailPriceAmount',width:100,align:'center',sortable:'true',editor:'validatebox'">市场零售价金额</th> -->
 							<th
-								data-options="field:'detailCustomFee',width:100,align:'center',sortable:'true',editor:'validatebox',editor:{
+								data-options="field:'detailCustomFee',width:150,align:'center',sortable:'true',editor:'validatebox',editor:{
 							type:'combobox',
 							options:{
 								valueField:'id',
@@ -425,29 +425,24 @@
 			$('#tb1').datagrid('appendRow',{orderId:orderId,detailUnit:'组'});
 			$('#tb1').datagrid('selectRow', editIndex)
 					.datagrid('beginEdit', editIndex);
-			/* changes(editIndex); */
+			changes(editIndex);
 	}
 	function changes(index){
-		var editors = $('#tb1').datagrid('getEditors', index); 
-		var sfgzEditor = editors[4];
-		sfgzEditor.target.bind('change',function () {
-		    /* alert(sfgzEditor.target.val()); */
-			/* var data=$('#tb1').datagrid("getData");
-			if(data){
-				var rows=data.rows;
-				alert(JSON.stringify(rows))
-			}  */
-			var endRows = $('#tb1').datagrid("getRows");
-			for(var i =0; i < endRows.length; i++){
-				$('#tb1').datagrid('endEdit', i);
-		    }
-			var data=$('#tb1').datagrid("getData");
-			if(data){
-				var rows=data.rows;
-				alert(JSON.stringify(rows))
+		var detailCustomFee = $('#tb1').datagrid('getEditor', {index:index,field:'detailCustomFee'});
+		var detailNumberGroup = $('#tb1').datagrid('getEditor', {index:index,field:'detailNumberGroup'});
+		var detailTotalCustomFee = $('#tb1').datagrid('getEditor', {index:index,field:'detailTotalCustomFee'});
+		$(detailCustomFee.target).combobox({
+			onSelect: function (i,row) {
+				var grop=detailNumberGroup.target.val();
+				var yd=$(detailCustomFee.target).combobox('getText');
+				detailTotalCustomFee.target.val(grop*yd);
 			}
-		});
-		
+		})
+		detailNumberGroup.target.bind('change',function () {
+			var grop=detailNumberGroup.target.val();
+			var yd=$(detailCustomFee.target).combobox('getText');
+			detailTotalCustomFee.target.val(grop*yd);
+		})
 		
 	}
 	    

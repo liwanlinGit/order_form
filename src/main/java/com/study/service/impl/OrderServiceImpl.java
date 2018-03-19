@@ -9,6 +9,8 @@ import java.util.List;
 
 
 
+import java.util.Map;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -80,6 +82,11 @@ public class OrderServiceImpl extends BaseService<Order> implements OrderService
       }
     
     orderMapper.updateByPrimaryKey(order);
+  }
+
+  @Override
+  public String getOrderNumber(Map<String, Object> map) {
+    return orderMapper.getOrderNumber(map);
   }
 
 

@@ -3,6 +3,8 @@ package com.study.controller.view;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,7 +86,18 @@ public class OrderViewController {
     }else{
       Integer orderMaxId = orderService.getOrderMaxId();
       request.setAttribute("orderId", orderMaxId==null?1:orderMaxId+1);
-      
+      Map<String, Object> mapOrder=new HashMap<String, Object>();
+      String newDate=new SimpleDateFormat("yyyyMMdd").format(new Date());
+      mapOrder.put("orderNumber", newDate);
+      String orderNumber = orderService.getOrderNumber(mapOrder);
+      String order_Number="";
+      if(orderNumber!=null){
+        orderNumber=orderNumber.substring(1, orderNumber.length());
+        order_Number="D"+(Long.parseLong(orderNumber)+1);
+      }else{
+        order_Number="D"+newDate+"0001";
+      }
+      request.setAttribute("order_Number",order_Number);
       return "orders/orders_add";
     }
     
