@@ -167,9 +167,7 @@
 							<th
 								data-options="field:'orderId',hidden:true,width:100,align:'center',sortable:'true'">orderId</th>
 							<th
-								data-options="field:'detailSeries',width:100,align:'center',sortable:'true',formatter:function(value,row){
-							return row.dictdataName;
-						},editor:{
+								data-options="field:'detailSeries',width:150,align:'center',sortable:'true',editor:{
 							type:'combobox',
 							options:{
 								valueField:'id',
@@ -179,21 +177,23 @@
 							}
 						}">系列</th>
 							<th
-								data-options="field:'detailModel',width:100,align:'center',sortable:'true',editor:'validatebox',formatter:function(value,row){
-							return row.dictdataName;
-						},editor:{
+								data-options="field:'detailModel',width:150,align:'center',sortable:'true',editor:{
 							type:'combobox',
 							options:{
 								valueField:'id',
 								textField:'dictdataName',
 								method:'get',
-								url:'/dictdata/getDataTree?dictCode=XH'
+								url:''
 							}
 						}">型号</th>
 						<th
 								data-options="field:'detailNumber',width:100,align:'center',sortable:'true',editor:'validatebox'">片数</th>
 							<th
 								data-options="field:'detailNumberGroup',width:100,align:'center',sortable:'true',editor:'validatebox'">组数</th>
+								<th
+								data-options="field:'detailPrice',width:100,align:'center',sortable:'true',editor:'validatebox'">单价</th>
+								<th
+								data-options="field:'detailMoney',width:100,align:'center',sortable:'true',editor:'validatebox'">金额</th>
 							
 							<!-- <th
 								data-options="field:'detailTotalNumber',width:100,align:'center',sortable:'true',editor:'validatebox'">片数小计</th> -->
@@ -431,6 +431,11 @@
 		var detailCustomFee = $('#tb1').datagrid('getEditor', {index:index,field:'detailCustomFee'});
 		var detailNumberGroup = $('#tb1').datagrid('getEditor', {index:index,field:'detailNumberGroup'});
 		var detailTotalCustomFee = $('#tb1').datagrid('getEditor', {index:index,field:'detailTotalCustomFee'});
+		var detailSeries = $('#tb1').datagrid('getEditor', {index:index,field:'detailSeries'});
+		var detailModel=$('#tb1').datagrid('getEditor', {index:index,field:'detailModel'});
+		
+		var detailPrice=$('#tb1').datagrid('getEditor', {index:index,field:'detailPrice'});
+		var detailMoney=$('#tb1').datagrid('getEditor', {index:index,field:'detailMoney'});
 		$(detailCustomFee.target).combobox({
 			onSelect: function (i,row) {
 				var grop=detailNumberGroup.target.val();
@@ -442,8 +447,30 @@
 			var grop=detailNumberGroup.target.val();
 			var yd=$(detailCustomFee.target).combobox('getText');
 			detailTotalCustomFee.target.val(grop*yd);
+			var price=detailPrice.target.val();
+			detailMoney.target.val(price*grop);
 		})
 		
+		$(detailSeries.target).combobox({
+			onSelect: function (i,row) {
+				var id=$(detailSeries.target).combobox('getValue');
+				$(detailModel.target).combobox({
+					url:'/dictdata/getDataTree?dictCode=XH&parentId='+id
+				});
+			}
+		})
+		
+		$(detailModel.target).combobox({
+			onSelect: function (row) {
+				var grop=detailNumberGroup.target.val();
+				var price=row.price;
+				if(price==""||price==null||price=='null'){
+					price=0;
+				}
+				detailPrice.target.val(price);
+				detailMoney.target.val(price*grop);
+			}
+		})
 	}
 	    
 

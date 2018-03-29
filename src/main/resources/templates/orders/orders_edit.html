@@ -170,7 +170,8 @@
 								valueField:'id',
 								textField:'dictdataName',
 								method:'get',
-								url:'/dictdata/getDataTree?dictCode=XL'
+								url:'/dictdata/getDataTree?dictCode=XL',
+								onSelect: selectDetailSeries
 							}
 						}">系列</th>
 							<th
@@ -182,14 +183,19 @@
 								valueField:'id',
 								textField:'dictdataName',
 								method:'get',
-								url:'/dictdata/getDataTree?dictCode=XH'
+								url:'/dictdata/getDataTree?dictCode=XH',
+								onSelect:selectDetailModel
+								
 							}
 						}">型号</th>
 						<th
 								data-options="field:'detailNumber',width:100,align:'center',sortable:'true',editor:'validatebox'">片数</th>
 							<th
 								data-options="field:'detailNumberGroup',width:100,align:'center',sortable:'true',editor:'validatebox'">组数</th>
-							
+							<th
+								data-options="field:'detailPrice',width:100,align:'center',sortable:'true',editor:'validatebox'">单价</th>
+								<th
+								data-options="field:'detailMoney',width:100,align:'center',sortable:'true',editor:'validatebox'">金额</th>
 							<!-- <th
 								data-options="field:'detailTotalNumber',width:100,align:'center',sortable:'true',editor:'validatebox'">片数小计</th> -->
 							<!-- <th
@@ -434,10 +440,18 @@
 	    
 	    var detailTotalCustomFee=$('#tb1').datagrid('getEditor', {index:index,field:'detailTotalCustomFee'});
 	    var detailNumberGroup = $('#tb1').datagrid('getEditor', {index:index,field:'detailNumberGroup'});
+	    
+	    var detailSeries = $('#tb1').datagrid('getEditor', {index:index,field:'detailSeries'});
+		var detailModel=$('#tb1').datagrid('getEditor', {index:index,field:'detailModel'});
+		
+		var detailPrice=$('#tb1').datagrid('getEditor', {index:index,field:'detailPrice'});
+		var detailMoney=$('#tb1').datagrid('getEditor', {index:index,field:'detailMoney'});
 	    detailNumberGroup.target.bind('change',function () {
 			var grop=detailNumberGroup.target.val();
 			var yd=$(detailCustomFees.target).combobox('getText');
 			detailTotalCustomFee.target.val(grop*yd);
+			var price=detailPrice.target.val();
+			detailMoney.target.val(price*grop);
 		})
 	    
 		$(detailSeriess.target).combobox({ 
@@ -483,12 +497,28 @@
 				var grop=detailNumberGroup.target.val();
 				var yd=$(detailCustomFees.target).combobox('getText');
 				detailTotalCustomFee.target.val(grop*yd);
-				
-				
 			}
 		});
 		     
-		
+		$(detailSeries.target).combobox({
+			onSelect: function (i,row) {
+				var id=$(detailSeries.target).combobox('getValue');
+				$(detailModel.target).combobox({
+					url:'/dictdata/getDataTree?dictCode=XH&parentId='+id
+				});
+			}
+		})
+		$(detailModel.target).combobox({
+			onSelect: function (row) {
+				var grop=detailNumberGroup.target.val();
+				var price=row.price;
+				if(price==""||price==null||price=='null'){
+					price=0;
+				}
+				detailPrice.target.val(price);
+				detailMoney.target.val(price*grop);
+			}
+		})
 		
 	}
 	function remove(){
@@ -527,6 +557,27 @@
 		var yd=$(detailCustomFee.target).combobox('getText');
 		detailTotalCustomFee.target.val(grop*yd);
 	}
+	
+	function selectDetailSeries(row){
+		var detailSeries = $('#tb1').datagrid('getEditor', {index:editIndex,field:'detailSeries'});
+		var detailModel=$('#tb1').datagrid('getEditor', {index:editIndex,field:'detailModel'});
+		var id=$(detailSeries.target).combobox('getValue');
+		   $(detailModel.target).combobox({
+			  url:'/dictdata/getDataTree?dictCode=XH&parentId='+id
+		   });
+	}
+	function  selectDetailModel(row){
+		var detailNumberGroup = $('#tb1').datagrid('getEditor', {index:editIndex,field:'detailNumberGroup'});
+		var detailPrice=$('#tb1').datagrid('getEditor', {index:editIndex,field:'detailPrice'});
+		var detailMoney=$('#tb1').datagrid('getEditor', {index:editIndex,field:'detailMoney'});
+		var price = row.price;
+		if(price==""||price==null||price=='null'){
+			price=0;
+		}
+		var grop=detailNumberGroup.target.val();
+		detailPrice.target.val(price);
+		detailMoney.target.val(price*grop);
+	}
 	function onClickRow(index){
 		if (editIndex != index){
 				$('#tb1').datagrid('selectRow', index)
@@ -536,27 +587,20 @@
 				var detailCustomFee = $('#tb1').datagrid('getEditor', {index:index,field:'detailCustomFee'});
 				var detailNumberGroup = $('#tb1').datagrid('getEditor', {index:index,field:'detailNumberGroup'});
 				var detailTotalCustomFee = $('#tb1').datagrid('getEditor', {index:index,field:'detailTotalCustomFee'});
-				/* $(detailCustomFee.target).combobox({
-					onSelect: function (i,row) {
-						
-						$(detailCustomFee.target).combobox('setValue', yd); 
-						var grop=detailNumberGroup.target.val();
-						var yd=$(detailCustomFee.target).combobox('getText');
-						detailTotalCustomFee.target.val(grop*yd);
-					}
-				}) */
-				/* $(detailCustomFee.target).combobox({
-					onSelect: function (i,row) {
-						
-					}
-				}) */
-				
 				
 				detailNumberGroup.target.bind('change',function () {
 					var grop=detailNumberGroup.target.val();
 					var yd=$(detailCustomFee.target).combobox('getText');
 					detailTotalCustomFee.target.val(grop*yd);
 				})
+				var detailSeries = $('#tb1').datagrid('getEditor', {index:index,field:'detailSeries'});
+				var detailModel=$('#tb1').datagrid('getEditor', {index:index,field:'detailModel'});
+				var id=$(detailSeries.target).combobox('getValue');
+				var model=$(detailModel.target).combobox('getText');
+				   $(detailModel.target).combobox({
+					  url:'/dictdata/getDataTree?dictCode=XH&parentId='+id
+				   });
+				   $(detailModel.target).combobox('setValue', model);
 		}
 	}
 	</script>

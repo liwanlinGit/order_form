@@ -156,6 +156,18 @@ public class OrderDetail {
     @Column(name = "detail_generated_status")
     private String detailGeneratedStatus;
     
+    /**
+     * 单价
+     */
+    @Column(name = "detail_price")
+    private Double detailPrice;
+    
+    /**
+     * 金额
+     */
+    @Column(name = "detail_money")
+    private Double detailMoney;
+    
     @Transient
     private String detailColorName;
     @Transient
@@ -692,6 +704,22 @@ public class OrderDetail {
 
     public void setDetailCustomFeeName(String detailCustomFeeName) {
       this.detailCustomFeeName = detailCustomFeeName;
+    }
+
+    public Double getDetailPrice() {
+      return detailPrice;
+    }
+
+    public void setDetailPrice(Double detailPrice) {
+      this.detailPrice = detailPrice;
+    }
+
+    public Double getDetailMoney() {
+      return detailMoney;
+    }
+
+    public void setDetailMoney(Double detailMoney) {
+      this.detailMoney = detailMoney;
     }
     
     

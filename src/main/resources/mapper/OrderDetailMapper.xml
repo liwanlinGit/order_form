@@ -31,6 +31,8 @@
     <result column="detail_order_status" jdbcType="VARCHAR" property="detailOrderStatus" />
     <result column="detail_generated_status" jdbcType="VARCHAR" property="detailGeneratedStatus" />
     <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="detail_price" jdbcType="DOUBLE" property="detailPrice" />
+    <result column="detail_money" jdbcType="DOUBLE" property="detailMoney" />
   </resultMap>
   
   
@@ -46,7 +48,7 @@
            detail_market_retail_price_amount as "detailMarketRetailPriceAmount",detail_custom_fee as "detailCustomFee",(select dictdata_name from dictionarydata where id=detail_custom_fee) as "detailCustomFeeName",
            detail_total_custom_fee as "detailTotalCustomFee",detail_should_produce as "detailShouldProduce",
            detail_delivery_time as "detailDeliveryTime",detail_remark as "detailRemark",detail_order_status as "detailOrderStatus",
-           detail_generated_status as "detailGeneratedStatus",order_id as "orderId" from orders_detail where 1=1
+           detail_generated_status as "detailGeneratedStatus",order_id as "orderId",detail_price as "detailPrice",detail_money as "detailMoney" from orders_detail where 1=1
            <if test="orderId!=null and orderId!=''">
            and order_id=#{orderId}
            </if>

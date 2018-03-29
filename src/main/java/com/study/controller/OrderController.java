@@ -59,10 +59,18 @@ public class OrderController {
     @ApiImplicitParam(name = "page", value = "当前页码", required = true,dataType = "int" ,paramType = "query"),
   })
   @RequestMapping(value="/orders/getData",method=RequestMethod.GET)
-  public DataGridResultInfo getData(@ModelAttribute PageBean bean,@ModelAttribute Order order,HttpServletRequest request){
+  public DataGridResultInfo getData(@ModelAttribute PageBean bean,@ModelAttribute Order order,HttpServletRequest request,String store){
     User user = (User)request.getSession().getAttribute("userSession");
     if(!"0001".equals(user.getUsername())){
       order.setOrderSingle(user.getId()+"");
+    }
+    if("".equals(order.getOrderStatus())||order.getOrderStatus()==null){
+      order.setOrderStatus(2+"");
+    }
+    if("".equals(store)||store==null){
+      order.setOrderType(0);
+    }else{
+      order.setOrderType(Integer.parseInt(store));
     }
     List<Order> ordersByAll = orderService.getOrdersByAll(order, bean);
     PageInfo<Order> info=new PageInfo<Order>(ordersByAll);

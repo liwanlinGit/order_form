@@ -88,6 +88,23 @@
          <if test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
            and  tab1.order_single_time between  #{beginTime} and #{endTime} 
          </if>
+         <if test="orderStatus!=null">
+             <choose>
+               <when test="orderStatus==0">
+                 and order_status is null
+               </when>
+               <when test="orderStatus==1">
+                  and order_status =#{orderStatus}
+               </when>
+             </choose>
+         </if>
+         <if test="orderType!=null">
+            <choose>
+              <when test="orderType!=0">
+              and us.store=#{orderType}
+              </when>
+            </choose>
+         </if>
          order by tab1.order_single_time desc
   </select>
   <select id="getOrderMaxId" resultType="java.lang.Integer">

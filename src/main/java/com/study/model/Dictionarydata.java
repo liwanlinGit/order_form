@@ -22,6 +22,9 @@ public class Dictionarydata {
     @Column(name = "parent_id")
     private Integer parentId;
     
+    @Column(name = "price")
+    private Double price;
+    
     @Transient
     private String parentName;
     @Transient
@@ -141,4 +144,16 @@ public class Dictionarydata {
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
+
+    public Double getPrice() {
+      return price;
+    }
+
+    public void setPrice(Double price) {
+      this.price = price;
+    }
+    
+    
+    
+    
 }
