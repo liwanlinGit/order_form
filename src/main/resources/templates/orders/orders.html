@@ -93,17 +93,18 @@
           <a shiro:hasPermission="/orders/off" class="easyui-linkbutton" icon="icon-redo" plain="true" href="javascript:off();">审核</a>
           <a shiro:hasPermission="/orders/no" class="easyui-linkbutton" icon="icon-undo" plain="true" href="javascript:on();">去审核</a>
           <a shiro:hasPermission="/orders/print" class="easyui-linkbutton" icon="icon-print" plain="true" href="javascript:printWord();">打印</a>
+          <a shiro:hasPermission="/orders/excel" class="easyui-linkbutton" icon="icon-import-new" plain="true" href="javascript:excel();">excel</a>
         </div>
         <div data-options="region:'north',border:true" style="height:40px;">
             <form id="fm" method="post" novalidate>
             <table cellpadding="5">
               <tr>
                    <td>合同编号:</td>
-                   <td><input class="easyui-validatebox" type="text"  id="orderContractNumber"></input></td>
+                   <td><input class="easyui-validatebox" type="text"  id="orderContractNumber" style="width: 100px;"></input></td>
                    <td>订单单号:</td>
-                   <td><input class="easyui-validatebox" type="text"  id="orderNumber"></input></td>
+                   <td><input class="easyui-validatebox" type="text"  id="orderNumber" style="width: 100px;"></input></td>
                    <td>订单时间:</td>
-                   <td><input class="easyui-datetimebox" type="text"  id="beginTime"></input>至<input class="easyui-datetimebox" type="text"  id="endTime"></input></td>
+                   <td><input class="easyui-datetimebox" type="text"  id="beginTime" style="width: 100px;"></input>至<input class="easyui-datetimebox" type="text"  id="endTime" style="width: 100px;"></input></td>
                    <td>经销商:</td>
                    <td>
                       <select class="easyui-combobox" name="store" id="store" style="width: 100px;">
@@ -330,6 +331,19 @@
         	return; 
         }
         location.href="/orders/print1?id="+selecteds[0].orderId;
+    }
+    
+    function excel(){
+    	var selecteds = $('#tb1').datagrid('getSelections');
+        if (selecteds == null || selecteds.length == 0) { 
+        	Common.showMsg('打印数据','请选择操作项！');
+        	return;
+        }
+        if (selecteds.length>1) {
+        	Common.showMsg('打印数据','不支持多个操作！');
+        	return; 
+        }
+        location.href="/orders/excel?id="+selecteds[0].orderId;
     }
     
     </script>
