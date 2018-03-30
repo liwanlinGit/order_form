@@ -1,5 +1,6 @@
 package com.study.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -50,28 +51,33 @@ public class OrderServiceImpl extends BaseService<Order> implements OrderService
 
   @Override
   public void addOrderAndDetail(Order order, String detail) {
+    BigDecimal bigDecimal=new BigDecimal("0");
     if(detail!=null){
       JSONArray fromObject = JSONArray.fromObject(detail);
       for (int i = 0; i < fromObject.length(); i++) {  
         JSONObject jsonObject2 = fromObject.getJSONObject(i);
         OrderDetail bean = (OrderDetail) JSONObject.toBean(jsonObject2, OrderDetail.class);
         if(bean!=null){
+          bigDecimal=bigDecimal.add(new BigDecimal(bean.getDetailMoney()==null?"0":bean.getDetailMoney()+""));
           orderDetailMapper.insert(bean);
         }
         }
       }
+    order.setOrderSalesAmount(bigDecimal.doubleValue());
     orderMapper.insert(order);
     
   }
 
   @Override
   public void updateOrderAndDetail(Order order, String detail) {
+    BigDecimal bigDecimal=new BigDecimal("0");
     if(detail!=null){
       JSONArray fromObject = JSONArray.fromObject(detail);
       for (int i = 0; i < fromObject.length(); i++) {  
         JSONObject jsonObject2 = fromObject.getJSONObject(i);
         OrderDetail bean = (OrderDetail) JSONObject.toBean(jsonObject2, OrderDetail.class);
           if(bean!=null){
+            bigDecimal=bigDecimal.add(new BigDecimal(bean.getDetailMoney()==null?"0":bean.getDetailMoney()+""));
             if(bean.getDetailId()!=null){
               orderDetailMapper.updateByPrimaryKey(bean);
             }else{
@@ -80,7 +86,7 @@ public class OrderServiceImpl extends BaseService<Order> implements OrderService
           }
         }
       }
-    
+    order.setOrderSalesAmount(bigDecimal.doubleValue());
     orderMapper.updateByPrimaryKey(order);
   }
 

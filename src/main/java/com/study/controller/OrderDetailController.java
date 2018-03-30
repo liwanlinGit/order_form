@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.study.model.Order;
 import com.study.model.OrderDetail;
 import com.study.service.OrderDetailService;
+import com.study.service.OrderService;
 import com.study.util.ResultUtil;
 import com.study.util.bean.DataGridResultInfo;
 import com.study.util.bean.PageBean;
@@ -27,6 +29,8 @@ public class OrderDetailController {
 
   @Autowired
   private OrderDetailService orderDetailService;
+  @Autowired
+  private OrderService orderService;
   
   @ApiOperation(value="获取所有的订单数据",notes="获取所有的订单数据，返回grid")
   @ApiImplicitParams({
@@ -59,6 +63,10 @@ public class OrderDetailController {
          if(ids!=null){
            String[] idsArry=ids.split(",");
            for (String id : idsArry) {
+             OrderDetail orderDetail = orderDetailService.selectByKey(Integer.parseInt(id));
+             Order selectByKey = orderService.selectByKey(orderDetail.getOrderId());
+             selectByKey.setOrderSalesAmount(selectByKey.getOrderSalesAmount()-orderDetail.getDetailMoney());
+             orderService.updateNotNull(selectByKey);
              orderDetailService.delete(Integer.parseInt(id));
           }
          }
