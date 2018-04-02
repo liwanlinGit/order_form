@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2018-03-29 15:23:54
+Date: 2018-04-02 17:05:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -156,9 +156,8 @@ CREATE TABLE `orders` (
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', '盼盼散热器北京分公司', '010-61004100', null, null, '', null, 'D201803290001', null, null, '', '', '', null, null, '', null, '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1', '2018-03-29 13:46:29', '1', null, null, null, null, null, null);
-INSERT INTO `orders` VALUES ('2', '盼盼散热器北京分公司', '010-61004100', null, null, '', null, 'D201803290002', null, null, '', '', '', null, null, '', null, '', '', null, null, null, null, null, null, null, null, null, null, null, null, '1', '1', '2018-03-29 15:06:12', null, null, '1', '2018-03-29 13:53:06', '1', null, null, null, null, null, null);
-INSERT INTO `orders` VALUES ('3', '盼盼散热器北京分公司', '010-61004100', null, null, '', null, 'D201803290003', null, null, '', '', '', null, null, '', null, '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1', '2018-03-29 14:34:41', '1', null, null, null, null, null, null);
+INSERT INTO `orders` VALUES ('1', '盼盼散热器北京分公司', '010-61004100', null, null, '2018-04-02 16:45:10', null, 'D201804020001', null, null, '2018-04-02 16:45:08', '张三', '00001', null, null, '1525456462', null, '13123', '', null, null, '129295.284', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1', '2018-04-02 16:44:54', '1', null, null, null, null, null, null);
+INSERT INTO `orders` VALUES ('2', '盼盼散热器北京分公司', '010-61004100', null, null, '2018-04-02 16:48:40', null, 'D201804020002', null, null, '2018-04-02 16:48:42', '李四', '0002', null, null, '144444444', null, '131231', '', null, null, '32321.321', null, null, null, null, null, null, null, null, null, null, null, null, null, null, '1', '2018-04-02 16:48:26', '1', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for orders_detail
@@ -194,18 +193,14 @@ CREATE TABLE `orders_detail` (
   `detail_price` double DEFAULT NULL COMMENT '单价',
   `detail_money` double DEFAULT NULL COMMENT '金额',
   PRIMARY KEY (`detail_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders_detail
 -- ----------------------------
-INSERT INTO `orders_detail` VALUES ('36', '39', '41', '2', '1', null, null, null, null, '组', '', '', '', '', null, null, null, null, '58', '20', null, null, '', null, null, '1', null, null);
-INSERT INTO `orders_detail` VALUES ('37', '40', '59', '1', '2', null, null, null, null, '组', '', '', '', '', null, null, null, null, '57', '30', null, null, '', null, null, '1', null, null);
-INSERT INTO `orders_detail` VALUES ('38', '40', '59', '1', '11', null, null, null, null, '组', '49', '50', '54', '56', null, null, null, null, '58', '10', null, null, '123', null, null, '2', '10', '10');
-INSERT INTO `orders_detail` VALUES ('39', '39', '41', '2', '2', null, null, null, null, '组', '48', '51', '52', '55', null, null, null, null, '57', '60', null, null, '222', null, null, '2', '2', '2');
-INSERT INTO `orders_detail` VALUES ('40', '39', '41', '22', '11', null, null, null, null, '组', '49', '51', '54', '56', null, null, null, null, '58', '220', null, null, '323', null, null, '3', '0', '0');
-INSERT INTO `orders_detail` VALUES ('41', '40', '60', '1', '1', null, null, null, null, '组', '49', '51', '54', '56', null, null, null, null, '57', '30', null, null, '23', null, null, '3', '32321.321', '32321.321');
-INSERT INTO `orders_detail` VALUES ('42', '40', '59', '2', '1', null, null, null, null, '组', '', '', '', '', null, null, null, null, '', '0', null, null, '', null, null, '2', '10', '20');
+INSERT INTO `orders_detail` VALUES ('55', '40', '59', '1', '1', null, null, null, null, '组', '48', '50', '52', '55', null, null, null, null, '', '0', null, null, '111', null, null, '1', '10', '10');
+INSERT INTO `orders_detail` VALUES ('56', '40', '60', '2', '2', null, null, null, null, '组', '49', '51', '54', '56', null, null, null, null, '', '0', null, null, '222', null, null, '1', '32321.321', '129285.284');
+INSERT INTO `orders_detail` VALUES ('57', '40', '60', '1', '1', null, null, null, null, '组', '48', '51', '52', '55', null, null, null, null, '', '0', null, null, '', null, null, '2', '32321.321', '32321.321');
 
 -- ----------------------------
 -- Table structure for resources
@@ -221,7 +216,7 @@ CREATE TABLE `resources` (
   `iconCls` varchar(100) DEFAULT NULL,
   `but_fun` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of resources
@@ -266,7 +261,9 @@ INSERT INTO `resources` VALUES ('78', '删除订单', '/orders/delete', '2', '76
 INSERT INTO `resources` VALUES ('79', '修改订单', '/orders/edit', '2', '76', '3', 'icon-edit-new', 'edit()');
 INSERT INTO `resources` VALUES ('80', '审核', '/orders/off', '2', '76', '4', 'icon-redo', 'off()');
 INSERT INTO `resources` VALUES ('81', '去审核', '/orders/no', '2', '76', '5', 'icon-undo', 'on()');
-INSERT INTO `resources` VALUES ('82', '打印', '/orders/print', '2', '76', '5', 'icon-print', 'printWord()');
+INSERT INTO `resources` VALUES ('82', '打印', '/orders/print', '2', '76', '6', 'icon-print', 'printWord()');
+INSERT INTO `resources` VALUES ('83', '导出', '/orders/excel', '2', '76', '7', 'icon-import-new', 'excel()');
+INSERT INTO `resources` VALUES ('84', '订单汇总', '/day', '1', '75', '2', null, null);
 
 -- ----------------------------
 -- Table structure for role
@@ -276,7 +273,7 @@ CREATE TABLE `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `roleDesc` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role
@@ -340,6 +337,8 @@ INSERT INTO `role_resources` VALUES ('1', '79');
 INSERT INTO `role_resources` VALUES ('1', '80');
 INSERT INTO `role_resources` VALUES ('1', '81');
 INSERT INTO `role_resources` VALUES ('1', '82');
+INSERT INTO `role_resources` VALUES ('1', '83');
+INSERT INTO `role_resources` VALUES ('1', '84');
 INSERT INTO `role_resources` VALUES ('2', '77');
 INSERT INTO `role_resources` VALUES ('2', '78');
 INSERT INTO `role_resources` VALUES ('2', '79');
