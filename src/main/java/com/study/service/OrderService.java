@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.study.model.Order;
+import com.study.model.vo.OrderDetailVo;
 import com.study.util.bean.PageBean;
 
 public interface OrderService  extends IService<Order> {
@@ -14,4 +15,6 @@ public interface OrderService  extends IService<Order> {
   public String getOrderNumber(Map<String, Object> map);
   public void addOrderAndDetail(Order order,String detail);
   public void updateOrderAndDetail(Order order,String detail);
+  
+  public List<OrderDetailVo> getSummary(OrderDetailVo detailVo);
 }

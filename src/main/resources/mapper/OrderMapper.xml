@@ -107,6 +107,79 @@
          </if>
          order by tab1.order_single_time desc
   </select>
+  
+  
+  <select id="getSummary" parameterType="com.study.model.vo.OrderDetailVo" resultType="com.study.model.vo.OrderDetailVo">
+  
+  select tab1.order_id as "orderId",tab1.order_company as "orderCompany",tab1.order_company_phone as "orderCompanyPhone",tab1.order_company_fax as "orderCompanyFax",
+         tab1.order_company_website as "orderCompanyWebsite",tab1.order_date as "orderDate",tab1.order_price_group as "orderPriceGroup",
+         tab1.order_number as "orderNumber",tab1.order_urgent as "orderUrgent",tab1.order_seller as "orderSeller",tab1.order_delivery_date as "orderDeliveryDate",
+         tab1.order_customer_name as "orderCustomerName",tab1.order_contract_number as "orderContractNumber",tab1.order_ins_date as "orderInsDate",
+         tab1.order_customer_phone as "orderCustomerPhone",tab1.order_customer_telephone as "orderCustomerTelephone",tab1.order_tube_date as "orderTubeDate",
+         tab1.order_address as "orderAddress",tab1.order_remark as "orderRemark",	tab1.order_additional_amount as "orderAdditionalAmount",
+         tab1.order_additional_remark as "orderAdditionalRemark",tab1.order_sales_amount as "orderSalesAmount",tab1.order_total as "orderTotal",
+         tab1.order_total_number as "orderTotalNumber",tab1.order_payment as "orderPayment",tab1.order_margin as "orderMargin",tab1.order_total_payment as "orderTotalPayment",
+         tab1.order_available_balance as "orderAvailableBalance",tab1.order_credits as "orderCredits",tab1.order_time as "orderTime",tab1.order_delivery_time as "orderDeliveryTime",
+         tab1.order_status as "orderStatus",tab1.order_review as "orderReview",(select name from user where id=tab1.order_review) as "orderReviewName",tab1.order_review_time as "orderReviewTime",tab1.order_financial_audit as "orderFinancialAudit",
+         tab1.order_financial_audit_time as "orderFinancialAuditTime",tab1.order_single as "orderSingle",(select name from user where id=tab1.order_single) as "orderSingleName",tab1.order_single_time as "orderSingleTime",
+         tab1.order_dealer as "orderDealer",(select dictdata_name from dictionarydata where id=tab1.order_dealer) as "orderDealerName",tab1.order_type as "orderType",tab1.order_customer_type as "orderCustomerType",tab1.order_customer_address as "orderCustomerAddress",
+         tab1.order_contact as "orderContact",tab1.order_contact_phone as "orderContactPhone",tab1.order_contact_fax as "orderContactFax",(select dictdata_name from dictionarydata where id=us.store) as "storeName",(select dictdata_name from dictionarydata where id=us.contact_address) as "contactAddressName",
+         us.contact_number as "contactNumber",us.contact,
+         e.detail_id as "detailId",e.detail_series as "detailSeries",(select dictdata_name from dictionarydata where id=e.detail_series) as "detailSeriesName", e.detail_model as "detailModel",(select dictdata_name from dictionarydata where id=e.detail_model) as "detailModelName",
+           e.detail_number_group as "detailNumberGroup",e.detail_number as "detailNumber",
+           e.detail_total_number as "detailTotalNumber",e.detail_room as "detailRoom",e.detail_hight as "detailHight",
+           e.detail_width as "detailWidth",e.detail_unit as "detailUnit",e.detail_color as "detailColor",(select dictdata_name from dictionarydata where id=e.detail_color) as "detailColorName",
+           e.detail_water_type as "detailWaterType",(select dictdata_name from dictionarydata where id=e.detail_water_type) as "detailWaterTypeName",e.detail_center_distance as "detailCenterDistance",(select dictdata_name from dictionarydata where id=e.detail_center_distance) as "detailCenterDistanceName",
+           e.detail_interface_caliber as "detailInterfaceCaliber",(select dictdata_name from dictionarydata where id=e.detail_interface_caliber) as "detailInterfaceCaliberName",e.detail_market_price as "detailMarketPrice",
+           e.detail_market_price_amount as "detailMarketPriceAmount",e.detail_market_retail_price as "detailMarketRetailPrice",
+           e.detail_market_retail_price_amount as "detailMarketRetailPriceAmount",e.detail_custom_fee as "detailCustomFee",(select dictdata_name from dictionarydata where id=e.detail_custom_fee) as "detailCustomFeeName",
+           e.detail_total_custom_fee as "detailTotalCustomFee",e.detail_should_produce as "detailShouldProduce",
+           e.detail_delivery_time as "detailDeliveryTime",e.detail_remark as "detailRemark",e.detail_order_status as "detailOrderStatus",
+           e.detail_generated_status as "detailGeneratedStatus",e.detail_price as "detailPrice",e.detail_money as "detailMoney"
+         from orders tab1 inner join user us on tab1.order_dealer=us.id inner join orders_detail e on e.order_id=tab1.order_id and 1=1
+         <if test="orderSingle!=null and orderSingle!=''">
+          and tab1.order_single=#{orderSingle}
+         </if>
+         <if test="orderCompany!=null and orderCompany!=''">
+         and tab1.order_company like CONCAT(CONCAT('%', #{orderCompany}), '%') 
+         </if>
+         <if test="orderId!=null and orderId!=''">
+         and tab1.order_id=#{orderId} 
+         </if>
+         <if test="orderNumber!=null and orderNumber!=''">
+         and tab1.order_number like CONCAT(CONCAT('%', #{orderNumber}), '%') 
+         </if>
+         <if test="orderContractNumber!=null and orderContractNumber!=''">
+         and tab1.order_contract_number like CONCAT(CONCAT('%', #{orderContractNumber}), '%') 
+         </if>
+         <if test="beginTime!=null and beginTime!='' and endTime!=null and endTime!=''">
+           and  tab1.order_single_time between  CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59')
+         </if>
+         <if test="orderStatus!=null">
+             <choose>
+               <when test="orderStatus==0">
+                 and order_status is null
+               </when>
+               <when test="orderStatus==1">
+                  and order_status =#{orderStatus}
+               </when>
+             </choose>
+         </if>
+         <if test="orderType!=null">
+            <choose>
+              <when test="orderType!=0">
+              and us.store=#{orderType}
+              </when>
+            </choose>
+         </if>
+         order by tab1.order_single_time desc
+  
+  
+  
+  </select>
+  
+  
+  
   <select id="getOrderMaxId" resultType="java.lang.Integer">
     select max(order_id) from orders
   </select>

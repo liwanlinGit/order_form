@@ -23,6 +23,7 @@ import com.study.mapper.OrderDetailMapper;
 import com.study.mapper.OrderMapper;
 import com.study.model.Order;
 import com.study.model.OrderDetail;
+import com.study.model.vo.OrderDetailVo;
 import com.study.service.OrderService;
 import com.study.util.PageBeanUtil;
 import com.study.util.bean.PageBean;
@@ -93,6 +94,11 @@ public class OrderServiceImpl extends BaseService<Order> implements OrderService
   @Override
   public String getOrderNumber(Map<String, Object> map) {
     return orderMapper.getOrderNumber(map);
+  }
+
+  @Override
+  public List<OrderDetailVo> getSummary(OrderDetailVo detailVo) {
+    return orderMapper.getSummary(detailVo);
   }
 
 

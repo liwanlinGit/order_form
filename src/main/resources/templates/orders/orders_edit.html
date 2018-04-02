@@ -1,86 +1,97 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head th:include="common/head :: header">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'center'" border="false">
-	<div id="dlg" style="padding:10px 20px;">
-	   <div class="myftitle">基本信息</div>
-	   <form id="myfm" method="post" novalidate>
-	       <input type="hidden" name="orderId" th:value="${order.orderId}"/>
-	       <table cellpadding="5">
+		<div id="dlg" style="padding: 10px 20px;">
+			<div class="myftitle">基本信息</div>
+			<form id="myfm" method="post" novalidate>
+				<input type="hidden" name="orderId" th:value="${order.orderId}" />
+				<table cellpadding="5">
 					<tr>
 						<td>公司名称:</td>
 						<td><input class="easyui-validatebox" type="text"
 							style="width: 150px;" name="orderCompany"
-							th:value="${order.orderCompany}"></input></td>
+							th:value="${order.orderCompany}" readonly="readonly"></input></td>
 						<td>订单单号:</td>
-						<td><input class="easyui-validatebox" type="text" name="orderNumber"
-							style="width: 150px;" th:value="${order.orderNumber}" readonly="readonly"></input></td>
-					    <td>公司电话:</td>
 						<td><input class="easyui-validatebox" type="text"
-							name="orderCompanyPhone" style="width: 150px;" th:value="${order.orderCompanyPhone}"></input></td>
+							name="orderNumber" style="width: 150px;"
+							th:value="${order.orderNumber}" readonly="readonly"></input></td>
+						<td>公司电话:</td>
+						<td><input class="easyui-validatebox" type="text"
+							name="orderCompanyPhone" style="width: 150px;"
+							th:value="${order.orderCompanyPhone}" readonly="readonly"></input></td>
 					</tr>
 					<tr>
-						
-						<td>订货日期:</td>
-						<td><input class="easyui-datetimebox" type="text"
-							name="orderDate" style="width: 150px;" th:value="${order.orderDate}"></input></td>
-							<td>客户姓名:</td>
+						<td>经销商:</td>
+						<td><input type="hidden" th:value="${user.id}"
+							name="orderDealer"> <input class="easyui-validatebox"
+							type="text" th:value="${user.storeName}" style="width: 150px;"
+							readonly="readonly"></input></td>
+						<td>制单人:</td>
+						<td><input type="hidden" name="orderSingle"
+							th:value="${user.id}"> <input class="easyui-validatebox"
+							type="text" style="width: 150px;" th:value="${user.name}"
+							readonly="readonly"></input></td>
+						<td>客户姓名:</td>
 						<td><input class="easyui-validatebox" type="text"
-							name="orderCustomerName" style="width: 150px;" th:value="${order.orderCustomerName}"></input></td>
-						<td>交货日期:</td>
-						<td><input class="easyui-datetimebox" type="text"
-							name="orderDeliveryDate" style="width: 150px;" th:value="${order.orderDeliveryDate}"></input></td>
+							name="orderCustomerName" style="width: 150px;"
+							th:value="${order.orderCustomerName}" data-options="required:true"></input></td>
 					</tr>
+
 					<tr>
 						<td>客户电话:</td>
 						<td><input class="easyui-validatebox" type="text"
-							name="orderCustomerTelephone" style="width: 150px;" th:value="${order.orderCustomerTelephone}"></input></td>
-					<td>联系地址:</td>
-						<td ><input class="easyui-validatebox" type="text"
-							name="orderAddress" style="width: 150px;" th:value="${order.orderAddress}"></input></td>
-							<td>销售金额:</td>
+							name="orderCustomerTelephone" style="width: 150px;"
+							th:value="${order.orderCustomerTelephone}" data-options="required:true"></input></td>
+						<td>联系地址:</td>
 						<td><input class="easyui-validatebox" type="text"
-							name="orderSalesAmount" style="width: 150px;" th:value="${order.orderSalesAmount}"></input></td>
-					</tr>
-					<tr>
+							name="orderAddress" style="width: 150px;"
+							th:value="${order.orderAddress}" data-options="required:true"></input></td>
+
 						<td>合同编号:</td>
 						<td><input class="easyui-validatebox" type="text"
-							name="orderContractNumber" style="width: 150px;" th:value="${order.orderContractNumber}"></input></td>
-							<td>制单人:</td>
-						<td>
-						<input type="hidden" name="orderSingle" th:value="${user.id}">
-						<input class="easyui-validatebox" type="text"
-							 style="width: 150px;" th:value="${user.name}" readonly="readonly"></input></td>
+							name="orderContractNumber" style="width: 150px;"
+							th:value="${order.orderContractNumber}" data-options="required:true"></input></td>
+
+
+					</tr>
+					<tr>
 						<td>制单时间:</td>
 						<td><input class="easyui-datetimebox" type="text"
-							name="orderSingleTime" id="orderSingleTime" th:value="${order.orderSingleTime}"  style="width: 150px;" readonly="readonly"></input></td>
-					</tr>
-					<tr>
-						<td>备注:</td>
-						<td ><input class="easyui-validatebox" type="text"
-							style="width: 150px;" name="orderRemark" th:value="${order.orderRemark}"></input></td>
-					<td>经销商:</td>
-						<td><input type="hidden" th:value="${user.id}"
-							name="orderDealer"> <input class="easyui-validatebox"
-							type="text" th:value="${user.storeName}" style="width: 150px;" readonly="readonly"></input></td>
+							name="orderSingleTime" id="orderSingleTime"
+							th:value="${order.orderSingleTime}" style="width: 150px;"
+							readonly="readonly"></input></td>
+						<td>交货日期:</td>
+						<td><input class="easyui-datetimebox" type="text"
+							name="orderDeliveryDate" style="width: 150px;"
+							th:value="${order.orderDeliveryDate}"></input></td>
+
 						<td>所属区域:</td>
 						<td><input class="easyui-validatebox" type="text"
-							th:value="${user.contactAddressName}" style="width: 150px;" readonly="readonly"></input></td>
+							th:value="${user.contactAddressName}" style="width: 150px;"
+							readonly="readonly"></input></td>
 					</tr>
+
+
 					<tr>
-						<td>联系人:</td>
+
+						<td>订货日期:</td>
+						<td><input class="easyui-datetimebox" type="text"
+							name="orderDate" style="width: 150px;"
+							th:value="${order.orderDate}"></input></td>
+						<td>备注:</td>
 						<td><input class="easyui-validatebox" type="text"
-							th:value="${user.contact}" style="width: 150px;" readonly="readonly"></input></td>
-						<td>联系电话:</td>
-						<td><input class="easyui-validatebox" type="text"
-							th:value="${user.contactNumber}" style="width: 150px;" readonly="readonly"></input></td>
+							style="width: 150px;" name="orderRemark"
+							th:value="${order.orderRemark}"></input></td>
+
 					</tr>
 				</table>
-	   	   <!-- <table cellpadding="5">
+				<!-- <table cellpadding="5">
 	   	    <tr>
 	   	    <td>公司名称:</td>
                  <td colspan="5"><input class="easyui-validatebox" type="text" style="width: 500px;" name="orderCompany" th:value="${order.orderCompany}"></input></td>
@@ -137,14 +148,15 @@
 	                    <td colspan="3"><input class="easyui-validatebox" type="text" style="width: 400px;" name="orderRemark" th:value="${order.orderRemark}"></input></td>
                 </tr>
             </table> -->
-            <!-- <div style="display: none;" id="tablehidde"></div> -->
-            <input type="hidden" value="" id="details" name="details"/>
-	   </form>
-	   <fieldset style="height: 200px; border-width: 1px;">
-               <table id="tb1" class="easyui-datagrid" title="" width="100%" height="100%" fit="true" border="0"
-           data-options="iconCls: 'icon-edit',rownumbers:true,url:'',singleSelect:false,method:'get',toolbar:'#toolbar1',sortName:'sequence',sortOrder:'asc',onClickRow: onClickRow">
-        <thead>
-            <tr>
+				<!-- <div style="display: none;" id="tablehidde"></div> -->
+				<input type="hidden" value="" id="details" name="details" />
+			</form>
+			<fieldset style="height: 200px; border-width: 1px;">
+				<table id="tb1" class="easyui-datagrid" title="" width="100%"
+					height="100%" fit="true" border="0"
+					data-options="iconCls: 'icon-edit',rownumbers:true,url:'',singleSelect:false,method:'get',toolbar:'#toolbar1',sortName:'sequence',sortOrder:'asc',onClickRow: onClickRow">
+					<thead>
+						<tr>
 							<th data-options="field:'ck',checkbox:true"></th>
 							<th
 								data-options="field:'orderId',hidden:true,width:100,align:'center',sortable:'true'">orderId</th>
@@ -177,13 +189,13 @@
 								
 							}
 						}">型号</th>
-						<th
+							<th
 								data-options="field:'detailNumber',width:50,align:'center',sortable:'true',editor:'validatebox'">片数</th>
 							<th
 								data-options="field:'detailNumberGroup',width:50,align:'center',sortable:'true',editor:'validatebox'">组数</th>
 							<th
 								data-options="field:'detailPrice',width:80,align:'center',sortable:'true',editor:'validatebox'">单价</th>
-								<th
+							<th
 								data-options="field:'detailMoney',width:80,align:'center',sortable:'true',editor:'validatebox'">金额</th>
 							<!-- <th
 								data-options="field:'detailTotalNumber',width:100,align:'center',sortable:'true',editor:'validatebox'">片数小计</th> -->
@@ -282,16 +294,18 @@
 							<th
 								data-options="field:'detailGeneratedStatus',width:100,align:'center',sortable:'true',editor:'validatebox'">生产状态</th> -->
 						</tr>
-        </thead>
-   	</table>
-   	<div id="toolbar1" class="easyui-layout" style="height:35px;margin:3px;">
-        <div data-options="region:'center',border:false">
-          <a class="easyui-linkbutton" icon="icon-add-new" plain="true" href="javascript:append()" >新增</a>
-          <a class="easyui-linkbutton" icon="icon-remove-new"  plain="true" href="javascript:remove()">删除</a>
-         </div>
-    </div>
-            </fieldset>
-            <!-- <table cellpadding="5" id="table2">
+					</thead>
+				</table>
+				<div id="toolbar1" class="easyui-layout"
+					style="height: 35px; margin: 3px;">
+					<div data-options="region:'center',border:false">
+						<a class="easyui-linkbutton" icon="icon-add-new" plain="true"
+							href="javascript:append()">新增</a> <a class="easyui-linkbutton"
+							icon="icon-remove-new" plain="true" href="javascript:remove()">删除</a>
+					</div>
+				</div>
+			</fieldset>
+			<!-- <table cellpadding="5" id="table2">
 	   	         <tr>
                     <td>附加金额:</td>
                     <td><input class="easyui-validatebox" type="text" name="orderAdditionalAmount" th:value="${order.orderAdditionalAmount}"></input></td>
@@ -371,14 +385,16 @@
 	                    <td><input class="easyui-validatebox" type="text" name="orderContactFax" th:value="${order.orderContactFax}"></input></td>
                 </tr>
             </table> -->
-    </div>
-    </div>
-    <div data-options="region:'south'" style="height: 40px;" border="false">
+		</div>
+	</div>
+	<div data-options="region:'south'" style="height: 40px;" border="false">
 		<hr>
-		<div style="text-align:center;">
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" th:onclick="|top.framework.closeTab('${menu.menuName}')|">关闭</a>
-    	</div>
+		<div style="text-align: center;">
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				onclick="submitForm()">保存</a> <a href="javascript:void(0)"
+				class="easyui-linkbutton"
+				th:onclick="|top.framework.closeTab('${menu.menuName}')|">关闭</a>
+		</div>
 	</div>
 	<script th:inline="javascript">
 	var parentMenuName=[[${menu.parentMenuName}]]
@@ -393,7 +409,45 @@
 	})
 	function submitForm(){
 		$('#tb1').datagrid('acceptChanges');
-		var data=$('#tb1').datagrid("getData"); 
+		var data=$('#tb1').datagrid("getData");
+		if(data.rows.length>0){
+			for (var i = 0; i< data.rows.length; i++) {
+				if(data.rows[i].detailSeries==""){
+					alert("第"+(i+1)+"行,系列不能为空")
+					selectAppend(i);
+					return false;
+				}
+                if(data.rows[i].detailModel==""){
+                	alert("第"+(i+1)+"行,型号不能为空")
+                	selectAppend(i);
+					return false;
+				}
+                if(data.rows[i].detailNumber==""){
+                	alert("第"+(i+1)+"行,片数不能为空")
+                	selectAppend(i);
+					return false;
+				}
+                if(data.rows[i].detailNumberGroup==""){
+                	alert("第"+(i+1)+"行,组数不能为空")
+                	selectAppend(i);
+					return false;
+				}
+                if(data.rows[i].detailColor==""){
+                	alert("第"+(i+1)+"行,颜色不能为空")
+                	selectAppend(i);
+					return false;
+				}
+                if(data.rows[i].detailWaterType==""){
+                	alert("第"+(i+1)+"行,进水方式不能为空")
+                	selectAppend(i);
+					return false;
+				}
+				
+			}
+		}
+		
+		
+		
 		$("#details").val(JSON.stringify(data.rows));
 		
        $('#myfm').form('submit',{
@@ -410,6 +464,53 @@
                 }
             }
         });
+	}
+	function selectAppend(index){
+		$('#tb1').datagrid('selectRow', index)
+		.datagrid('beginEdit', index);
+		var detailSeries = $('#tb1').datagrid('getEditor', {index:index,field:'detailSeries'});
+		var detailModel=$('#tb1').datagrid('getEditor', {index:index,field:'detailModel'});
+		var detailNumber=$('#tb1').datagrid('getEditor', {index:index,field:'detailNumber'});
+		var detailNumberGroup = $('#tb1').datagrid('getEditor', {index:index,field:'detailNumberGroup'});
+		var detailPrice=$('#tb1').datagrid('getEditor', {index:index,field:'detailPrice'});
+		var detailMoney=$('#tb1').datagrid('getEditor', {index:index,field:'detailMoney'});
+		var val=$(detailSeries.target).combobox('getValue');
+		var mode=$(detailModel.target).combobox('getValue');
+		$(detailSeries.target).combobox({
+			onSelect: function (i,row) {
+				var id=$(detailSeries.target).combobox('getValue');
+				$(detailModel.target).combobox({
+					url:'/dictdata/getDataTree?dictCode=XH&parentId='+id
+				});
+			}
+		})
+       if(val!=""){
+    	   $(detailSeries.target).combobox('setValue',val);
+    	   if(mode!=""){
+    		   $(detailModel.target).combobox({
+   				 url:'/dictdata/getDataTree?dictCode=XH&parentId='+val
+   			   });
+    		   $(detailModel.target).combobox('setValue',mode);
+    	   }
+		}
+		detailNumber.target.bind('change',function () {
+			var grop=detailNumberGroup.target.val();
+			var num=detailNumber.target.val();
+			var price=detailPrice.target.val();
+			detailMoney.target.val(num*price*grop);
+		})
+		detailPrice.target.bind('change',function () {
+			var grop=detailNumberGroup.target.val();
+			var num=detailNumber.target.val();
+			var price=detailPrice.target.val();
+			detailMoney.target.val(num*price*grop);
+		})
+		detailNumberGroup.target.bind('change',function () {
+			var grop=detailNumberGroup.target.val();
+			var num=detailNumber.target.val();
+			var price=detailPrice.target.val();
+			detailMoney.target.val(num*price*grop);
+		})
 	}
 	var editIndex = undefined;
 	function append(){
@@ -636,4 +737,3 @@
 	}
 	</script>
 </body>
-
