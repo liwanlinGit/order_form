@@ -44,6 +44,6 @@ public class SummaryViewController {
     request.setAttribute("store", store);
     List<Dictionarydata> dicts = dictdataService.selectDictdataByParentId(null, null);
     request.setAttribute("dicts", dicts);
-    return "/day/day";
+    return "day/day";
   }
 }
