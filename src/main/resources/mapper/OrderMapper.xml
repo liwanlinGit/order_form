@@ -50,6 +50,8 @@
     <result column="order_contact" jdbcType="VARCHAR" property="orderContact" />
     <result column="order_contact_phone" jdbcType="VARCHAR" property="orderContactPhone" />
     <result column="order_contact_fax" jdbcType="VARCHAR" property="orderContactFax" />
+    <result column="order_single_name" jdbcType="VARCHAR" property="orderSingleName" />
+    <result column="order_dealer_name" jdbcType="VARCHAR" property="orderDealerName" />
   </resultMap>
   
   
@@ -65,9 +67,9 @@
          tab1.order_total_number as "orderTotalNumber",tab1.order_payment as "orderPayment",tab1.order_margin as "orderMargin",tab1.order_total_payment as "orderTotalPayment",
          tab1.order_available_balance as "orderAvailableBalance",tab1.order_credits as "orderCredits",tab1.order_time as "orderTime",tab1.order_delivery_time as "orderDeliveryTime",
          tab1.order_status as "orderStatus",tab1.order_review as "orderReview",(select name from user where id=tab1.order_review) as "orderReviewName",tab1.order_review_time as "orderReviewTime",tab1.order_financial_audit as "orderFinancialAudit",
-         tab1.order_financial_audit_time as "orderFinancialAuditTime",tab1.order_single as "orderSingle",(select name from user where id=tab1.order_single) as "orderSingleName",tab1.order_single_time as "orderSingleTime",
-         tab1.order_dealer as "orderDealer",(select dictdata_name from dictionarydata where id=tab1.order_dealer) as "orderDealerName",tab1.order_type as "orderType",tab1.order_customer_type as "orderCustomerType",tab1.order_customer_address as "orderCustomerAddress",
-         tab1.order_contact as "orderContact",tab1.order_contact_phone as "orderContactPhone",tab1.order_contact_fax as "orderContactFax",(select dictdata_name from dictionarydata where id=us.store) as "storeName",(select dictdata_name from dictionarydata where id=us.contact_address) as "contactAddressName",
+         tab1.order_financial_audit_time as "orderFinancialAuditTime",tab1.order_single as "orderSingle",tab1.order_single_name as "orderSingleName",tab1.order_single_time as "orderSingleTime",
+         tab1.order_dealer as "orderDealer",tab1.order_dealer_name as "orderDealerName",tab1.order_type as "orderType",tab1.order_customer_type as "orderCustomerType",tab1.order_customer_address as "orderCustomerAddress",
+         tab1.order_contact as "orderContact",tab1.order_contact_phone as "orderContactPhone",tab1.order_contact_fax as "orderContactFax",(select dictdata_name from dictionarydata where id=us.store) as "storeName",order_customer_address as "orderCustomerAddress",
          us.contact_number as "contactNumber",us.contact 
          from orders tab1 inner join user us on tab1.order_dealer=us.id and 1=1
          <if test="orderSingle!=null and orderSingle!=''">
@@ -105,6 +107,9 @@
               </when>
             </choose>
          </if>
+         <if test="orderDealerName!=null and orderDealerName!=''">
+           and order_dealer_name=#{orderDealerName}
+         </if>
          order by tab1.order_single_time desc
   </select>
   
@@ -121,8 +126,8 @@
          tab1.order_total_number as "orderTotalNumber",tab1.order_payment as "orderPayment",tab1.order_margin as "orderMargin",tab1.order_total_payment as "orderTotalPayment",
          tab1.order_available_balance as "orderAvailableBalance",tab1.order_credits as "orderCredits",tab1.order_time as "orderTime",tab1.order_delivery_time as "orderDeliveryTime",
          tab1.order_status as "orderStatus",tab1.order_review as "orderReview",(select name from user where id=tab1.order_review) as "orderReviewName",tab1.order_review_time as "orderReviewTime",tab1.order_financial_audit as "orderFinancialAudit",
-         tab1.order_financial_audit_time as "orderFinancialAuditTime",tab1.order_single as "orderSingle",(select name from user where id=tab1.order_single) as "orderSingleName",tab1.order_single_time as "orderSingleTime",
-         tab1.order_dealer as "orderDealer",(select dictdata_name from dictionarydata where id=tab1.order_dealer) as "orderDealerName",tab1.order_type as "orderType",tab1.order_customer_type as "orderCustomerType",tab1.order_customer_address as "orderCustomerAddress",
+         tab1.order_financial_audit_time as "orderFinancialAuditTime",tab1.order_single as "orderSingle",tab1.order_single_name as "orderSingleName",tab1.order_single_time as "orderSingleTime",
+         tab1.order_dealer as "orderDealer",tab1.order_dealer_name as "orderDealerName",tab1.order_type as "orderType",tab1.order_customer_type as "orderCustomerType",tab1.order_customer_address as "orderCustomerAddress",
          tab1.order_contact as "orderContact",tab1.order_contact_phone as "orderContactPhone",tab1.order_contact_fax as "orderContactFax",(select dictdata_name from dictionarydata where id=us.store) as "storeName",(select dictdata_name from dictionarydata where id=us.contact_address) as "contactAddressName",
          us.contact_number as "contactNumber",us.contact,
          e.detail_id as "detailId",e.detail_series as "detailSeries",(select dictdata_name from dictionarydata where id=e.detail_series) as "detailSeriesName", e.detail_model as "detailModel",(select dictdata_name from dictionarydata where id=e.detail_model) as "detailModelName",
@@ -171,6 +176,9 @@
               and us.store=#{orderType}
               </when>
             </choose>
+         </if>
+         <if test="orderDealerName!=null and orderDealerName!=''">
+           and tab1.order_dealer_name=#{orderDealerName}
          </if>
          order by tab1.order_single_time desc
   

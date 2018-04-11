@@ -235,7 +235,7 @@ public class Order {
     @Column(name = "order_dealer")
     private String orderDealer;
     
-    @Transient
+    @Column(name = "order_dealer_name")
     private String orderDealerName;
 
     /**
@@ -275,7 +275,7 @@ public class Order {
     private String orderContactFax;
 
     
-    @Transient
+    @Column(name = "order_single_name")
     private String orderSingleName;
     
     @Transient

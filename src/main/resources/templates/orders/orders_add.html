@@ -28,12 +28,12 @@
 					<td>经销商:</td>
 						<td><input type="hidden" th:value="${user.id}"
 							name="orderDealer"> <input class="easyui-validatebox"
-							type="text" th:value="${user.storeName}" style="width: 150px;" readonly="readonly"></input></td>
+							type="text" th:value="${user.storeName}"  name="orderDealerName"  style="width: 150px;" readonly="readonly"></input></td>
 						<td>制单人:</td>
 						<td>
 						<input type="hidden" name="orderSingle" th:value="${user.id}">
 						<input class="easyui-validatebox" type="text"
-							 style="width: 150px;" th:value="${user.name}" readonly="readonly"></input></td>
+							 style="width: 150px;" th:value="${user.name}"     name="orderSingleName" readonly="readonly"></input></td>
 						<td>客户姓名:</td>
 						<td><input class="easyui-validatebox" type="text"
 							name="orderCustomerName" style="width: 150px;" data-options="required:true"></input></td>
@@ -61,7 +61,7 @@
 							name="orderDeliveryDate" style="width: 150px;"></input></td>
 							<td>所属区域:</td>
 						<td><input class="easyui-validatebox" type="text"
-							th:value="${user.contactAddressName}" style="width: 150px;" readonly="readonly"></input></td>
+							th:value="${user.contactAddressName}" style="width: 150px;" name="orderCustomerAddress" readonly="readonly"></input></td>
 					</tr>
 					
 					

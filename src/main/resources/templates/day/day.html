@@ -122,7 +122,7 @@
         	var endTime = $('#endTime').val();
         	var orderStatus = $('#orderStatus').val();
         	var store = $('#store').val();
-        	location.href="/day/订单汇总/84?orderContractNumber="+orderContractNumber+"&orderNumber="+orderNumber+"&beginTime="+beginTime+"&endTime="+endTime+"&orderStatus="+orderStatus+"&store="+store;
+        	location.href="/day/订单汇总/84?orderContractNumber="+orderContractNumber+"&orderNumber="+orderNumber+"&beginTime="+beginTime+"&endTime="+endTime+"&orderStatus="+orderStatus+"&orderDealerName="+store;
         }
     </script>
 </head>
@@ -136,7 +136,7 @@
         至<input type="text"  id="endTime" th:value="${vo.endTime}" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" style="width: 100px;" />
       经销商:<select  name="store" id="store" style="width: 100px;">
                          <option value=''>--请选择--</option>
-                         <option th:each="dict1 : ${dicts}" th:value="${dict1.id}" th:text="${dict1.dictdataName}" th:if="${#strings.contains(dict1.dictCode,'MD')}" th:selected="${store!=null  and #strings.contains(store,dict1.id)}"></option>
+                         <option th:each="dict1 : ${dicts}" th:value="${dict1.dictdataName}" th:text="${dict1.dictdataName}" th:if="${#strings.contains(dict1.dictCode,'MD')}" th:selected="${vo.orderDealerName!=null  and #strings.contains(vo.orderDealerName,dict1.dictdataName)}"></option>
         </select>
                       <select  name="orderStatus" id="orderStatus" style="width: 100px;">
                          <option value=''>--请选择--</option>
@@ -194,7 +194,7 @@
                            <tr th:each="res : ${summary}">
                              <td class="td" th:text="${res.orderContractNumber}"></td>
                              <td class="td" th:text="${res.orderNumber}"></td>
-                             <td class="td" th:text="${res.storeName}"></td>
+                             <td class="td" th:text="${res.orderDealerName}"></td>
                              <td class="td" th:text="${res.orderDate}"></td>
                              <td class="td" th:text="${res.orderDeliveryDate}"></td>
                              <td class="td" th:text="${res.orderCustomerName}"></td>
@@ -257,7 +257,7 @@ mc('tbHaederText',0,13,0); */
 ///startRow：起始行，没有标题就从0开始  
 ///endRow：终止行，此参数是递归时检查的范围，一开始时会自动赋值为最后一行  
 ///col：当前处理的列  
-function MergeCell(tableId, startRow, endRow, col) {  
+/* function MergeCell(tableId, startRow, endRow, col) {  
     var tb = document.getElementById(tableId); 
     if (col >= 13) {  
         return;  
@@ -285,5 +285,5 @@ function MergeCell(tableId, startRow, endRow, col) {
         }  
     }  
 }  
-MergeCell('tbHaederText', 1, 0, 0); 
+MergeCell('tbHaederText', 1, 0, 0);  */
 </script> 
