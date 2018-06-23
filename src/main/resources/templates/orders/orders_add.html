@@ -367,13 +367,14 @@
 	<div data-options="region:'south'" style="height: 40px;" border="false">
 		<hr>
 		<div style="text-align: center;">
-			<a href="javascript:void(0)" class="easyui-linkbutton"
+			<a href="javascript:void(0)" id="submitForm" class="easyui-linkbutton"
 				onclick="submitForm()">保存</a> <a href="javascript:void(0)"
 				class="easyui-linkbutton"
 				th:onclick="|top.framework.closeTab('${menu.menuName}')|">关闭</a>
 		</div>
 	</div>
 	<script th:inline="javascript">
+	var butFlg=false;
 	var parentMenuName=[[${menu.parentMenuName}]]
 	var menuName=[[${menu.menuName}]]
 	var orderId=[[${orderId}]]
@@ -389,7 +390,6 @@
 		$(function(){
 			$('#orderSingleTime').datetimebox('setValue', formatterDate(new Date()));
 		})
-		
 	function submitForm(){
 		$('#tb1').datagrid('acceptChanges');
 		var data=$('#tb1').datagrid("getData");
@@ -433,7 +433,12 @@
         $('#myfm').form('submit',{
             url: '/orders/add.html',
             onSubmit: function(){
-                return $(this).form('validate');
+            	if($(this).form('validate')){
+            		 $.messager.progress();
+            		 return true;
+            	}else{
+            		return false;
+            	}
             },
             success: function(result){
                 if ("success"==result){
@@ -441,6 +446,7 @@
                 	top.framework.closeAndReloadTab(menuName, parentMenuName);
                 } else {
                 	Common.showMsg('提示',"添加失败");
+                	$.messager.progress('close');
                 }
             }
         });

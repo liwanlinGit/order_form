@@ -192,13 +192,13 @@
                             <td class="th" nowrap align='center'>备注</td>
                         </tr>
                            <tr th:each="res : ${summary}">
-                             <td class="td" th:text="${res.orderContractNumber}"></td>
-                             <td class="td" th:text="${res.orderNumber}"></td>
+                             <td class="td" style="vnd.ms-excel.numberformat:@" th:text="${res.orderContractNumber}"></td>
+                             <td class="td" style="vnd.ms-excel.numberformat:@" th:text="${res.orderNumber}"></td>
                              <td class="td" th:text="${res.orderDealerName}"></td>
                              <td class="td" th:text="${res.orderDate}"></td>
                              <td class="td" th:text="${res.orderDeliveryDate}"></td>
                              <td class="td" th:text="${res.orderCustomerName}"></td>
-                             <td class="td" th:text="${res.orderCustomerTelephone}"></td>
+                             <td class="td" style="vnd.ms-excel.numberformat:@" th:text="${res.orderCustomerTelephone}"></td>
                              <td class="td" th:text="${res.orderAddress}"></td>
                              <td class="td" th:text="${res.orderSalesAmount}"></td>
                              <td class="td" th:text="${res.orderRemark}"></td>
